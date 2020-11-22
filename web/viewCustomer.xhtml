@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Customer details</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template.xhtml" >
+            <ui:define name="content">
+                <h1>Customer details</h1>
+                <h:panelGrid  columns="2" styleClass="custTable" rowClasses="custTableOddRow,custTableEvenRow">
+                    <h:outputText value="ID: " />
+                    <h:outputText value="#{customer.customerDetails.id}" />
+
+                    <h:outputText value="Name: " />
+                    <h:outputText value="#{customer.customerDetails.name}" />
+
+                    <h:outputText value="Address: " styleClass="top" />
+                    <h:panelGroup>
+                        <h:outputText value="#{customer.customerDetails.addressLine1}" /><br/>
+                        <h:outputText value="#{customer.customerDetails.addressLine2}" /><br/>
+                        <h:outputText value="#{customer.customerDetails.city}" /><br/>
+                        <h:outputText value="#{customer.customerDetails.state}" /><br/>
+                        <h:outputText value="#{customer.customerDetails.zipCode}" />
+                    </h:panelGroup>
+
+                    <h:outputText value="Discount: " />
+                    <h:outputText value="#{customer.customerDetails.discount}"
+                                  converter="discountConverter" />
+                </h:panelGrid>
+
+                <h:form>
+                    <h:commandButton type="submit" value="Customer summary" action="index" />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

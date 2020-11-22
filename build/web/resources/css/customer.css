@@ -1,0 +1,56 @@
+body
+{
+    background-color: #abcdef;
+}
+
+.error
+{
+    padding-left: 5px;
+    color: #ff3333;
+    font-size: large;
+}
+
+.custTable{   
+    border-collapse:collapse;
+}
+
+.custTableHeader{
+    text-align:center;
+    background-color: #abcdef;
+    border-bottom: black solid medium;
+}
+
+.custTableFooter{
+    text-align:right;
+    background-color: #abcdef;
+    border-top: black solid medium;
+}
+
+.custTableOddRow{
+    text-align:right;
+    background-color: #b1e69e;
+    vertical-align: top;
+}
+
+.custTableEvenRow{
+    text-align:right;
+    background-color: #e4efe0;
+    vertical-align: top;
+}
+
+tr td,
+tr th:first-child
+{
+    padding: 5px 15px;
+}
+
+tr td:first-child,
+tr th:first-child
+{
+    text-align: left;
+}
+
+tfoot td
+{
+    font-weight: bold;
+}
