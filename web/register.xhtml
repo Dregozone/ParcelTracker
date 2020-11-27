@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Vowel count</title>
+    </h:head>
+    <h:body style="background-color: #abcdef">
+        <h1>Vowel count</h1>
+        <h2>Register</h2>
+        <h:form>
+            <h:panelGrid columns="2">
+                <p><b>Your name:</b><br/>(max. 20 characters)</p>
+                <h:inputText value="#{registration.name}"
+                             maxlength="20" 
+                             required="true"
+                             requiredMessage="Please enter your name" />
+
+                <p><b>Username:</b><br/>(max. 20 characters)</p>
+                <h:inputText value="#{registration.username}"
+                             maxlength="20" 
+                             required="true"
+                             requiredMessage="Please enter your username" />
+
+                <p><b>Password:</b><br/>(max. 20 characters)</p>
+                <h:inputText value="#{registration.password1}"
+                             maxlength="20" 
+                             required="true"
+                             requiredMessage="Please enter your password" />
+
+                <p><b>Confirm password:</b><br/>(max. 20 characters)</p>
+                <h:inputText value="#{registration.password2}"
+                             maxlength="20" 
+                             required="true"
+                             requiredMessage="Please confirm your password" />
+            </h:panelGrid>
+            <p><h:commandButton value="Submit" action="#{registration.register()}" />&nbsp;&nbsp;
+                <h:commandButton type="reset" value="Reset" />&nbsp;&nbsp;
+                <h:commandButton type="submit" value="Cancel" action="login" immediate="true" />
+            </p>
+        </h:form>
+    </h:body>
+</html>
+

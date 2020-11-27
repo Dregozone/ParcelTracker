@@ -1,8 +1,7 @@
-package manager;
+package gateway;
 
 import dto.CustomerDTO;
 import dto.DiscountDTO;
-import gateway.CustomerGateway;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,39 +9,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CustomerManager
-{    
-    
-    
-    private CustomerGateway gateway = new CustomerGateway();
-    
-    public CustomerDTO findCustomer(int CustID)
-    {
-        return gateway.find(CustID);
-    }
+public class CustomerGateway
+{
 
-    public CustomerDTO findCustomer(String name, String addressLine1, String zipCode)
-    {
-        return gateway.find(name, addressLine1, zipCode);
-    }
-
-    public ArrayList<CustomerDTO> getCustomerSummaries()
-    {
-        return gateway.findAllSummaries();
-    }
-
-    public boolean insertCustomer(CustomerDTO cust)
-    {
-        return gateway.insert(cust);
-    }
-    
-    /*
-    public CustomerDTO findCustomer(int CustID)
+    public CustomerDTO find(int CustID)
     {
         CustomerDTO customerDetails = null;
         try
         {
-            Connection conn = DbManager.getConnection();
+            DriverManager.registerDriver(
+                    new org.apache.derby.jdbc.ClientDriver());
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
 
             String sqlStr = "SELECT * "
                     + "FROM Customer JOIN Discount_Code ON Customer.Discount_Code = Discount_Code.Discount_Code "
@@ -74,13 +51,15 @@ public class CustomerManager
         return customerDetails;
     }
 
-    public CustomerDTO findCustomer(String name, String addressLine1, String zipCode)
+    public CustomerDTO find(String name, String addressLine1, String zipCode)
     {
         CustomerDTO customerDetails = null;
         try
         {
-            Connection conn = DbManager.getConnection();
-            
+            DriverManager.registerDriver(
+                    new org.apache.derby.jdbc.ClientDriver());
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
+
             String sqlStr = "SELECT * "
                     + "FROM Customer JOIN Discount_Code ON Customer.Discount_Code = Discount_Code.Discount_Code "
                     + "WHERE Name = ? AND AddressLine1 = ? AND Zip = ?";
@@ -113,12 +92,14 @@ public class CustomerManager
         return customerDetails;
     }
 
-    public ArrayList<CustomerDTO> getCustomerSummaries()
+    public ArrayList<CustomerDTO> findAllSummaries()
     {
         ArrayList<CustomerDTO> customerSummaries = new ArrayList<>();
         try
         {
-            Connection conn = DbManager.getConnection();
+            DriverManager.registerDriver(
+                    new org.apache.derby.jdbc.ClientDriver());
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
 
             PreparedStatement stmt = conn.prepareStatement("SELECT Customer_ID, Name FROM Customer");
             ResultSet rs = stmt.executeQuery();
@@ -139,12 +120,14 @@ public class CustomerManager
         return customerSummaries;
     }
 
-    public boolean insertCustomer(CustomerDTO cust)
+    public boolean insert(CustomerDTO cust)
     {
         boolean insertOK = false;
         try
         {
-            Connection conn = DbManager.getConnection();
+            DriverManager.registerDriver(
+                    new org.apache.derby.jdbc.ClientDriver());
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
 
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Customer (customer_id, discount_code, zip, name, addressline1, addressline2, city, state) values (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, cust.getId());
@@ -168,5 +151,15 @@ public class CustomerManager
         }
         return insertOK;
     }
-    */
+
+    public boolean delete(int CustID)
+    {
+        throw new UnsupportedOperationException("This operation has not been implemented");
+    }
+
+    public boolean update(CustomerDTO cust)
+    {
+        throw new UnsupportedOperationException("This operation has not been implemented");
+    }
+
 }
