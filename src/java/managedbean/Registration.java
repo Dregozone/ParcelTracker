@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,10 +30,40 @@ public class Registration implements Serializable
     {
     }
 
+    public int getNextId() {
+
+        int nextId = 0;
+        
+        try {
+            
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement("SELECT ID+1 AS ID FROM Users ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+
+            ResultSet rs = stmt.executeQuery();
+
+            if ( rs.next() ) {
+                nextId = rs.getInt("ID");
+            }
+            
+            //System.out.println(nextId);
+
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch ( SQLException sqle ) {
+            sqle.printStackTrace();
+        }
+        
+        return nextId;
+    }
+    
     public String register()
     {
         boolean dataOK = false;
-
+        int id = getNextId();
+        
         if (password1.equals(password2))
         {
             try
@@ -42,21 +74,35 @@ public class Registration implements Serializable
 
                 password1 = Base64.getEncoder().encodeToString(hash);
 
-                Connection conn = DbManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (name, uname, pwd) VALUES (?, ?, ?)");
-                stmt.setString(1, name);
-                stmt.setString(2, username);
-                stmt.setString(3, password1);
-                int rows = stmt.executeUpdate();
+                try {
+                    Connection conn = DbManager.getConnection();
+                    
+                    PreparedStatement stmt = conn.prepareStatement(""
+                            + "INSERT INTO Users "
+                            + "(id, firstname, lastname, username, hashedpassword, dateadded, datemodified, addresslineone, town, county, postcode, email, phone, isactive) "
+                            + "VALUES "
+                            + "(?, ?, ?, ?, ?, CURRENT_DATE, CURRENT_DATE, 'a', 'a', 'a', 'a', 'a', 'a', true)"
+                    );
+                    
+                    stmt.setInt(1, id);
+                    stmt.setString(2, name);
+                    stmt.setString(3, name);
+                    stmt.setString(4, username);
+                    stmt.setString(5, password1);
+                    
+                    int rows = stmt.executeUpdate();
 
-                dataOK = rows == 1;
+                    dataOK = rows == 1;
 
-                stmt.close();
-                conn.close();
+                    stmt.close();
+                    conn.close();
+                } catch(SQLException sqle) {
+                    sqle.printStackTrace();
+                }
             }
             catch (Exception e)
             {
-                //Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, e.toString());
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, e.toString());
             }
         }
 
@@ -66,7 +112,7 @@ public class Registration implements Serializable
         }
         else
         {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Credentials are not correct"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Credentials are not correct2 - id: " + id));
             return null;
         }
     }

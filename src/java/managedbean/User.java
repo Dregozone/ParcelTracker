@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,18 +35,24 @@ public class User implements Serializable
     public String checkCredentials()
     {
         credentialsOK = false;
+        
         try
         {
-            Connection conn = DbManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE uName = ?");
-            stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
+            try {
+                Connection conn = DbManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE username = ?");
+                stmt.setString(1, username);
+                ResultSet rs = stmt.executeQuery();
 
-            credentialsOK = rs.next() && rs.getString("pwd").equals(password);
+                //credentialsOK = rs.next() && rs.getString("pwd").equals(password);
+                credentialsOK = rs.next() && rs.getString("hashedpassword").equals(password);
 
-            rs.close();
-            stmt.close();
-            conn.close();
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         catch (Exception e)
         {
@@ -59,7 +66,7 @@ public class User implements Serializable
         else
         {
             clearCredentials();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login credentials are not correct"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login credentials are not correct1"));
             return null;
         }
 
@@ -71,6 +78,12 @@ public class User implements Serializable
         this.username = "";
         this.password = "";
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    }
+    
+    public String logout() {
+        clearCredentials();
+        
+        return "login";
     }
     
     public boolean credentialsAreOK()

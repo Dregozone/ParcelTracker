@@ -12,6 +12,10 @@
         <h:outputStylesheet library="css" name="customer.css"/>
     </h:head>
     <h:body>
+        <h:form>
+            <h:commandButton type="submit" value="Logout" action="#{user.logout()}" />
+        </h:form>
+        
         <div class="content">
             <ui:insert name="content">Main content</ui:insert>
         </div>
