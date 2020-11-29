@@ -3,19 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/dto/CustomerDTO.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/dbase/DbManager.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/gateway/CustomerGateway.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/manager/DbManager.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/template.xhtml</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/template_loggedIn.xhtml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/Registration.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/AddCustomerBean.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/addCustomer.xhtml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/index.xhtml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/login.xhtml</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/dbase/DbManager.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/register.xhtml</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/template_notLoggedIn.xhtml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/filter/CheckLoggedIn.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/WEB-INF/faces-config.xml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/User.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/manager/CustomerManager.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/viewCustomer.xhtml</file>
         </group>
     </open-files>
 </project-private>
