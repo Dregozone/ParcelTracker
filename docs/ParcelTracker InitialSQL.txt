@@ -85,13 +85,29 @@ create table OrderParcels (
 
 
 insert into Users(id, firstName, lastName, username, hashedPassword, dateAdded, dateModified, addressLineOne, town, county, postcode, email, phone, isActive) 
-    values (1, 'Anders', 'Learmonth', 'acl', 'a', '2020-01-01', '2020-01-01', 'line 1', 'abc', 'hants', 'rg11222', 'a@b.net', '012345', true);
+    values (1, 'Anders', 'Learmonth', 'recipient', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', '2020-01-01', '2020-01-01', 'line 1', 'abc', 'hants', 'rg11222', 'a@b.net', '012345', true);
+
+insert into Users(id, firstName, lastName, username, hashedPassword, dateAdded, dateModified, addressLineOne, town, county, postcode, email, phone, isActive) 
+    values (2, 'Anders', 'Learmonth', 'driver', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', '2020-01-01', '2020-01-01', 'line 1', 'abc', 'hants', 'rg11222', 'a@b.net', '012345', true);
+
+insert into Users(id, firstName, lastName, username, hashedPassword, dateAdded, dateModified, addressLineOne, town, county, postcode, email, phone, isActive) 
+    values (3, 'Anders', 'Learmonth', 'seller', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', '2020-01-01', '2020-01-01', 'line 1', 'abc', 'hants', 'rg11222', 'a@b.net', '012345', true);
 
 insert into Roles(id, name, isActive)
-    values (1, 'Driver', true);
+    values (1, 'Recipient', true);
+insert into Roles(id, name, isActive)
+    values (2, 'Driver', true);
+insert into Roles(id, name, isActive)
+    values (3, 'Seller', true);
 
 insert into UserRoles(id, userID, roleID, dateAdded)
     values (1, 1, 1, '2020-01-02');
+
+insert into UserRoles(id, userID, roleID, dateAdded)
+    values (2, 2, 2, '2020-01-02');
+
+insert into UserRoles(id, userID, roleID, dateAdded)
+    values (3, 3, 3, '2020-01-02');
 
 insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, dateCompleted)
     values (1, 1, 1, 1, '2020-01-03', false, null);

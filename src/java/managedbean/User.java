@@ -23,7 +23,6 @@ public class User implements Serializable
 {
 
     private int id;
-    private String name;
     private String username;
     private String password;
     private boolean credentialsOK = false;
@@ -36,32 +35,25 @@ public class User implements Serializable
     {
         credentialsOK = false;
         
-        try
-        {
-            try {
-                Connection conn = DbManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE username = ?");
-                stmt.setString(1, username);
-                ResultSet rs = stmt.executeQuery();
+        try {
+            Connection conn = DbManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE username = ?");
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
 
-                //credentialsOK = rs.next() && rs.getString("pwd").equals(password);
-                credentialsOK = rs.next() && rs.getString("hashedpassword").equals(password);
+            credentialsOK = rs.next() && rs.getString("hashedpassword").equals(password);
 
-                rs.close();
-                stmt.close();
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        catch (Exception e)
-        {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, e.toString());
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         if (credentialsOK)
         {
-            return "index";
+
+            return findUserRole() + "_UI";
         }
         else
         {
@@ -69,17 +61,54 @@ public class User implements Serializable
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login credentials are not correct1"));
             return null;
         }
-
     }
 
+    private String findUserRole() {
+        
+        String role = "Recipient"; // Set default
+        
+        try {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement(""
+                    + "SELECT R.name AS ROLE "
+                    + "FROM UserRoles UR "
+                    + "INNER JOIN Users U ON UR.UserID = U.ID "
+                    + "INNER JOIN Roles R ON UR.RoleID = R.ID "
+                    + "WHERE U.username = ?"
+            );
+            
+            stmt.setString(1, username);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            if ( rs.next() ) {
+                role = rs.getString("ROLE");
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return role;
+    }
+    
     private void clearCredentials()
     {
-        this.name = "";
         this.username = "";
         this.password = "";
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
     
+    public String logOff()
+    {
+        clearCredentials();
+        return "login";
+    }
+    ////
     public String logout() {
         clearCredentials();
         
@@ -96,11 +125,6 @@ public class User implements Serializable
         return id;
     }
 
-    public String getName()
-    {
-        return name;
-    }
-
     public String getUsername()
     {
         return username;
@@ -109,12 +133,6 @@ public class User implements Serializable
     public String getPassword()
     {
         return password;
-    }
-
-    public String logOff()
-    {
-        clearCredentials();
-        return "login";
     }
     
     public void setUsername(String username)

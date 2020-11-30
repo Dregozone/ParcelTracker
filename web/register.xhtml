@@ -14,8 +14,14 @@
                 <h1>Register</h1>
                 <h:form>
                     <h:panelGrid columns="2">
-                        <p><b>Your name:</b><br/>(max. 20 characters)</p>
-                        <h:inputText value="#{registration.name}"
+                        <p><b>First name:</b><br/>(max. 20 characters)</p>
+                        <h:inputText value="#{registration.firstName}"
+                                     maxlength="20" 
+                                     required="true"
+                                     requiredMessage="Please enter your name" />
+
+                        <p><b>Last name:</b><br/>(max. 20 characters)</p>
+                        <h:inputText value="#{registration.lastName}"
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter your name" />

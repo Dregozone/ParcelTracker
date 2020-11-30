@@ -21,7 +21,8 @@ import javax.faces.context.FacesContext;
 public class Registration implements Serializable
 {
 
-    private String name;
+    private String firstName;
+    private String lastName;
     private String username;
     private String password1;
     private String password2;
@@ -45,8 +46,6 @@ public class Registration implements Serializable
             if ( rs.next() ) {
                 nextId = rs.getInt("ID");
             }
-            
-            //System.out.println(nextId);
 
             rs.close();
             stmt.close();
@@ -59,12 +58,23 @@ public class Registration implements Serializable
         return nextId;
     }
     
+    private boolean validateInputs() {
+        
+        boolean isValid = true;
+        
+        if ( !password1.equals(password2) ) {
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
     public String register()
     {
         boolean dataOK = false;
         int id = getNextId();
         
-        if (password1.equals(password2))
+        if ( validateInputs() )
         {
             try
             {
@@ -85,8 +95,8 @@ public class Registration implements Serializable
                     );
                     
                     stmt.setInt(1, id);
-                    stmt.setString(2, name);
-                    stmt.setString(3, name);
+                    stmt.setString(2, firstName);
+                    stmt.setString(3, lastName);
                     stmt.setString(4, username);
                     stmt.setString(5, password1);
                     
@@ -112,14 +122,19 @@ public class Registration implements Serializable
         }
         else
         {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Credentials are not correct2 - id: " + id));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration failed checks: Please check values entered"));
             return null;
         }
     }
 
-    public String getName()
+    public String getFirstName()
     {
-        return name;
+        return firstName;
+    }
+    
+    public String getLastName()
+    {
+        return lastName;
     }
 
     public String getPassword1()
@@ -137,9 +152,14 @@ public class Registration implements Serializable
         return username;
     }
     
-    public void setName(String name)
+    public void setFirstName(String name)
     {
-        this.name = name;
+        this.firstName = name;
+    }
+    
+    public void setLastName(String name)
+    {
+        this.lastName = name;
     }
 
     public void setUsername(String username)
@@ -156,5 +176,4 @@ public class Registration implements Serializable
     {
         this.password2 = password2;
     }
-
 }

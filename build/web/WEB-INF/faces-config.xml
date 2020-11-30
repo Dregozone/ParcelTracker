@@ -35,6 +35,20 @@
             <from-outcome>credentialsOK</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>recipient</from-outcome>
+            <to-view-id>/Recipient_UI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>driver</from-outcome>
+            <to-view-id>/Driver_UI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>seller</from-outcome>
+            <to-view-id>/Seller_ID.xhtml</to-view-id>
+        </navigation-case>
+        
         <navigation-case>
             <from-outcome>register</from-outcome>
             <to-view-id>/register.xhtml</to-view-id>
