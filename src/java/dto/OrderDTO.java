@@ -4,26 +4,24 @@ import java.io.Serializable;
 
 public class OrderDTO implements Serializable
 {
-
     private final int id;
-    private final DiscountDTO discount;
-    private final String name;
-    private final String addressLine1;
-    private final String addressLine2;
-    private final String city;
-    private final String state;
-    private final String zipCode;
+    //private final DiscountDTO discount;
+    private final UserDTO recipient;
+    private final UserDTO driver;
+    private final UserDTO seller;
+    private final String dateAdded;
+    private final boolean isComplete;
+    private final String dateCompleted;
 
-    public OrderDTO(int id, DiscountDTO discount, String name, String addressLine1, String addressLine2, String city, String state, String zipCode)
+    public OrderDTO(int id, UserDTO recipient, UserDTO driver, UserDTO seller, String dateAdded, boolean isComplete, String dateCompleted)
     {
         this.id = id;
-        this.discount = discount;
-        this.name = name;
-        this.addressLine1 = addressLine1;
-        this.addressLine2 = addressLine2;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
+        this.recipient = recipient;
+        this.driver = driver;
+        this.seller = seller;
+        this.dateAdded = dateAdded;
+        this.isComplete = isComplete;
+        this.dateCompleted = dateCompleted;
     }
 
     public int getId()
@@ -31,38 +29,27 @@ public class OrderDTO implements Serializable
         return id;
     }
 
-    public DiscountDTO getDiscount()
-    {
-        return discount;
+    public UserDTO getRecipient() {
+        return recipient;
     }
 
-    public String getName()
-    {
-        return name;
+    public UserDTO getDriver() {
+        return driver;
     }
 
-    public String getAddressLine1()
-    {
-        return addressLine1;
+    public UserDTO getSeller() {
+        return seller;
     }
 
-    public String getAddressLine2()
-    {
-        return addressLine2;
+    public String getDateAdded() {
+        return dateAdded;
     }
 
-    public String getCity()
-    {
-        return city;
+    public boolean isIsComplete() {
+        return isComplete;
     }
 
-    public String getState()
-    {
-        return state;
-    }
-
-    public String getZipCode()
-    {
-        return zipCode;
+    public String getDateCompleted() {
+        return dateCompleted;
     }
 }

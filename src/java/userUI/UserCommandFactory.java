@@ -11,6 +11,8 @@ public class UserCommandFactory
     public static final int ADD_CUSTOMER = 3;
     public static final int GET_USER_SUMMARIES = 4;
     public static final int FIND_USER_BY_ID = 5;
+    public static final int GET_ORDER_SUMMARIES = 6;
+    public static final int FIND_ORDER_BY_ID = 7;
 
     public static UserCommand createCommand(int commandType)
     {
@@ -20,6 +22,8 @@ public class UserCommandFactory
                 return new GetCustomerSumariesCommand();
             case GET_USER_SUMMARIES:
                 return new GetUserSumariesCommand();
+            case GET_ORDER_SUMMARIES:
+                return new GetOrderSumariesCommand();
             default:
                 return null;
         }
@@ -33,6 +37,8 @@ public class UserCommandFactory
                 return new FindCustomerCommand(id);
             case FIND_USER_BY_ID:
                 return new FindUserCommand(id);
+            case FIND_ORDER_BY_ID:
+                return new FindOrderCommand(id);
             default:
                 return null;
         }
