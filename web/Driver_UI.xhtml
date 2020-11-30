@@ -25,13 +25,15 @@
 
                         <h:column>
                             <f:facet name="header">Name</f:facet>
-                            <f:facet name="footer">Total: #{orderVar.totalOrders} customers</f:facet>
+                            <f:facet name="footer">Total: #{orderBean.totalOrders} orders</f:facet>
                             <h:outputText value="#{orderVar.dateAdded}" />
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton value="View" action="#{orderBean.fetchOrderDetails(orderVar.id)}" />
+                            <h:commandButton value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id)}" /> &nbsp;
+                            <h:commandButton value="Record: Picked up" action="#{orderBean.fetchOrderDetails(orderVar.id)}" /> &nbsp;
+                            <h:commandButton value="Record: Droped off" action="#{orderBean.fetchOrderDetails(orderVar.id)}" />
                         </h:column>
                     </h:dataTable>
                     
@@ -41,4 +43,3 @@
         </ui:composition>
     </h:body>
 </html>
-

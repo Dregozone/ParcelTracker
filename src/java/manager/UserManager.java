@@ -1,14 +1,14 @@
 package manager;
 
 import dto.UserDTO;
-import dto.CustomerDTO;
-import dto.DiscountDTO;
+//import dto.CustomerDTO;
+//import dto.DiscountDTO;
 import gateway.UserGateway;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserManager
@@ -20,22 +20,17 @@ public class UserManager
         return gateway.find(UserID);
     }
 
-    /*
-    public UserDTO findUser(String name, String addressLine1, String zipCode)
-    {
-        return gateway.find(name, addressLine1, zipCode);
-    }
-    */
-
     public ArrayList<UserDTO> getUserSummaries()
     {
         return gateway.findAllSummaries();
     }
 
+    /*
     public boolean insertCustomer(CustomerDTO cust)
     {
         return gateway.insert(cust);
     }
+    */
     
     /*
     public CustomerDTO findCustomer(int CustID)

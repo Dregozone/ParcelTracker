@@ -10,35 +10,34 @@
     <h:body>
         <ui:composition template="/template_loggedIn.xhtml" >
             <ui:define name="content">
-                <h1>Recipient_UI</h1>
+                <h1>Recipient_UI - Your orders (#{user.username} - ##{user.id})</h1>
                 
                 <h:form>
-                    <h:dataTable value="#{customer.customerSummaries}"
-                                 var="cust"
+                    <h:dataTable value="#{orderBean.getOrderSummariesByUser(user.id)}"
+                                 var="orderVar"
                                  styleClass="custTable" 
                                  headerClass="custTableHeader"
                                  rowClasses="custTableOddRow,custTableEvenRow">
                         <h:column>
-                            <f:facet name="header">ID</f:facet>
-                            <h:outputText value="#{cust.id}" />
+                            <f:facet name="header">Order #</f:facet>
+                            <h:outputText value="#{orderVar.id}" />
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Name</f:facet>
-                            <f:facet name="footer">Total: #{customer.totalCustomers} customers</f:facet>
-                            <h:outputText value="#{cust.name}" />
+                            <f:facet name="header">Date ordered</f:facet>
+                            <f:facet name="footer">Total: #{orderBean.totalOrders} orders</f:facet>
+                            <h:outputText value="#{orderVar.dateAdded}" />
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton value="View" action="#{customer.fetchCustomerDetails(cust.id)}" />
+                            <h:commandButton value="View" action="#{orderBean.fetchOrderDetails(orderVar.id)}" />
                         </h:column>
                     </h:dataTable>
                     
-                    <h:commandButton class="button" type="submit" value="Add customer" action="addCustomer" />
+                    <!-- <h:commandButton class="button" type="submit" value="Add customer" action="addCustomer" /> -->
                 </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
 </html>
-

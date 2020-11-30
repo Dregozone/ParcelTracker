@@ -113,6 +113,104 @@ public class OrderGateway
         return orderDetails;
     }
 
+    public ArrayList<OrderDTO> findAllSummariesByUser(int UserID)
+    {
+        ArrayList<OrderDTO> orderSummaries = new ArrayList<>();
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                    "SELECT " +
+                    "    ORDERS.*, " +
+                    "    Recipient.id AS rid, " +
+                    "    Recipient.firstName AS rfn, " +
+                    "    Recipient.lastName AS rln, " +
+                    "    Recipient.username AS ru, " +
+                    "    Recipient.hashedPassword AS rhp, " +
+                    "    Recipient.dateAdded AS rda, " +
+                    "    Recipient.dateModified AS rdm, " +
+                    "    Recipient.addressLineOne AS ra, " +
+                    "    Recipient.town AS rt, " +
+                    "    Recipient.county AS rc, " +
+                    "    Recipient.postcode AS rp, " +
+                    "    Recipient.email AS re, " +
+                    "    Recipient.phone AS rp, " +
+                    "    Recipient.isActive AS ri, " +
+                    "    Roles1.name AS rr," +
+                    "    Driver.id AS did,  " +
+                    "    Driver.firstName AS dfn, " +
+                    "    Driver.lastName AS dln, " +
+                    "    Driver.username AS du, " +
+                    "    Driver.hashedPassword AS dhp, " +
+                    "    Driver.dateAdded AS dda, " +
+                    "    Driver.dateModified AS ddm, " +
+                    "    Driver.addressLineOne AS da, " +
+                    "    Driver.town AS dt, " +
+                    "    Driver.county AS dc, " +
+                    "    Driver.postcode AS dp, " +
+                    "    Driver.email AS de, " +
+                    "    Driver.phone AS dp, " +
+                    "    Driver.isActive AS di, " +
+                    "    Roles2.name AS dr," +
+                    "    Seller.id AS sid, " +
+                    "    Seller.firstName AS sfn, " +
+                    "    Seller.lastName AS sln, " +
+                    "    Seller.username AS su, " +
+                    "    Seller.hashedPassword AS shp, " +
+                    "    Seller.dateAdded AS sda, " +
+                    "    Seller.dateModified AS sdm, " +
+                    "    Seller.addressLineOne AS sa, " +
+                    "    Seller.town AS st, " +
+                    "    Seller.county AS sc, " +
+                    "    Seller.postcode AS sp, " +
+                    "    Seller.email AS se, " +
+                    "    Seller.phone AS sp, " +
+                    "    Seller.isActive AS si, " +
+                    "    Roles3.name AS sr " +
+                    "FROM ORDERS " +
+                    "JOIN Users Recipient ON Orders.RECIPIENTID = Recipient.id " +
+                    "JOIN UserRoles AS UserRoles1 ON Recipient.id = UserRoles1.USERID " +
+                    "JOIN Roles AS Roles1 ON UserRoles1.ROLEID = Roles1.ID " +
+                    "JOIN Users Driver ON Orders.driverid = Driver.id " +
+                    "JOIN UserRoles AS UserRoles2 ON Driver.id = UserRoles2.USERID " +
+                    "JOIN Roles AS Roles2 ON UserRoles2.ROLEID = Roles2.ID " +
+                    "JOIN Users Seller ON Orders.sellerid = Seller.id " +
+                    "JOIN UserRoles AS UserRoles3 ON Seller.id = UserRoles3.USERID " +
+                    "JOIN Roles AS Roles3 ON UserRoles3.ROLEID = Roles3.ID " + 
+                    "WHERE Recipient.ID = ? AND ORDERS.isComplete = false" + 
+            "");
+            
+            stmt.setInt(1, UserID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next())
+            {
+                OrderDTO order = new OrderDTO(
+                        rs.getInt("id"),
+                        new UserDTO(rs.getInt("rid"), rs.getString("rfn"), rs.getString("rln"), rs.getString("ru"), rs.getString("rhp"), rs.getString("rda"), rs.getString("rdm"), rs.getString("ra"), rs.getString("rt"), rs.getString("rc"), rs.getString("rp"), rs.getString("re"), rs.getString("rp"), rs.getBoolean("ri"), rs.getString("rr")),
+                        new UserDTO(rs.getInt("did"), rs.getString("dfn"), rs.getString("dln"), rs.getString("du"), rs.getString("dhp"), rs.getString("dda"), rs.getString("ddm"), rs.getString("da"), rs.getString("dt"), rs.getString("dc"), rs.getString("dp"), rs.getString("de"), rs.getString("dp"), rs.getBoolean("di"), rs.getString("dr")),
+                        new UserDTO(rs.getInt("sid"), rs.getString("sfn"), rs.getString("sln"), rs.getString("su"), rs.getString("shp"), rs.getString("sda"), rs.getString("sdm"), rs.getString("sa"), rs.getString("st"), rs.getString("sc"), rs.getString("sp"), rs.getString("se"), rs.getString("sp"), rs.getBoolean("si"), rs.getString("sr")),
+                        rs.getString("dateAdded"),
+                        rs.getBoolean("isComplete"),
+                        rs.getString("dateCompleted")
+                );
+                
+                orderSummaries.add(order);
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return orderSummaries;
+    }
+    
     public ArrayList<OrderDTO> findAllSummaries()
     {
         ArrayList<OrderDTO> orderSummaries = new ArrayList<>();

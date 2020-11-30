@@ -43,6 +43,12 @@ public class User implements Serializable
 
             credentialsOK = rs.next() && rs.getString("hashedpassword").equals(password);
 
+            /*
+            if ( rs.next() ) {
+                id = rs.getInt("id");
+            }
+            */
+            
             rs.close();
             stmt.close();
             conn.close();
@@ -76,7 +82,7 @@ public class User implements Serializable
             Connection conn = DbManager.getConnection();
             
             PreparedStatement stmt = conn.prepareStatement(""
-                    + "SELECT R.name AS ROLE "
+                    + "SELECT R.name AS ROLE, U.id "
                     + "FROM UserRoles UR "
                     + "INNER JOIN Users U ON UR.UserID = U.ID "
                     + "INNER JOIN Roles R ON UR.RoleID = R.ID "
@@ -89,6 +95,7 @@ public class User implements Serializable
 
             if ( rs.next() ) {
                 role = rs.getString("ROLE");
+                id = rs.getInt("id");
             }
 
             rs.close();

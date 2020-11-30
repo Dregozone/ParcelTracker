@@ -28,6 +28,11 @@ public class OrderManager
     }
     */
 
+    public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
+    {
+        return gateway.findAllSummariesByUser(UserID);
+    }
+    
     public ArrayList<OrderDTO> getOrderSummaries()
     {
         return gateway.findAllSummaries();

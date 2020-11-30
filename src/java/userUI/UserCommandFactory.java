@@ -13,6 +13,7 @@ public class UserCommandFactory
     public static final int FIND_USER_BY_ID = 5;
     public static final int GET_ORDER_SUMMARIES = 6;
     public static final int FIND_ORDER_BY_ID = 7;
+    public static final int GET_ORDER_SUMMARIES_BY_USER = 8;
 
     public static UserCommand createCommand(int commandType)
     {
@@ -39,6 +40,8 @@ public class UserCommandFactory
                 return new FindUserCommand(id);
             case FIND_ORDER_BY_ID:
                 return new FindOrderCommand(id);
+            case GET_ORDER_SUMMARIES_BY_USER:
+                return new GetOrderSumariesByUserCommand(id);
             default:
                 return null;
         }
