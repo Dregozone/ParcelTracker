@@ -11,9 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerManager
-{    
-    
-    
+{
     private CustomerGateway gateway = new CustomerGateway();
     
     public CustomerDTO findCustomer(int CustID)

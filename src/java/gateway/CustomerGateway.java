@@ -1,5 +1,6 @@
 package gateway;
 
+import manager.DbManager;
 import dto.CustomerDTO;
 import dto.DiscountDTO;
 import java.sql.Connection;
@@ -16,11 +17,9 @@ public class CustomerGateway
     {
         CustomerDTO customerDetails = null;
         try
-        {
-            DriverManager.registerDriver(
-                    new org.apache.derby.jdbc.ClientDriver());
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
-
+        {            
+            Connection conn = DbManager.getConnectionSample();
+            
             String sqlStr = "SELECT * "
                     + "FROM Customer JOIN Discount_Code ON Customer.Discount_Code = Discount_Code.Discount_Code "
                     + "WHERE Customer_ID = ?";
@@ -56,10 +55,8 @@ public class CustomerGateway
         CustomerDTO customerDetails = null;
         try
         {
-            DriverManager.registerDriver(
-                    new org.apache.derby.jdbc.ClientDriver());
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
-
+            Connection conn = DbManager.getConnectionSample();
+            
             String sqlStr = "SELECT * "
                     + "FROM Customer JOIN Discount_Code ON Customer.Discount_Code = Discount_Code.Discount_Code "
                     + "WHERE Name = ? AND AddressLine1 = ? AND Zip = ?";
@@ -97,10 +94,8 @@ public class CustomerGateway
         ArrayList<CustomerDTO> customerSummaries = new ArrayList<>();
         try
         {
-            DriverManager.registerDriver(
-                    new org.apache.derby.jdbc.ClientDriver());
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
-
+            Connection conn = DbManager.getConnectionSample();
+            
             PreparedStatement stmt = conn.prepareStatement("SELECT Customer_ID, Name FROM Customer");
             ResultSet rs = stmt.executeQuery();
 
@@ -125,10 +120,8 @@ public class CustomerGateway
         boolean insertOK = false;
         try
         {
-            DriverManager.registerDriver(
-                    new org.apache.derby.jdbc.ClientDriver());
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
-
+            Connection conn = DbManager.getConnectionSample();
+            
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Customer (customer_id, discount_code, zip, name, addressline1, addressline2, city, state) values (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, cust.getId());
             stmt.setString(2, cust.getDiscount().getCode());
@@ -161,5 +154,4 @@ public class CustomerGateway
     {
         throw new UnsupportedOperationException("This operation has not been implemented");
     }
-
 }

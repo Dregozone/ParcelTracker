@@ -1,6 +1,6 @@
 package managedbean;
 
-import dbase.DbManager;
+import manager.DbManager;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;

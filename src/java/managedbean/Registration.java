@@ -1,6 +1,6 @@
 package managedbean;
 
-import dbase.DbManager;
+import manager.DbManager;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
