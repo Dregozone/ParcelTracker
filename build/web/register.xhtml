@@ -44,9 +44,10 @@
                                      required="true"
                                      requiredMessage="Please confirm your password" />
                     </h:panelGrid>
-                    <p><h:commandButton value="Submit" action="#{registration.register()}" />&nbsp;&nbsp;
-                        <h:commandButton type="reset" value="Reset" />&nbsp;&nbsp;
-                        <h:commandButton type="submit" value="Cancel" action="login" immediate="true" />
+                    <p>
+                        <h:commandButton class="button" value="Submit" action="#{registration.register()}" />&nbsp;&nbsp;
+                        <h:commandButton class="button" type="reset" value="Clear" />&nbsp;&nbsp;
+                        <h:commandButton class="button" type="submit" value="Back to login" action="login" immediate="true" />
                     </p>
                 </h:form>
         

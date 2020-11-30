@@ -53,7 +53,7 @@ public class User implements Serializable
         if (credentialsOK)
         {
 
-            return findUserRole() + "_UI";
+            return userPage();
         }
         else
         {
@@ -61,6 +61,11 @@ public class User implements Serializable
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login credentials are not correct1"));
             return null;
         }
+    }
+    
+    public String userPage() {
+        
+        return findUserRole() + "_UI";
     }
 
     private String findUserRole() {

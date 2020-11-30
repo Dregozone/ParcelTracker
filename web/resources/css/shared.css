@@ -1,7 +1,16 @@
+* {
+    box-sizing: border-box;
+    color: darkslategrey;
+}
+
 body
 {
-    background-color: #abcdef;
+    background-color: #d4d4d4;
     font-family: sans-serif;
+}
+
+.button {
+    border: 1px solid red;
 }
 
 .error
@@ -54,4 +63,35 @@ tr th:first-child
 tfoot td
 {
     font-weight: bold;
+}
+
+.header {
+    margin: 0 15%;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 110px;
+    border: 1px solid darkslategrey;
+}
+    .headLeft {
+        width: 33%;
+    }
+    .headMid {
+        width: 33%;
+    }
+    .headRight {
+        width: 33%;
+    }
+
+.content {
+    margin: 0 15%;
+    width: 70%;
+    padding: 1.5%;
+    border: 1px solid darkslategrey;
+}
+
+.logo {
+    margin-top: 4px;
+    height: 108px;
 }

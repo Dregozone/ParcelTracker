@@ -52,14 +52,18 @@ public class CheckLoggedIn implements Filter
         //HttpSession session = request.getSession(false);
         String loginURI = request.getContextPath() + "/faces/login.xhtml";
         String registerURI = request.getContextPath() + "/faces/register.xhtml";
+        String sharedCssURI = request.getContextPath() + "/faces/javax.faces.resource/shared.css";
         String cssURI = request.getContextPath() + "/faces/javax.faces.resource/notLoggedIn.css";
+        String logoURI = request.getContextPath() + "/faces/resources/img/logo.png";
 
         boolean loggedIn = user.credentialsAreOK();
         boolean loginRequest = request.getRequestURI().equals(loginURI);
         boolean registerRequest = request.getRequestURI().equals(registerURI);
         boolean cssRequest = request.getRequestURI().equals(cssURI);
+        boolean logoRequest = request.getRequestURI().equals(logoURI);
+        boolean sharedCssRequest = request.getRequestURI().equals(sharedCssURI);
 
-        if (loggedIn || loginRequest || registerRequest || cssRequest)
+        if (loggedIn || loginRequest || registerRequest || cssRequest || logoRequest || sharedCssRequest)
         {
             chain.doFilter(request, response);
         }
