@@ -13,10 +13,10 @@
                 <h1>Customer details - viewUser</h1>
                 <h:panelGrid  columns="2" styleClass="custTable" rowClasses="custTableOddRow,custTableEvenRow">
                     <h:outputText value="ID: " />
-                    <h:outputText value="#{customer.customerDetails.id}" />
+                    <h:outputText value="#{userBean.userDetails.id}" />
 
                     <h:outputText value="Name: " />
-                    <h:outputText value="#{customer.customerDetails.name}" />
+                    <h:outputText value="#{userBean.userDetails.username}" />
 
                     <h:outputText value="Address: " styleClass="top" />
                     <h:panelGroup>
@@ -27,9 +27,8 @@
                         <h:outputText value="#{customer.customerDetails.zipCode}" />
                     </h:panelGroup>
 
-                    <h:outputText value="Discount: " />
-                    <h:outputText value="#{customer.customerDetails.discount}"
-                                  converter="discountConverter" />
+                    <h:outputText value="Role: " />
+                    <h:outputText value="#{userBean.userDetails.role}" />
                 </h:panelGrid>
 
                 <h:form>

@@ -67,6 +67,7 @@ public class UserGateway
         return userDetails;
     }
 
+    /*
     public CustomerDTO find(String name, String addressLine1, String zipCode)
     {
         CustomerDTO customerDetails = null;
@@ -105,6 +106,7 @@ public class UserGateway
         }
         return customerDetails;
     }
+    */
 
     public ArrayList<UserDTO> findAllSummaries()
     {

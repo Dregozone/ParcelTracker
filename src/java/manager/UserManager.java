@@ -20,10 +20,12 @@ public class UserManager
         return gateway.find(UserID);
     }
 
-    public CustomerDTO findUser(String name, String addressLine1, String zipCode)
+    /*
+    public UserDTO findUser(String name, String addressLine1, String zipCode)
     {
         return gateway.find(name, addressLine1, zipCode);
     }
+    */
 
     public ArrayList<UserDTO> getUserSummaries()
     {

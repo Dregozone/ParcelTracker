@@ -97,4 +97,8 @@ public class UserDTO implements Serializable
     public boolean isIsActive() {
         return isActive;
     }
+
+    public String getRole() {
+        return role;
+    }
 }

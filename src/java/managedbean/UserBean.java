@@ -47,6 +47,10 @@ public class UserBean implements Serializable
         return customerDetails;
     }
 
+    public UserDTO getUserDetails() {
+        return userDetails;
+    }
+
     public int getTotalUsers()
     {
         return totalUsers;
