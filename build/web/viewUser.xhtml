@@ -20,13 +20,18 @@
 
                     <h:outputText value="Address: " styleClass="top" />
                     <h:panelGroup>
-                        <h:outputText value="#{customer.customerDetails.addressLine1}" /><br/>
-                        <h:outputText value="#{customer.customerDetails.addressLine2}" /><br/>
-                        <h:outputText value="#{customer.customerDetails.city}" /><br/>
-                        <h:outputText value="#{customer.customerDetails.state}" /><br/>
-                        <h:outputText value="#{customer.customerDetails.zipCode}" />
+                        <h:outputText value="#{userBean.userDetails.addressLineOne}" /><br/>
+                        <h:outputText value="#{userBean.userDetails.town}" /><br/>
+                        <h:outputText value="#{userBean.userDetails.county}" /><br/>
+                        <h:outputText value="#{userBean.userDetails.postcode}" />
                     </h:panelGroup>
 
+                    <h:outputText value="Email: " />
+                    <h:outputText value="#{userBean.userDetails.email}" />
+                    
+                    <h:outputText value="Phone: " />
+                    <h:outputText value="#{userBean.userDetails.phone}" />
+                    
                     <h:outputText value="Role: " />
                     <h:outputText value="#{userBean.userDetails.role}" />
                 </h:panelGrid>
