@@ -20,7 +20,6 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class Registration implements Serializable
 {
-
     private String firstName;
     private String lastName;
     private String username;
