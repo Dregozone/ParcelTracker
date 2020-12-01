@@ -15,8 +15,9 @@
                 <h:form>
                     <h:dataTable value="#{orderBean.getOrderSummariesByUser(user.id)}"
                                  var="orderVar"
-                                 styleClass="custTable" 
+                                 styleClass="custTable center50" 
                                  headerClass="custTableHeader"
+                                 footerClass="custTableFooter"
                                  rowClasses="custTableOddRow,custTableEvenRow">
                         <h:column>
                             <f:facet name="header">Order #</f:facet>
@@ -29,6 +30,11 @@
                             <h:outputText value="#{orderVar.dateAdded}" />
                         </h:column>
 
+                        <h:column>
+                            <f:facet name="header">Status</f:facet>
+                            <h:outputText value="-" />
+                        </h:column>
+                        
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
                             <h:commandButton class="button" value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id)}" />

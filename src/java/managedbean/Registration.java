@@ -26,6 +26,13 @@ public class Registration implements Serializable
     private String username;
     private String password1;
     private String password2;
+    
+    private String addressLineOne;
+    private String town;
+    private String county;
+    private String postcode;
+    private String email;
+    private String phone;
 
     public Registration()
     {
@@ -91,7 +98,7 @@ public class Registration implements Serializable
                             + "INSERT INTO Users "
                             + "(id, firstname, lastname, username, hashedpassword, dateadded, datemodified, addresslineone, town, county, postcode, email, phone, isactive) "
                             + "VALUES "
-                            + "(?, ?, ?, ?, ?, CURRENT_DATE, CURRENT_DATE, 'a', 'a', 'a', 'a', 'a', 'a', true)"
+                            + "(?, ?, ?, ?, ?, CURRENT_DATE, CURRENT_DATE, ?, ?, ?, ?, ?, ?, true)"
                     );
                     
                     stmt.setInt(1, id);
@@ -99,6 +106,12 @@ public class Registration implements Serializable
                     stmt.setString(3, lastName);
                     stmt.setString(4, username);
                     stmt.setString(5, password1);
+                    stmt.setString(6, addressLineOne);
+                    stmt.setString(7, town);
+                    stmt.setString(8, county);
+                    stmt.setString(9, postcode);
+                    stmt.setString(10, email);
+                    stmt.setString(11, phone);
                     
                     int rows = stmt.executeUpdate();
 
@@ -175,5 +188,53 @@ public class Registration implements Serializable
     public void setPassword2(String password2)
     {
         this.password2 = password2;
+    }
+
+    public String getAddressLineOne() {
+        return addressLineOne;
+    }
+
+    public void setAddressLineOne(String addressLineOne) {
+        this.addressLineOne = addressLineOne;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

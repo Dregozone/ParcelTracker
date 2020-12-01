@@ -13,36 +13,69 @@
                 
                 <h1>Register</h1>
                 <h:form>
-                    <h:panelGrid columns="2">
-                        <p><b>First name:</b><br/>(max. 20 characters)</p>
+                    <h:panelGrid class="center50" style="border: none;" columns="2">
+                        <p>* <b>First name:</b><br/>(max. 20 characters)</p>
                         <h:inputText value="#{registration.firstName}"
                                      maxlength="20" 
                                      required="true"
-                                     requiredMessage="Please enter your name" />
+                                     requiredMessage="Please enter your first name" />
 
-                        <p><b>Last name:</b><br/>(max. 20 characters)</p>
+                        <p>* <b>Last name:</b><br/>(max. 20 characters)</p>
                         <h:inputText value="#{registration.lastName}"
                                      maxlength="20" 
                                      required="true"
-                                     requiredMessage="Please enter your name" />
+                                     requiredMessage="Please enter your last name" />
 
-                        <p><b>Username:</b><br/>(max. 20 characters)</p>
+                        <p>* <b>Username:</b><br/>(max. 20 characters)</p>
                         <h:inputText value="#{registration.username}"
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter your username" />
 
-                        <p><b>Password:</b><br/>(max. 20 characters)</p>
+                        <p>* <b>Password:</b><br/>(max. 20 characters)</p>
                         <h:inputSecret value="#{registration.password1}"
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter your password" />
 
-                        <p><b>Confirm password:</b><br/>(max. 20 characters)</p>
+                        <p>* <b>Confirm password:</b><br/>(max. 20 characters)</p>
                         <h:inputSecret value="#{registration.password2}"
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please confirm your password" />
+                        
+                        <p>* <b>Address line one:</b><br/>(max. 20 characters)</p>
+                        <h:inputText value="#{registration.addressLineOne}"
+                                     maxlength="20" 
+                                     required="true"
+                                     requiredMessage="Please enter address line one" />
+                        
+                        <p><b>Town:</b><br/></p>
+                        <h:inputText value="#{registration.town}"
+                                     maxlength="20" 
+                                      />
+                        
+                        <p><b>County:</b><br/></p>
+                        <h:inputText value="#{registration.county}"
+                                     maxlength="20" 
+                                      />
+                        
+                        <p>* <b>Postcode:</b><br/></p>
+                        <h:inputText value="#{registration.postcode}"
+                                     maxlength="20" 
+                                     required="true"
+                                     requiredMessage="Please enter postcode" />
+                        
+                        <p>* <b>Email:</b><br/></p>
+                        <h:inputText value="#{registration.email}"
+                                     maxlength="20" 
+                                     required="true"
+                                     requiredMessage="Please enter email address" />
+                        
+                        <p><b>Phone no.:</b><br/></p>
+                        <h:inputText value="#{registration.phone}"
+                                     maxlength="20" 
+                                     />
                     </h:panelGrid>
                     <p>
                         <h:commandButton class="button" value="Submit" action="#{registration.register()}" />&nbsp;&nbsp;

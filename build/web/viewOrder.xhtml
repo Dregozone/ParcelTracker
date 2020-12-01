@@ -11,7 +11,7 @@
         <ui:composition template="/template_loggedIn.xhtml" >
             <ui:define name="content">
                 <h1>Order details</h1>
-                <h:panelGrid  columns="2" styleClass="custTable" rowClasses="custTableOddRow,custTableEvenRow">
+                <h:panelGrid  columns="2" styleClass="custTable center50" rowClasses="custTableOddRow,custTableEvenRow">
                     <h:outputText value="ID: " />
                     <h:outputText value="#{orderBean.orderDetails.id}" />
 
@@ -33,7 +33,7 @@
 
                 <br />
                 
-                <h:panelGrid  columns="2" styleClass="custTable" rowClasses="custTableOddRow,custTableEvenRow">
+                <h:panelGrid  columns="2" styleClass="custTable center50" rowClasses="custTableOddRow,custTableEvenRow">
                     <h:outputText value="Order ID: " />
                     <h:outputText value="#{orderBean.orderDetails.id}" />
                 </h:panelGrid>
@@ -43,7 +43,7 @@
                 <h2>Parcels in order ##{orderBean.orderDetails.id}</h2>
                 <h:dataTable value="#{orderBean.getOrderParcelByOrder(orderBean.orderDetails.id)}"
                                  var="parcelVar"
-                                 styleClass="custTable" 
+                                 styleClass="custTable center50" 
                                  headerClass="custTableHeader"
                                  rowClasses="custTableOddRow,custTableEvenRow">
                         <h:column>
@@ -77,7 +77,7 @@
                 <h2>Order progress ##{orderBean.orderDetails.id}</h2>
                 <h:dataTable value="#{orderBean.orderSummaries}"
                                  var="orderVar"
-                                 styleClass="custTable" 
+                                 styleClass="custTable center50" 
                                  headerClass="custTableHeader"
                                  rowClasses="custTableOddRow,custTableEvenRow">
                         <h:column>
