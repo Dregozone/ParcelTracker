@@ -2,6 +2,7 @@ package manager;
 
 import dto.UserDTO;
 import dto.OrderDTO;
+import dto.ParcelDTO;
 import dto.CustomerDTO;
 import dto.DiscountDTO;
 import gateway.OrderGateway;
@@ -31,6 +32,11 @@ public class OrderManager
     public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
     {
         return gateway.findAllSummariesByUser(UserID);
+    }
+    
+    public ArrayList<ParcelDTO> getParcelSummariesByOrder(int OrderID)
+    {
+        return gateway.findAllSummariesByOrder(OrderID);
     }
     
     public ArrayList<OrderDTO> getOrderSummaries()

@@ -28,6 +28,7 @@ public class AddCustomerBean
     {
     }
 
+    /*
     public String addCustomer()
     {
         CustomerDTO newCust
@@ -52,6 +53,7 @@ public class AddCustomerBean
 
         return "viewCustomer";
     }
+*/
 
     public int getId()
     {

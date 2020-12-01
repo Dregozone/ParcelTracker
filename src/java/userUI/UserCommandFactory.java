@@ -1,7 +1,7 @@
 package userUI;
 
-import dto.CustomerDTO;
-import dto.UserDTO;
+//import dto.CustomerDTO;
+//import dto.UserDTO;
 
 public class UserCommandFactory
 {
@@ -14,6 +14,7 @@ public class UserCommandFactory
     public static final int GET_ORDER_SUMMARIES = 6;
     public static final int FIND_ORDER_BY_ID = 7;
     public static final int GET_ORDER_SUMMARIES_BY_USER = 8;
+    public static final int GET_PARCEL_SUMMARIES_BY_ORDER = 9;
 
     public static UserCommand createCommand(int commandType)
     {
@@ -42,11 +43,14 @@ public class UserCommandFactory
                 return new FindOrderCommand(id);
             case GET_ORDER_SUMMARIES_BY_USER:
                 return new GetOrderSumariesByUserCommand(id);
+            case GET_PARCEL_SUMMARIES_BY_ORDER: 
+                return new GetParcelSumariesByOrderCommand(id);
             default:
                 return null;
         }
     }
 
+    /*
     public static UserCommand createCommand(int commandType, CustomerDTO customerDTO)
     {
         switch (commandType)
@@ -57,4 +61,5 @@ public class UserCommandFactory
                 return null;
         }
     }
+    */
 }

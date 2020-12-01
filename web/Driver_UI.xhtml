@@ -31,13 +31,12 @@
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id)}" /> &nbsp;
-                            <h:commandButton value="Record: Picked up" action="#{orderBean.fetchOrderDetails(orderVar.id)}" /> &nbsp;
-                            <h:commandButton value="Record: Droped off" action="#{orderBean.fetchOrderDetails(orderVar.id)}" />
+                            <h:commandButton class="button" value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Record: Picked up" action="#{orderBean.fetchOrderDetails(orderVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Record: Droped off" action="#{orderBean.fetchOrderDetails(orderVar.id)}" />
                         </h:column>
                     </h:dataTable>
                     
-                    <h:commandButton class="button" type="submit" value="Add customer" action="addCustomer" />
                 </h:form>
             </ui:define>
         </ui:composition>

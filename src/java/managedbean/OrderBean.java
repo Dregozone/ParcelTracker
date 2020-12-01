@@ -2,8 +2,7 @@ package managedbean;
 
 import userUI.UserCommandFactory;
 import dto.OrderDTO;
-//import dto.CustomerDTO;
-//import dto.UserDTO;
+import dto.ParcelDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
@@ -13,11 +12,25 @@ import javax.inject.Named;
 @SessionScoped
 public class OrderBean implements Serializable
 {
-    //private CustomerDTO customerDetails = null;
     private OrderDTO orderDetails = null;
-    //private UserDTO userDetails = null;
+    private ParcelDTO parcelDetails = null;
     private int totalOrders = 0;
+    private int totalParcels = 0;
 
+    public ArrayList<ParcelDTO> getOrderParcelByOrder(int OrderID)
+    {
+        ArrayList<ParcelDTO> parcelSummaries
+                = (ArrayList<ParcelDTO>) UserCommandFactory
+                        .createCommand(
+                                UserCommandFactory.GET_PARCEL_SUMMARIES_BY_ORDER,
+                                OrderID)
+                        .execute();
+
+        totalParcels = parcelSummaries.size();
+
+        return parcelSummaries;
+    }
+            
     public ArrayList<OrderDTO> getOrderSummaries()
     {
         ArrayList<OrderDTO> orderSummaries

@@ -3,6 +3,7 @@ package gateway;
 import manager.DbManager;
 import dto.OrderDTO;
 import dto.UserDTO;
+import dto.ParcelDTO;
 import dto.CustomerDTO;
 import dto.DiscountDTO;
 import java.sql.Connection;
@@ -307,6 +308,59 @@ public class OrderGateway
         return orderSummaries;
     }
 
+    /** Find list of parcels by orderID
+     * 
+     * @param OrderID
+     * @return 
+     */
+    public ArrayList<ParcelDTO> findAllSummariesByOrder(int OrderID)
+    {
+        ArrayList<ParcelDTO> parcelSummaries = new ArrayList<>();
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                    "SELECT P.id AS pid, OP.quantity, p.name AS pn, p.type AS pt, p.weightgrams AS pw, P.DATEADDED AS pda, P.datemodified AS pdm, P.timessold AS pts, Seller.* " + 
+                    "FROM ORDERS AS O " +
+                    "JOIN OrderParcels OP ON O.id = OP.ORDERID " +
+                    "JOIN Parcels P ON OP.PARCELID = P.ID " +
+                    "JOIN Users Seller ON P.SELLERID = Seller.ID " +
+                    "WHERE o.ID = ? AND O.isComplete = false" + 
+            "");
+            
+            stmt.setInt(1, OrderID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next())
+            {
+                ParcelDTO parcel = new ParcelDTO(
+                        rs.getInt("pid"),
+                        rs.getString("pn"),
+                        rs.getString("pt"),
+                        rs.getInt("pw"),
+                        new UserDTO(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("username"), rs.getString("hashedPassword"), rs.getString("dateAdded"), rs.getString("dateModified"), rs.getString("addressLineOne"), rs.getString("town"), rs.getString("county"), rs.getString("postcode"), rs.getString("email"), rs.getString("phone"), rs.getBoolean("isActive"), "Recipient"),
+                        rs.getString("pda"),
+                        rs.getString("pdm"),
+                        rs.getInt("pts"),
+                        rs.getInt("quantity")
+                );
+                
+                parcelSummaries.add(parcel);
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return parcelSummaries;
+    }
+    
     public boolean insert(CustomerDTO cust)
     {
         boolean insertOK = false;

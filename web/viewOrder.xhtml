@@ -41,14 +41,34 @@
                 <br />
                 
                 <h2>Parcels in order ##{orderBean.orderDetails.id}</h2>
-                <h:dataTable value="#{orderBean.orderSummaries}"
-                                 var="orderVar"
+                <h:dataTable value="#{orderBean.getOrderParcelByOrder(orderBean.orderDetails.id)}"
+                                 var="parcelVar"
                                  styleClass="custTable" 
                                  headerClass="custTableHeader"
                                  rowClasses="custTableOddRow,custTableEvenRow">
                         <h:column>
                             <f:facet name="header">ID</f:facet>
-                            <h:outputText value="#{orderVar.id}" />
+                            <h:outputText value="#{parcelVar.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Item</f:facet>
+                            <h:outputText value="#{parcelVar.name}" />
+                        </h:column>
+                        <h:column>    
+                            <f:facet name="header">Type</f:facet>
+                            <h:outputText value="#{parcelVar.type}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Quantity</f:facet>
+                            <h:outputText value="#{parcelVar.quantityInOrder}" /> <!-- come back to this -->
+                        </h:column>
+                        <h:column>    
+                            <f:facet name="header">Weight</f:facet>
+                            <h:outputText value="#{parcelVar.weightGrams}" />
+                        </h:column>
+                        <h:column>    
+                            <f:facet name="header">Seller</f:facet>
+                            <h:outputText value="#{parcelVar.seller.username}" />
                         </h:column>
                 </h:dataTable>
                 
