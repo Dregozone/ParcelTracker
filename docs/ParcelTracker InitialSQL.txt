@@ -83,6 +83,8 @@ create table OrderParcels (
     foreign key (parcelID) references Parcels(id)
 );
 
+--insert into Users(id, firstName, lastName, username, hashedPassword, dateAdded, dateModified, addressLineOne, town, county, postcode, email, phone, isActive) 
+--    values (0, '', '', 'placeholder', 'a', '1970-01-01', '1970-01-01', '', '', '', '', '', '', true);
 
 insert into Users(id, firstName, lastName, username, hashedPassword, dateAdded, dateModified, addressLineOne, town, county, postcode, email, phone, isActive) 
     values (1, 'Anders', 'Learmonth', 'recipient', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', '2020-01-01', '2020-01-01', 'line 1', 'abc', 'hants', 'rg11222', 'a@b.net', '012345', true);
@@ -110,7 +112,9 @@ insert into UserRoles(id, userID, roleID, dateAdded)
     values (3, 3, 3, '2020-01-02');
 
 insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, dateCompleted)
-    values (1, 1, 1, 1, '2020-01-03', false, null);
+    values (1, 1, 2, 1, '2020-01-03', false, null);
+insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, dateCompleted)
+    values (2, 2, 1, 1, '2020-01-03', false, null);
 
 insert into Transactions(id, orderID, name, addedBy)
     values (1, 1, 'Parcel collected', 1);
@@ -124,3 +128,7 @@ insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModif
 
 insert into OrderParcels(id, orderID, parcelID, quantity, dateAdded)
     values(1, 1, 1, 2, '2020-03-10');
+insert into OrderParcels(id, orderID, parcelID, quantity, dateAdded)
+    values(2, 2, 2, 20, '2020-03-10');
+insert into OrderParcels(id, orderID, parcelID, quantity, dateAdded)
+    values(3, 2, 1, 10, '2020-03-10');

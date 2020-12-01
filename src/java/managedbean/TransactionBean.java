@@ -90,6 +90,18 @@ public class TransactionBean implements Serializable
                 stmt.setInt(4, userId);
 
                 stmt.executeUpdate();
+                
+                switch ( transaction ) {
+                    case "Picked up": 
+                        // also update Orders.DriverID
+                        break;
+                    case "Dropped off":
+                        // also update Orders.IsComplete
+                        break;
+                    default:
+                        //
+                        break;
+                }
 
                 stmt.close();
                 conn.close();
