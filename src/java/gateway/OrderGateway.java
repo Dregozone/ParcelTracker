@@ -4,7 +4,6 @@ import manager.DbManager;
 import dto.OrderDTO;
 import dto.UserDTO;
 import dto.ParcelDTO;
-import dto.CustomerDTO;
 import dto.DiscountDTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -361,6 +360,7 @@ public class OrderGateway
         return parcelSummaries;
     }
     
+    /*
     public boolean insert(CustomerDTO cust)
     {
         boolean insertOK = false;
@@ -390,14 +390,5 @@ public class OrderGateway
         }
         return insertOK;
     }
-
-    public boolean delete(int CustID)
-    {
-        throw new UnsupportedOperationException("This operation has not been implemented");
-    }
-
-    public boolean update(CustomerDTO cust)
-    {
-        throw new UnsupportedOperationException("This operation has not been implemented");
-    }
+    */
 }

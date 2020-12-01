@@ -4,7 +4,6 @@ import dto.UserDTO;
 import dto.OrderDTO;
 import dto.ParcelDTO;
 import dto.TransactionDTO;
-import dto.CustomerDTO;
 import dto.DiscountDTO;
 import gateway.TransactionGateway;
 import java.sql.Connection;
@@ -31,10 +30,5 @@ public class TransactionManager
     public ArrayList<OrderDTO> getOrderSummaries()
     {
         return gateway.findAllSummaries();
-    }
-
-    public boolean insertCustomer(CustomerDTO cust)
-    {
-        return gateway.insert(cust);
     }
 }

@@ -45,5 +45,4 @@ public class DiscountConverter implements Converter
         FacesContext.getCurrentInstance().addMessage(null, msg);
         throw new ConverterException(msg);
     }
-
 }

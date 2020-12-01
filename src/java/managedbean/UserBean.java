@@ -1,7 +1,6 @@
 package managedbean;
 
 import userUI.UserCommandFactory;
-import dto.CustomerDTO;
 import dto.UserDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,9 +10,7 @@ import javax.inject.Named;
 @Named(value = "userBean")
 @SessionScoped
 public class UserBean implements Serializable
-{
-    private CustomerDTO customerDetails = null;
-    
+{    
     private UserDTO userDetails = null;
     private int totalUsers = 0;
 
@@ -42,11 +39,6 @@ public class UserBean implements Serializable
         return "viewUser";
     }
 
-    public CustomerDTO getCustomerDetails()
-    {
-        return customerDetails;
-    }
-
     public UserDTO getUserDetails() {
         return userDetails;
     }
@@ -54,10 +46,5 @@ public class UserBean implements Serializable
     public int getTotalUsers()
     {
         return totalUsers;
-    }
-
-    public void setCustomerDetails(CustomerDTO customerDetails)
-    {
-        this.customerDetails = customerDetails;
     }
 }

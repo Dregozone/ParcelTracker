@@ -3,7 +3,6 @@ package manager;
 import dto.UserDTO;
 import dto.OrderDTO;
 import dto.ParcelDTO;
-import dto.CustomerDTO;
 import dto.DiscountDTO;
 import gateway.OrderGateway;
 import java.sql.Connection;
@@ -22,13 +21,6 @@ public class OrderManager
         return gateway.find(OrderID);
     }
 
-    /*
-    public UserDTO findUser(String name, String addressLine1, String zipCode)
-    {
-        return gateway.find(name, addressLine1, zipCode);
-    }
-    */
-
     public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
     {
         return gateway.findAllSummariesByUser(UserID);
@@ -42,10 +34,5 @@ public class OrderManager
     public ArrayList<OrderDTO> getOrderSummaries()
     {
         return gateway.findAllSummaries();
-    }
-
-    public boolean insertCustomer(CustomerDTO cust)
-    {
-        return gateway.insert(cust);
     }
 }
