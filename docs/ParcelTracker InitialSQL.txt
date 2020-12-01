@@ -114,6 +114,8 @@ insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, d
 
 insert into Transactions(id, orderID, name, addedBy)
     values (1, 1, 'Parcel collected', 1);
+insert into Transactions(id, orderID, name, addedBy)
+    values (2, 1, 'Parcel delivered', 1);
 
 insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModified, timesSold)
     values (1, 1, 'Item One', 'Large Box', 95, '2020-02-01', '2020-02-01', 3);

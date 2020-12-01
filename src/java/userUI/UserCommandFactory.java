@@ -15,6 +15,7 @@ public class UserCommandFactory
     public static final int FIND_ORDER_BY_ID = 7;
     public static final int GET_ORDER_SUMMARIES_BY_USER = 8;
     public static final int GET_PARCEL_SUMMARIES_BY_ORDER = 9;
+    public static final int GET_TRANSACTION_SUMMARIES_BY_ORDER = 10;
 
     public static UserCommand createCommand(int commandType)
     {
@@ -45,6 +46,8 @@ public class UserCommandFactory
                 return new GetOrderSumariesByUserCommand(id);
             case GET_PARCEL_SUMMARIES_BY_ORDER: 
                 return new GetParcelSumariesByOrderCommand(id);
+            case GET_TRANSACTION_SUMMARIES_BY_ORDER: 
+                return new GetTransactionSumariesByOrderCommand(id);
             default:
                 return null;
         }

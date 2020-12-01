@@ -33,12 +33,14 @@
 
                 <br />
                 
+                <!--
                 <h:panelGrid  columns="2" styleClass="custTable center50" rowClasses="custTableOddRow,custTableEvenRow">
                     <h:outputText value="Order ID: " />
                     <h:outputText value="#{orderBean.orderDetails.id}" />
                 </h:panelGrid>
                 
                 <br />
+                -->
                 
                 <h2>Parcels in order ##{orderBean.orderDetails.id}</h2>
                 <h:dataTable value="#{orderBean.getOrderParcelByOrder(orderBean.orderDetails.id)}"
@@ -75,14 +77,24 @@
                 <br />
                 
                 <h2>Order progress ##{orderBean.orderDetails.id}</h2>
-                <h:dataTable value="#{orderBean.orderSummaries}"
-                                 var="orderVar"
+                <h:dataTable value="#{transactionBean.getTransactionByOrder(orderBean.orderDetails.id)}"
+                                 var="transactionVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
                                  rowClasses="custTableOddRow,custTableEvenRow">
                         <h:column>
                             <f:facet name="header">ID</f:facet>
-                            <h:outputText value="#{orderVar.id}" />
+                            <h:outputText value="#{transactionVar.id}" />
+                        </h:column>
+                    
+                        <h:column>
+                            <f:facet name="header">Transaction</f:facet>
+                            <h:outputText value="#{transactionVar.name}" />
+                        </h:column>
+                    
+                        <h:column>
+                            <f:facet name="header">Added</f:facet>
+                            <h:outputText value="#{transactionVar.addedBy.username} (y-m-d h:i:s)" />
                         </h:column>
                 </h:dataTable>
                 
