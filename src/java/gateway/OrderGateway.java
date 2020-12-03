@@ -178,7 +178,7 @@ public class OrderGateway
                     "JOIN Users Seller ON Orders.sellerid = Seller.id " +
                     "JOIN UserRoles AS UserRoles3 ON Seller.id = UserRoles3.USERID " +
                     "JOIN Roles AS Roles3 ON UserRoles3.ROLEID = Roles3.ID " + 
-                    "WHERE Recipient.ID = ? AND ORDERS.isComplete = false" + 
+                    "WHERE Recipient.ID = ? " + 
             "");
             
             stmt.setInt(1, UserID);
@@ -325,7 +325,7 @@ public class OrderGateway
                     "JOIN OrderParcels OP ON O.id = OP.ORDERID " +
                     "JOIN Parcels P ON OP.PARCELID = P.ID " +
                     "JOIN Users Seller ON P.SELLERID = Seller.ID " +
-                    "WHERE o.ID = ? AND O.isComplete = false" + 
+                    "WHERE o.ID = ? " + 
             "");
             
             stmt.setInt(1, OrderID);
@@ -359,36 +359,4 @@ public class OrderGateway
         
         return parcelSummaries;
     }
-    
-    /*
-    public boolean insert(CustomerDTO cust)
-    {
-        boolean insertOK = false;
-        try
-        {
-            Connection conn = DbManager.getConnectionSample();
-            
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Customer (customer_id, discount_code, zip, name, addressline1, addressline2, city, state) values (?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setInt(1, cust.getId());
-            stmt.setString(2, cust.getDiscount().getCode());
-            stmt.setString(3, cust.getZipCode());
-            stmt.setString(4, cust.getName());
-            stmt.setString(5, cust.getAddressLine1());
-            stmt.setString(6, cust.getAddressLine2());
-            stmt.setString(7, cust.getCity());
-            stmt.setString(8, cust.getState());
-            
-            int rows = stmt.executeUpdate();
-            
-            insertOK = rows == 1;
-
-            stmt.close();
-            conn.close();
-        }
-        catch (SQLException sqle)
-        {
-        }
-        return insertOK;
-    }
-    */
 }

@@ -58,7 +58,7 @@ public class OrderBean implements Serializable
         return orderSummaries;
     }
 
-    public String fetchOrderDetails(int orderID)
+    public String fetchOrderDetails(int orderID, String role)
     {
         orderDetails
                 = (OrderDTO) UserCommandFactory
@@ -67,31 +67,13 @@ public class OrderBean implements Serializable
                                 orderID)
                         .execute();
 
-        return "viewOrder";
+        return "viewOrder_" + role;
     }
-
-    /*
-    public CustomerDTO getCustomerDetails()
-    {
-        return customerDetails;
-    }
-
-    public UserDTO getUserDetails() {
-        return userDetails;
-    }
-    */
 
     public int getTotalOrders()
     {
         return totalOrders;
     }
-
-    /*
-    public void setCustomerDetails(CustomerDTO customerDetails)
-    {
-        this.customerDetails = customerDetails;
-    }
-    */
 
     public OrderDTO getOrderDetails() {
         return orderDetails;

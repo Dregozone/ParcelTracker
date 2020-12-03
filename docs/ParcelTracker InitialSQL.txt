@@ -57,6 +57,7 @@ create table Transactions (
     orderID integer not null,
     name varchar(40) not null,
     addedBy integer not null,
+    dateAdded date not null,
     foreign key (orderID) references Orders(id), 
     foreign key (addedBy) references Users(id)
 );
@@ -83,8 +84,8 @@ create table OrderParcels (
     foreign key (parcelID) references Parcels(id)
 );
 
---insert into Users(id, firstName, lastName, username, hashedPassword, dateAdded, dateModified, addressLineOne, town, county, postcode, email, phone, isActive) 
---    values (0, '', '', 'placeholder', 'a', '1970-01-01', '1970-01-01', '', '', '', '', '', '', true);
+insert into Users(id, firstName, lastName, username, hashedPassword, dateAdded, dateModified, addressLineOne, town, county, postcode, email, phone, isActive) 
+    values (4, '', '', 'None', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', '2020-01-01', '2020-01-01', '', '', '', '', '', '', true);
 
 insert into Users(id, firstName, lastName, username, hashedPassword, dateAdded, dateModified, addressLineOne, town, county, postcode, email, phone, isActive) 
     values (1, 'Anders', 'Learmonth', 'recipient', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', '2020-01-01', '2020-01-01', 'line 1', 'abc', 'hants', 'rg11222', 'a@b.net', '012345', true);
@@ -103,23 +104,23 @@ insert into Roles(id, name, isActive)
     values (3, 'Seller', true);
 
 insert into UserRoles(id, userID, roleID, dateAdded)
+    values (4, 4, 2, '2020-01-02');
+insert into UserRoles(id, userID, roleID, dateAdded)
     values (1, 1, 1, '2020-01-02');
-
 insert into UserRoles(id, userID, roleID, dateAdded)
     values (2, 2, 2, '2020-01-02');
-
 insert into UserRoles(id, userID, roleID, dateAdded)
     values (3, 3, 3, '2020-01-02');
 
 insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, dateCompleted)
-    values (1, 1, 2, 1, '2020-01-03', false, null);
+    values (1, 1, 4, 1, '2020-01-03', false, null);
 insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, dateCompleted)
-    values (2, 2, 1, 1, '2020-01-03', false, null);
+    values (2, 2, 4, 1, '2020-01-03', false, null);
 
-insert into Transactions(id, orderID, name, addedBy)
-    values (1, 1, 'Parcel collected', 1);
-insert into Transactions(id, orderID, name, addedBy)
-    values (2, 1, 'Parcel delivered', 1);
+insert into Transactions(id, orderID, name, addedBy, dateAdded)
+    values (1, 1, 'Parcel collected', 1, '2020-03-03');
+insert into Transactions(id, orderID, name, addedBy, dateAdded)
+    values (2, 1, 'Parcel delivered', 1, '2020-03-04');
 
 insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModified, timesSold)
     values (1, 1, 'Item One', 'Large Box', 95, '2020-02-01', '2020-02-01', 3);

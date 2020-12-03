@@ -3,9 +3,14 @@ package managedbean;
 import userUI.UserCommandFactory;
 import dto.UserDTO;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import manager.DbManager;
 
 @Named(value = "userBean")
 @SessionScoped
@@ -13,6 +18,7 @@ public class UserBean implements Serializable
 {    
     private UserDTO userDetails = null;
     private int totalUsers = 0;
+    private String role = "";
 
     public ArrayList<UserDTO> getUserSummaries()
     {
@@ -38,6 +44,39 @@ public class UserBean implements Serializable
 
         return "viewUser";
     }
+    
+    public String findRoleByUser(int userID)
+    {
+        
+        try {        
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                    "SELECT R.name AS Role " + 
+                    "FROM USERS U " +
+                    "JOIN USERROLES UR ON U.ID = UR.userid " + 
+                    "JOIN ROLES R ON UR.roleid = R.id " +
+                    "WHERE U.ID = ? " + 
+            "");
+            
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next())
+            {
+                role = rs.getString("Role");
+            }
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        return role;
+    }
 
     public UserDTO getUserDetails() {
         return userDetails;
@@ -46,5 +85,9 @@ public class UserBean implements Serializable
     public int getTotalUsers()
     {
         return totalUsers;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

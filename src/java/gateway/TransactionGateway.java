@@ -223,7 +223,7 @@ public class TransactionGateway
             Connection conn = DbManager.getConnection();
             
             PreparedStatement stmt = conn.prepareStatement("" + 
-                    "SELECT o.id AS oid, t.id AS tid, t.name AS tn, u.id AS uid, u.firstname AS uf, u.lastname AS ul, u.username AS uu, u.hashedpassword AS uh, u.dateadded AS uda, u.datemodified AS udm, u.addresslineone AS ua, u.town AS ut, u.county AS uc, u.postcode AS up, u.email AS ue, u.phone AS up, u.isactive AS ui " +
+                    "SELECT o.id AS oid, t.id AS tid, t.name AS tn, t.dateAdded as tda, u.id AS uid, u.firstname AS uf, u.lastname AS ul, u.username AS uu, u.hashedpassword AS uh, u.dateadded AS uda, u.datemodified AS udm, u.addresslineone AS ua, u.town AS ut, u.county AS uc, u.postcode AS up, u.email AS ue, u.phone AS up, u.isactive AS ui " +
                     "FROM TRANSACTIONS T " +
                     "JOIN Users U ON T.ADDEDBY = U.ID " +
                     "JOIN ORDERS O ON T.orderid = O.ID " +
@@ -239,7 +239,8 @@ public class TransactionGateway
                         rs.getInt("tid"),
                         rs.getInt("oid"), 
                         rs.getString("tn"),
-                        new UserDTO(rs.getInt("uid"), rs.getString("uf"), rs.getString("ul"), rs.getString("uu"), rs.getString("uh"), rs.getString("uda"), rs.getString("udm"), rs.getString("ua"), rs.getString("ut"), rs.getString("uc"), rs.getString("up"), rs.getString("ue"), rs.getString("up"), rs.getBoolean("ui"), "Recipient")
+                        new UserDTO(rs.getInt("uid"), rs.getString("uf"), rs.getString("ul"), rs.getString("uu"), rs.getString("uh"), rs.getString("uda"), rs.getString("udm"), rs.getString("ua"), rs.getString("ut"), rs.getString("uc"), rs.getString("up"), rs.getString("ue"), rs.getString("up"), rs.getBoolean("ui"), "Recipient"),
+                        rs.getString("tda")
                 );
                 
                 transactionSummaries.add(transaction);
