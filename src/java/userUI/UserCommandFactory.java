@@ -1,5 +1,7 @@
 package userUI;
 
+import dto.OrderDTO;
+
 public class UserCommandFactory
 {
     public static final int GET_USER_SUMMARIES = 4;
@@ -9,6 +11,7 @@ public class UserCommandFactory
     public static final int GET_ORDER_SUMMARIES_BY_USER = 8;
     public static final int GET_PARCEL_SUMMARIES_BY_ORDER = 9;
     public static final int GET_TRANSACTION_SUMMARIES_BY_ORDER = 10;
+    public static final int CREATE_ORDER = 11;
 
     public static UserCommand createCommand(int commandType)
     {
@@ -37,6 +40,17 @@ public class UserCommandFactory
                 return new GetParcelSumariesByOrderCommand(id);
             case GET_TRANSACTION_SUMMARIES_BY_ORDER: 
                 return new GetTransactionSumariesByOrderCommand(id);
+            default:
+                return null;
+        }
+    }
+    
+    public static UserCommand createCommand(int commandType, OrderDTO orderDTO)
+    {
+        switch (commandType)
+        {
+            case CREATE_ORDER:
+                return new CreateOrderCommand(orderDTO);
             default:
                 return null;
         }

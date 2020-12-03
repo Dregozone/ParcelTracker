@@ -94,7 +94,7 @@
                     
                         <h:column>
                             <f:facet name="header">Added</f:facet>
-                            <h:outputText value="#{transactionVar.addedBy.username} (y-m-d h:i:s)" />
+                            <h:outputText value="#{transactionVar.addedBy.username} (#{transactionVar.dateAdded})" />
                         </h:column>
                 </h:dataTable>
                 

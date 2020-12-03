@@ -45,6 +45,18 @@ public class UserBean implements Serializable
         return "viewUser";
     }
     
+    public UserDTO findUserDetailsById(int userID)
+    {
+        userDetails
+                = (UserDTO) UserCommandFactory
+                        .createCommand(
+                                UserCommandFactory.FIND_USER_BY_ID,
+                                userID)
+                        .execute();
+
+        return userDetails;
+    }
+    
     public String findRoleByUser(int userID)
     {
         

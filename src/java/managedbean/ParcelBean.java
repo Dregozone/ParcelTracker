@@ -14,9 +14,9 @@ import javax.inject.Named;
 import javax.inject.Inject;
 import manager.DbManager;
 
-@Named(value = "orderBean")
+@Named(value = "parcelBean")
 @SessionScoped
-public class OrderBean implements Serializable
+public class ParcelBean implements Serializable
 {
     private int id;
     private int recipientId;
@@ -37,7 +37,7 @@ public class OrderBean implements Serializable
         try {
             Connection conn = DbManager.getConnection();
             
-            PreparedStatement stmt = conn.prepareStatement("SELECT ID+1 AS ID FROM Orders ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+            PreparedStatement stmt = conn.prepareStatement("SELECT ID+1 AS ID FROM Parcels ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
 
             ResultSet rs = stmt.executeQuery();
 

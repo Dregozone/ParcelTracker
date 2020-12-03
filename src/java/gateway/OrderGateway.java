@@ -4,16 +4,58 @@ import manager.DbManager;
 import dto.OrderDTO;
 import dto.UserDTO;
 import dto.ParcelDTO;
-import dto.DiscountDTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderGateway
 {
+    public java.sql.Date getDate() {
+        
+        Date now = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+
+        return sqlDate;
+    }
+    
+    public boolean createOrder(OrderDTO order)
+    {
+        boolean insertOK = false;
+        
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement(""
+                    + "INSERT INTO Orders "
+                    + "(id, recipientid, driverid, sellerid, dateadded, iscomplete, datecompleted) "
+                    + "values "
+                    + "(?, ?, ?, ?, ?, false, null)"
+            );
+            
+            stmt.setInt(1, order.getId());
+            stmt.setInt(2, order.getRecipient().getId());
+            stmt.setInt(3, 4); // "None"
+            stmt.setInt(4, order.getSeller().getId());
+            stmt.setDate(5, getDate() );
+            
+            int rows = stmt.executeUpdate();
+            
+            insertOK = rows == 1;
+
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return insertOK;
+    }
+    
     public OrderDTO find(int OrderID)
     {
         OrderDTO orderDetails = null;

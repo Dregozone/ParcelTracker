@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -37,6 +38,14 @@ public class Registration implements Serializable
     {
     }
 
+    public java.sql.Date getDate() {
+        
+        Date now = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+
+        return sqlDate;
+    }
+    
     public int getNextId() {
 
         int nextId = 0;
@@ -116,6 +125,20 @@ public class Registration implements Serializable
 
                     dataOK = rows == 1;
 
+                    stmt = conn.prepareStatement(""
+                            + "INSERT INTO UserRoles "
+                            + "(id, userid, roleid, dateadded) "
+                            + "VALUES "
+                            + "(?, ?, ?, ?)"
+                    );
+                    
+                    stmt.setInt(1, id);
+                    stmt.setInt(2, id);
+                    stmt.setInt(3, 1); /* Recipient */
+                    stmt.setDate(4, getDate() );
+                    
+                    stmt.executeUpdate();
+                    
                     stmt.close();
                     conn.close();
                 } catch(SQLException sqle) {

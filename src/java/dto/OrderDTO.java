@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class OrderDTO implements Serializable
 {
     private final int id;
-    //private final DiscountDTO discount;
     private final UserDTO recipient;
     private final UserDTO driver;
     private final UserDTO seller;

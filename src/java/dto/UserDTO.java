@@ -6,7 +6,6 @@ public class UserDTO implements Serializable
 {
 
     private final int id;
-    //private final DiscountDTO discount;
     private final String firstName;
     private final String lastName;
     private final String username;

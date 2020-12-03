@@ -35,4 +35,9 @@ public class OrderManager
     {
         return gateway.findAllSummaries();
     }
+    
+    public boolean createOrder(OrderDTO order) {
+        
+        return gateway.createOrder(order);
+    }
 }

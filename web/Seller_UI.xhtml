@@ -12,6 +12,7 @@
             <ui:define name="content">
                 <h1>Seller_UI</h1>
                 
+                <h2>Users</h2>
                 <h:form>
                     <h:dataTable value="#{userBean.userSummaries}"
                                  var="userVar"
@@ -32,14 +33,39 @@
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View" action="#{userBean.fetchUserDetails(userVar.id)}" />
+                            <h:commandButton class="button" value="View user" action="#{userBean.fetchUserDetails(userVar.id)}" />
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+                    
+                <h2>Orders</h2>
+                <h:form>
+                    <h:dataTable value="#{orderBean.orderSummaries}"
+                                 var="orderVar"
+                                 styleClass="custTable center50" 
+                                 headerClass="custTableHeader"
+                                 footerClass="custTableFooter"
+                                 rowClasses="custTableOddRow,custTableEvenRow">
+                        <h:column>
+                            <f:facet name="header">ID</f:facet>
+                            <h:outputText value="#{orderVar.id}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            <f:facet name="footer">Total: #{orderBean.totalOrders} orders</f:facet>
+                            <h:outputText value="#{orderVar.dateAdded}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Actions</f:facet>
+                            <h:commandButton class="button" value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(user.id))}" /> &nbsp;
                         </h:column>
                     </h:dataTable>
                     
-                    <h:commandButton class="button" type="submit" value="Add customer" action="addCustomer" />
+                    <h:commandButton class="button" type="submit" value="Add order" action="addOrder" />
                 </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
 </html>
-

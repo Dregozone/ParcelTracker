@@ -35,4 +35,9 @@ public class TransactionDTO implements Serializable
     public UserDTO getAddedBy() {
         return addedBy;
     }
+
+    public String getDateAdded() {
+        return dateAdded;
+    }
+    
 }

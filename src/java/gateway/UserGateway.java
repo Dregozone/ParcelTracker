@@ -77,7 +77,8 @@ public class UserGateway
                     + "SELECT Users.*, Roles.NAME AS ROLE "
                     + "FROM Users "
                     + "JOIN UserRoles ON Users.id = UserRoles.USERID "
-                    + "JOIN Roles ON UserRoles.ROLEID = Roles.ID");
+                    + "JOIN Roles ON UserRoles.ROLEID = Roles.ID "
+                    + "WHERE Users.username <> 'None' ");
             
             ResultSet rs = stmt.executeQuery();
 
@@ -114,36 +115,4 @@ public class UserGateway
         
         return userSummaries;
     }
-
-    /*
-    public boolean insert(CustomerDTO cust)
-    {
-        boolean insertOK = false;
-        try
-        {
-            Connection conn = DbManager.getConnectionSample();
-            
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Customer (customer_id, discount_code, zip, name, addressline1, addressline2, city, state) values (?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setInt(1, cust.getId());
-            stmt.setString(2, cust.getDiscount().getCode());
-            stmt.setString(3, cust.getZipCode());
-            stmt.setString(4, cust.getName());
-            stmt.setString(5, cust.getAddressLine1());
-            stmt.setString(6, cust.getAddressLine2());
-            stmt.setString(7, cust.getCity());
-            stmt.setString(8, cust.getState());
-            
-            int rows = stmt.executeUpdate();
-            
-            insertOK = rows == 1;
-
-            stmt.close();
-            conn.close();
-        }
-        catch (SQLException sqle)
-        {
-        }
-        return insertOK;
-    }
-    */
 }
