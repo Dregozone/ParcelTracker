@@ -22,6 +22,10 @@ public class ParcelBean implements Serializable
     private int recipientId;
     private int sellerId;
     
+    private String name;
+    private String type;
+    private int weightGrams;
+    
     private OrderDTO orderDetails = null;
     private ParcelDTO parcelDetails = null;
     private int totalOrders = 0;
@@ -56,26 +60,28 @@ public class ParcelBean implements Serializable
         return nextId;
     }
     
-    public String createOrder()
+    public String createParcel()
     {
-        OrderDTO newOrder = new OrderDTO(
+        ParcelDTO newParcel = new ParcelDTO(
                                     getNextId(),
-                                    userBean.findUserDetailsById(recipientId),
-                                    userBean.findUserDetailsById(4),
+                                    name,
+                                    type,
+                                    weightGrams,
                                     userBean.findUserDetailsById(sellerId),
                                     "", /* will be now() on insert */
-                                    false,
-                                    "" /* will be null on insert */
+                                    "",
+                                    0, /* times sold */
+                                    0  /* quantityInOrder placeholder */
         );
 
-        OrderDTO insertedOrder 
-                = (OrderDTO) UserCommandFactory
+        ParcelDTO insertedParcel 
+                = (ParcelDTO) UserCommandFactory
                         .createCommand(
-                                UserCommandFactory.CREATE_ORDER,
-                                newOrder)
+                                UserCommandFactory.CREATE_PARCEL,
+                                newParcel)
                         .execute();
 
-        orderDetails = insertedOrder;
+        parcelDetails = insertedParcel;
 
         return "Seller_UI";
     }
@@ -94,17 +100,17 @@ public class ParcelBean implements Serializable
         return parcelSummaries;
     }
             
-    public ArrayList<OrderDTO> getOrderSummaries()
+    public ArrayList<ParcelDTO> getParcelSummaries()
     {
-        ArrayList<OrderDTO> orderSummaries
-                = (ArrayList<OrderDTO>) UserCommandFactory
+        ArrayList<ParcelDTO> parcelSummaries
+                = (ArrayList<ParcelDTO>) UserCommandFactory
                         .createCommand(
-                                UserCommandFactory.GET_ORDER_SUMMARIES)
+                                UserCommandFactory.GET_PARCEL_SUMMARIES)
                         .execute();
 
-        totalOrders = orderSummaries.size();
+        totalParcels = parcelSummaries.size();
 
-        return orderSummaries;
+        return parcelSummaries;
     }
     
     public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
@@ -121,18 +127,42 @@ public class ParcelBean implements Serializable
         return orderSummaries;
     }
 
-    public String fetchOrderDetails(int orderID, String role)
+    public String fetchParcelDetails(int parcelID)
     {
-        orderDetails
-                = (OrderDTO) UserCommandFactory
+        parcelDetails
+                = (ParcelDTO) UserCommandFactory
                         .createCommand(
-                                UserCommandFactory.FIND_ORDER_BY_ID,
-                                orderID)
+                                UserCommandFactory.FIND_PARCEL_BY_ID,
+                                parcelID)
                         .execute();
 
-        return "viewOrder_" + role;
+        return "viewParcel";
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getWeightGrams() {
+        return weightGrams;
+    }
+
+    public void setWeightGrams(int weightGrams) {
+        this.weightGrams = weightGrams;
+    }
+    
     public int getTotalOrders()
     {
         return totalOrders;

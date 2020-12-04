@@ -35,7 +35,7 @@ public class ParcelGateway
                     + "INSERT INTO Parcels "
                     + "(id, sellerId, name, type, weightGrams, dateAdded, dateModified, timesSold) "
                     + "values "
-                    + "(?, ?, ?, ?, ?, ?, null, 0)"
+                    + "(?, ?, ?, ?, ?, ?, ?, 0)"
             );
             
             stmt.setInt(1, parcel.getId());
@@ -44,6 +44,7 @@ public class ParcelGateway
             stmt.setString(4, parcel.getType());
             stmt.setInt(5, parcel.getWeightGrams());
             stmt.setDate(6, getDate() );
+            stmt.setDate(7, getDate() );
             
             int rows = stmt.executeUpdate();
             
@@ -67,10 +68,12 @@ public class ParcelGateway
             Connection conn = DbManager.getConnection();
             
             String sqlStr = "" + 
-                    "SELECT P.*, Seller.ID AS sid, Seller.FIRSTNAME AS sf, Seller.lastName AS sl, Seller.Username AS su, Seller.HASHEDPASSWORD AS sh, Seller.DATEADDED AS sda, Seller.DATEMODIFIED AS sdm, Seller.ADDRESSLINEONE AS sa, Seller.TOWN AS st, Seller.County AS sc, Seller.Postcode AS sp, Seller.EMAIL AS se, Seller.phone AS sp, Seller.ISACTIVE AS si " +
+                    "SELECT P.*, Seller.ID AS sid, Seller.FIRSTNAME AS sf, Seller.lastName AS sl, Seller.Username AS su, Seller.HASHEDPASSWORD AS sh, Seller.DATEADDED AS sda, Seller.DATEMODIFIED AS sdm, Seller.ADDRESSLINEONE AS sa, Seller.TOWN AS st, Seller.County AS sc, Seller.Postcode AS sp, Seller.EMAIL AS se, Seller.phone AS sp, Seller.ISACTIVE AS si, Roles1.name AS sr " +
                     "FROM PARCELS P " +
                     "JOIN Users Seller ON P.SELLERID = Seller.ID " +
-                    "WHERE Parcels.id = ?"
+                    "JOIN UserRoles AS UserRoles1 ON Seller.id = UserRoles1.USERID " +
+                    "JOIN Roles AS Roles1 ON UserRoles1.ROLEID = Roles1.ID " +
+                    "WHERE P.id = ?"
             ;
             
             PreparedStatement stmt = conn.prepareStatement(sqlStr);
@@ -86,7 +89,7 @@ public class ParcelGateway
                         rs.getString("name"),
                         rs.getString("type"),
                         rs.getInt("weightGrams"),
-                        new UserDTO(rs.getInt("sid"), rs.getString("sfn"), rs.getString("sln"), rs.getString("su"), rs.getString("shp"), rs.getString("sda"), rs.getString("sdm"), rs.getString("sa"), rs.getString("st"), rs.getString("sc"), rs.getString("sp"), rs.getString("se"), rs.getString("sp"), rs.getBoolean("si"), rs.getString("sr")),
+                        new UserDTO(rs.getInt("sid"), rs.getString("sf"), rs.getString("sl"), rs.getString("su"), rs.getString("sh"), rs.getString("sda"), rs.getString("sdm"), rs.getString("sa"), rs.getString("st"), rs.getString("sc"), rs.getString("sp"), rs.getString("se"), rs.getString("sp"), rs.getBoolean("si"), rs.getString("sr")),
                         rs.getString("dateAdded"),
                         rs.getString("dateModified"),
                         rs.getInt("timesSold"),
@@ -114,9 +117,11 @@ public class ParcelGateway
             Connection conn = DbManager.getConnection();
             
             PreparedStatement stmt = conn.prepareStatement("" + 
-                    "SELECT P.*, Seller.ID AS sid, Seller.FIRSTNAME AS sf, Seller.lastName AS sl, Seller.Username AS su, Seller.HASHEDPASSWORD AS sh, Seller.DATEADDED AS sda, Seller.DATEMODIFIED AS sdm, Seller.ADDRESSLINEONE AS sa, Seller.TOWN AS st, Seller.County AS sc, Seller.Postcode AS sp, Seller.EMAIL AS se, Seller.phone AS sp, Seller.ISACTIVE AS si " +
+                    "SELECT P.*, Seller.ID AS sid, Seller.FIRSTNAME AS sf, Seller.lastName AS sl, Seller.Username AS su, Seller.HASHEDPASSWORD AS sh, Seller.DATEADDED AS sda, Seller.DATEMODIFIED AS sdm, Seller.ADDRESSLINEONE AS sa, Seller.TOWN AS st, Seller.County AS sc, Seller.Postcode AS sp, Seller.EMAIL AS se, Seller.phone AS sp, Seller.ISACTIVE AS si, Roles1.name AS sr " +
                     "FROM PARCELS P " +
-                    "JOIN Users Seller ON P.SELLERID = Seller.ID " +
+                    "JOIN Users Seller ON P.SELLERID = Seller.ID " + 
+                    "JOIN UserRoles AS UserRoles1 ON Seller.id = UserRoles1.USERID " +
+                    "JOIN Roles AS Roles1 ON UserRoles1.ROLEID = Roles1.ID " +
                     "");
             
             ResultSet rs = stmt.executeQuery();
@@ -128,7 +133,7 @@ public class ParcelGateway
                         rs.getString("name"),
                         rs.getString("type"),
                         rs.getInt("weightGrams"),
-                        new UserDTO(rs.getInt("sid"), rs.getString("sfn"), rs.getString("sln"), rs.getString("su"), rs.getString("shp"), rs.getString("sda"), rs.getString("sdm"), rs.getString("sa"), rs.getString("st"), rs.getString("sc"), rs.getString("sp"), rs.getString("se"), rs.getString("sp"), rs.getBoolean("si"), rs.getString("sr")),
+                        new UserDTO(rs.getInt("sid"), rs.getString("sf"), rs.getString("sl"), rs.getString("su"), rs.getString("sh"), rs.getString("sda"), rs.getString("sdm"), rs.getString("sa"), rs.getString("st"), rs.getString("sc"), rs.getString("sp"), rs.getString("se"), rs.getString("sp"), rs.getBoolean("si"), rs.getString("sr")),
                         rs.getString("dateAdded"),
                         rs.getString("dateModified"),
                         rs.getInt("timesSold"),
