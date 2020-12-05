@@ -55,6 +55,7 @@ public class CheckLoggedIn implements Filter
         String sharedCssURI = request.getContextPath() + "/faces/javax.faces.resource/shared.css";
         String cssURI = request.getContextPath() + "/faces/javax.faces.resource/notLoggedIn.css";
         String logoURI = request.getContextPath() + "/faces/resources/img/logo.png";
+        String bgImgURI = request.getContextPath() + "/faces/resources/css/batthern.png";
 
         boolean loggedIn = user.credentialsAreOK();
         boolean loginRequest = request.getRequestURI().equals(loginURI);
@@ -62,8 +63,9 @@ public class CheckLoggedIn implements Filter
         boolean cssRequest = request.getRequestURI().equals(cssURI);
         boolean logoRequest = request.getRequestURI().equals(logoURI);
         boolean sharedCssRequest = request.getRequestURI().equals(sharedCssURI);
+        boolean bgImgRequest = request.getRequestURI().equals(bgImgURI);
 
-        if (loggedIn || loginRequest || registerRequest || cssRequest || logoRequest || sharedCssRequest)
+        if (loggedIn || loginRequest || registerRequest || cssRequest || logoRequest || sharedCssRequest || bgImgRequest)
         {
             chain.doFilter(request, response);
         }

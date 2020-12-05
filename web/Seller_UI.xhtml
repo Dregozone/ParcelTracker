@@ -26,7 +26,7 @@
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Name</f:facet>
+                            <f:facet name="header">Username</f:facet>
                             <f:facet name="footer">Total: #{userBean.totalUsers} users</f:facet>
                             <h:outputText value="#{userVar.username}" />
                         </h:column>
@@ -52,7 +52,7 @@
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Name</f:facet>
+                            <f:facet name="header">Date of order</f:facet>
                             <f:facet name="footer">Total: #{orderBean.totalOrders} orders</f:facet>
                             <h:outputText value="#{orderVar.dateAdded}" />
                         </h:column>
@@ -60,6 +60,8 @@
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
                             <h:commandButton class="button" value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(user.id))}" /> &nbsp;
+                            <h:commandButton class="button" value="Edit" action="#{orderBean.editOrder(orderVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Delete" action="#{orderBean.deleteOrder(orderVar.id)}" /> &nbsp;
                         </h:column>
                     </h:dataTable>
                     
@@ -80,7 +82,7 @@
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Name</f:facet>
+                            <f:facet name="header">Description</f:facet>
                             <f:facet name="footer">Total: #{parcelBean.totalParcels} parcels</f:facet>
                             <h:outputText value="#{parcelVar.name}" />
                         </h:column>
@@ -88,12 +90,23 @@
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
                             <h:commandButton class="button" value="View details" action="#{parcelBean.fetchParcelDetails(parcelVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Edit" action="#{parcelBean.editParcel(parcelVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Delete" action="#{parcelBean.deleteParcel(parcelVar.id)}" /> &nbsp;
                         </h:column>
                     </h:dataTable>
                     
                     <h:commandButton class="button" type="submit" value="Add parcel" action="addParcel" />
                 </h:form>
                 
+                <br />
+                
+                <h2>
+                    Reports
+                </h2>
+                
+                <h:form>
+                    <h:commandButton class="button" value="View driver metrics" action="#{orderBean.viewDriverMetrics()}" />
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

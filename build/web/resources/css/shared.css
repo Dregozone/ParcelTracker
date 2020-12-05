@@ -6,11 +6,19 @@
 body
 {
     background-color: #d4d4d4;
+    background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
     font-family: sans-serif;
 }
 
 .button {
-    border: 1px solid red;
+    border: 1px solid darkslategrey;
+    border-radius: 8px;
+    padding: 3px 7px;
+    box-shadow: 2px 2px 3px 1px darkslategrey;
+}
+
+.input {
+    padding: 8px 12px;
 }
 
 .error
@@ -73,6 +81,7 @@ tfoot td
     align-items: center;
     height: 110px;
     border: 1px solid darkslategrey;
+    box-shadow: 0 0 5px 1px darkslategrey;
     background: white;
     text-align:center;
 }
@@ -92,13 +101,14 @@ tfoot td
     width: 70%;
     padding: 1.5%;
     border: 1px solid darkslategrey;
+    box-shadow: 0 0 5px 1px darkslategrey;
     background: aliceblue;
     text-align:center;
 }
 
 .logo {
-    margin-top: 4px;
-    height: 108px;
+    margin: 4px;
+    height: 98px;
 }
 
 .center50 {

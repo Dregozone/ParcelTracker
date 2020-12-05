@@ -5,16 +5,20 @@
         <group>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/gateway/OrderGateway.java</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/dto/ParcelDTO.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/ParcelBean.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/gateway/ParcelGateway.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/register.xhtml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/manager/OrderManager.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/userUI/CreateParcelCommand.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/userUI/FindParcelCommand.java</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/manager/ParcelManager.java</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/addParcel.xhtml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/viewParcel.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/userUI/UserCommandFactory.java</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/Seller_UI.xhtml</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/ParcelBean.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/login.xhtml</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/gateway/ParcelGateway.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/userUI/CreateParcelCommand.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/userUI/FindParcelCommand.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/filter/CheckLoggedIn.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/userUI/UserCommandFactory.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/resources/css/shared.css</file>
         </group>
     </open-files>
 </project-private>
