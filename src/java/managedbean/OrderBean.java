@@ -56,6 +56,14 @@ public class OrderBean implements Serializable
         return nextId;
     }
     
+    public String viewDriverMetrics() {
+        
+        
+        ////
+        
+        return "viewDriverMetrics";
+    }
+    
     public String deleteOrder(int orderId) {
         
         try {

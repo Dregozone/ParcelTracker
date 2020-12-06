@@ -5,12 +5,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Customer details</title>
+        <title>Driver Metrics</title>
     </h:head>
     <h:body>
-        <ui:composition template="/resources/templates/loggedIn.xhtml" >
+        <ui:composition template="/resources/templates/driverMetrics.xhtml" >
             <ui:define name="content">
-                <h1>Customer details - viewUser</h1>
+                <h1>Driver Metrics</h1>
                 <h:panelGrid  columns="2" styleClass="custTable center50" rowClasses="custTableOddRow,custTableEvenRow">
                     <h:outputText value="ID: " />
                     <h:outputText value="#{userBean.userDetails.id}" />
