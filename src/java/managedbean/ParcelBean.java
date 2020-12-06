@@ -25,6 +25,7 @@ public class ParcelBean implements Serializable
     private String name;
     private String type;
     private int weightGrams;
+    private int quantity = 0;
     
     private OrderDTO orderDetails = null;
     private ParcelDTO parcelDetails = null;
@@ -187,6 +188,15 @@ public class ParcelBean implements Serializable
     public void setWeightGrams(int weightGrams) {
         this.weightGrams = weightGrams;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
     
     public int getTotalOrders()
     {

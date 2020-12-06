@@ -12,7 +12,7 @@ public class ParcelDTO implements Serializable
     private final String dateAdded;
     private final String dateModified;
     private final int timesSold;
-    private final int quantityInOrder;
+    private int quantityInOrder;
 
     public ParcelDTO(int id, String name, String type, int weightGrams, UserDTO seller, String dateAdded, String dateModified, int timesSold, int quantityInOrder)
     {
@@ -62,5 +62,9 @@ public class ParcelDTO implements Serializable
 
     public int getQuantityInOrder() {
         return quantityInOrder;
+    }
+    
+    public void setQuantityInOrder(int quantityInOrder) {
+        this.quantityInOrder = quantityInOrder;
     }
 }

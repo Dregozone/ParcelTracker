@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
@@ -30,6 +31,32 @@ public class OrderBean implements Serializable
     
     @Inject
     UserBean userBean;
+    
+    public int getNextOrderParcelsId() {
+
+        int nextId = 0;
+        
+        try {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement("SELECT ID+1 AS ID FROM OrderParcels ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+
+            ResultSet rs = stmt.executeQuery();
+
+            if ( rs.next() ) {
+                nextId = rs.getInt("ID");
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch ( SQLException sqle ) {
+            sqle.printStackTrace();
+        }
+        
+        return nextId;
+    }
     
     public int getNextId() {
 
@@ -55,6 +82,14 @@ public class OrderBean implements Serializable
         }
         
         return nextId;
+    }
+    
+    public java.sql.Date getDate() {
+        
+        Date now = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+
+        return sqlDate;
     }
     
     public String viewDriverMetrics() {
@@ -92,6 +127,44 @@ public class OrderBean implements Serializable
                 + "WHERE id = ? "
             );
             stmt.setInt(1, orderId);
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+        } catch(SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        
+        return "Seller_UI";
+    }
+    
+    public String addingParcelToOrder(int orderId) {
+        
+        this.id = orderId;
+        
+        ////
+        
+        return "addParcelToOrder";
+    }
+    
+    public String addParcelToOrder(int orderId, int parcelId, int quantity) {
+        
+        try {
+            Connection conn = DbManager.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                "INSERT INTO OrderParcels " +
+                "(id, orderId, parcelId, quantity, dateAdded) " + 
+                "values " + 
+                "(?, ?, ?, ?, ?) " +
+            "");
+            
+            stmt.setInt(1, getNextOrderParcelsId());
+            stmt.setInt(2, orderId);
+            stmt.setInt(3, parcelId);
+            stmt.setInt(4, quantity);
+            stmt.setDate(5, getDate());
+            
             stmt.executeUpdate();
             
             stmt.close();
