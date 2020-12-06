@@ -1,6 +1,7 @@
 package managedbean;
 
-import userUI.UserCommandFactory;
+import sellerUI.SellerCommandFactory;
+import recipientUI.RecipientCommandFactory;
 import dto.OrderDTO;
 import dto.ParcelDTO;
 import java.io.Serializable;
@@ -115,9 +116,8 @@ public class OrderBean implements Serializable
         );
 
         OrderDTO insertedOrder 
-                = (OrderDTO) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.CREATE_ORDER,
+                = (OrderDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.CREATE_ORDER,
                                 newOrder)
                         .execute();
 
@@ -129,9 +129,8 @@ public class OrderBean implements Serializable
     public ArrayList<ParcelDTO> getOrderParcelByOrder(int OrderID)
     {
         ArrayList<ParcelDTO> parcelSummaries
-                = (ArrayList<ParcelDTO>) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.GET_PARCEL_SUMMARIES_BY_ORDER,
+                = (ArrayList<ParcelDTO>) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.GET_PARCEL_SUMMARIES_BY_ORDER,
                                 OrderID)
                         .execute();
 
@@ -143,9 +142,8 @@ public class OrderBean implements Serializable
     public ArrayList<OrderDTO> getOrderSummaries()
     {
         ArrayList<OrderDTO> orderSummaries
-                = (ArrayList<OrderDTO>) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.GET_ORDER_SUMMARIES)
+                = (ArrayList<OrderDTO>) RecipientCommandFactory
+                        .createCommand(RecipientCommandFactory.GET_ORDER_SUMMARIES)
                         .execute();
 
         totalOrders = orderSummaries.size();
@@ -156,9 +154,8 @@ public class OrderBean implements Serializable
     public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
     {
         ArrayList<OrderDTO> orderSummaries
-                = (ArrayList<OrderDTO>) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.GET_ORDER_SUMMARIES_BY_USER,
+                = (ArrayList<OrderDTO>) RecipientCommandFactory
+                        .createCommand(RecipientCommandFactory.GET_ORDER_SUMMARIES_BY_USER,
                                 UserID)
                         .execute();
 
@@ -170,9 +167,8 @@ public class OrderBean implements Serializable
     public String fetchOrderDetails(int orderID, String role)
     {
         orderDetails
-                = (OrderDTO) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.FIND_ORDER_BY_ID,
+                = (OrderDTO) RecipientCommandFactory
+                        .createCommand(RecipientCommandFactory.FIND_ORDER_BY_ID,
                                 orderID)
                         .execute();
 

@@ -1,6 +1,6 @@
 package managedbean;
 
-import userUI.UserCommandFactory;
+import sellerUI.SellerCommandFactory;
 import dto.UserDTO;
 import java.io.Serializable;
 import java.sql.Connection;
@@ -23,9 +23,8 @@ public class UserBean implements Serializable
     public ArrayList<UserDTO> getUserSummaries()
     {
         ArrayList<UserDTO> userSummaries
-                = (ArrayList<UserDTO>) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.GET_USER_SUMMARIES)
+                = (ArrayList<UserDTO>) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.GET_USER_SUMMARIES)
                         .execute();
 
         totalUsers = userSummaries.size();
@@ -36,9 +35,8 @@ public class UserBean implements Serializable
     public String fetchUserDetails(int userID)
     {
         userDetails
-                = (UserDTO) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.FIND_USER_BY_ID,
+                = (UserDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.FIND_USER_BY_ID,
                                 userID)
                         .execute();
 
@@ -48,9 +46,8 @@ public class UserBean implements Serializable
     public UserDTO findUserDetailsById(int userID)
     {
         userDetails
-                = (UserDTO) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.FIND_USER_BY_ID,
+                = (UserDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.FIND_USER_BY_ID,
                                 userID)
                         .execute();
 

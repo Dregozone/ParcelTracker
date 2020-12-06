@@ -1,6 +1,6 @@
 package managedbean;
 
-import userUI.UserCommandFactory;
+import sellerUI.SellerCommandFactory;
 import dto.OrderDTO;
 import dto.ParcelDTO;
 import java.io.Serializable;
@@ -105,9 +105,8 @@ public class ParcelBean implements Serializable
         );
 
         ParcelDTO insertedParcel 
-                = (ParcelDTO) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.CREATE_PARCEL,
+                = (ParcelDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.CREATE_PARCEL,
                                 newParcel)
                         .execute();
 
@@ -119,9 +118,8 @@ public class ParcelBean implements Serializable
     public ArrayList<ParcelDTO> getOrderParcelByOrder(int OrderID)
     {
         ArrayList<ParcelDTO> parcelSummaries
-                = (ArrayList<ParcelDTO>) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.GET_PARCEL_SUMMARIES_BY_ORDER,
+                = (ArrayList<ParcelDTO>) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.GET_PARCEL_SUMMARIES_BY_ORDER,
                                 OrderID)
                         .execute();
 
@@ -133,9 +131,8 @@ public class ParcelBean implements Serializable
     public ArrayList<ParcelDTO> getParcelSummaries()
     {
         ArrayList<ParcelDTO> parcelSummaries
-                = (ArrayList<ParcelDTO>) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.GET_PARCEL_SUMMARIES)
+                = (ArrayList<ParcelDTO>) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.GET_PARCEL_SUMMARIES)
                         .execute();
 
         totalParcels = parcelSummaries.size();
@@ -146,9 +143,8 @@ public class ParcelBean implements Serializable
     public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
     {
         ArrayList<OrderDTO> orderSummaries
-                = (ArrayList<OrderDTO>) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.GET_ORDER_SUMMARIES_BY_USER,
+                = (ArrayList<OrderDTO>) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.GET_ORDER_SUMMARIES_BY_USER,
                                 UserID)
                         .execute();
 
@@ -160,9 +156,8 @@ public class ParcelBean implements Serializable
     public String fetchParcelDetails(int parcelID)
     {
         parcelDetails
-                = (ParcelDTO) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.FIND_PARCEL_BY_ID,
+                = (ParcelDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.FIND_PARCEL_BY_ID,
                                 parcelID)
                         .execute();
 

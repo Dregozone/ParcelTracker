@@ -1,7 +1,7 @@
 package managedbean;
 
 import dto.OrderDTO;
-import userUI.UserCommandFactory;
+import sellerUI.SellerCommandFactory;
 //import dto.OrderDTO;
 //import dto.ParcelDTO;
 import dto.TransactionDTO;
@@ -28,9 +28,8 @@ public class TransactionBean implements Serializable
     public ArrayList<TransactionDTO> getTransactionByOrder(int OrderID)
     {
         ArrayList<TransactionDTO> transactionSummaries
-                = (ArrayList<TransactionDTO>) UserCommandFactory
-                        .createCommand(
-                                UserCommandFactory.GET_TRANSACTION_SUMMARIES_BY_ORDER,
+                = (ArrayList<TransactionDTO>) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.GET_TRANSACTION_SUMMARIES_BY_ORDER,
                                 OrderID)
                         .execute();
 
