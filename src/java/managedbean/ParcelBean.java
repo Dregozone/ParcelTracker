@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
@@ -59,6 +60,55 @@ public class ParcelBean implements Serializable
         }
         
         return nextId;
+    }
+    
+    public java.sql.Date getDate() {
+        
+        Date now = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+
+        return sqlDate;
+    }
+    
+    public String edittingParcel(int parcelId) {
+        
+        parcelDetails = findParcelById(parcelId);
+        
+        name = parcelDetails.getName();
+        type = parcelDetails.getType();
+        weightGrams = parcelDetails.getWeightGrams();
+        sellerId = parcelDetails.getSeller().getId();
+        
+        return "editParcel";
+    }
+    
+    public String editParcel(int parcelId) {
+        
+        try {
+            Connection conn = DbManager.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                "UPDATE PARCELS P " +
+                "SET name=?, type=?, weightgrams=?, sellerid=?, datemodified=? " + 
+                "WHERE P.ID = ? "
+            );
+            
+            stmt.setString(1, name);
+            stmt.setString(2, type);
+            stmt.setInt(3, weightGrams);
+            stmt.setInt(4, sellerId);
+            stmt.setDate(5, getDate());
+            stmt.setInt(6, parcelId);
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+        } catch(SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        
+        return "Seller_UI";
     }
     
     public String deleteParcel(int parcelId) {
@@ -154,6 +204,17 @@ public class ParcelBean implements Serializable
         return orderSummaries;
     }
 
+    public ParcelDTO findParcelById(int parcelId) {
+        
+        parcelDetails
+                = (ParcelDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.FIND_PARCEL_BY_ID,
+                                parcelId)
+                        .execute();
+        
+        return parcelDetails;
+    }
+    
     public String fetchParcelDetails(int parcelID)
     {
         parcelDetails
