@@ -3,7 +3,6 @@ package manager;
 import dto.UserDTO;
 import dto.OrderDTO;
 import dto.ParcelDTO;
-import dto.DiscountDTO;
 import gateway.ParcelGateway;
 import gateway.OrderGateway;
 import java.sql.Connection;

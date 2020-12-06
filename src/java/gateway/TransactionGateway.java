@@ -5,7 +5,6 @@ import dto.OrderDTO;
 import dto.UserDTO;
 import dto.ParcelDTO;
 import dto.TransactionDTO;
-import dto.DiscountDTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

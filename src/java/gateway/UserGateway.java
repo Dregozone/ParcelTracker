@@ -2,7 +2,6 @@ package gateway;
 
 import manager.DbManager;
 import dto.UserDTO;
-import dto.DiscountDTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
