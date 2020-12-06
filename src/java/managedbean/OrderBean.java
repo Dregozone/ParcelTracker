@@ -56,6 +56,44 @@ public class OrderBean implements Serializable
         return nextId;
     }
     
+    public String deleteOrder(int orderId) {
+        
+        try {
+            Connection conn = DbManager.getConnection();
+
+            // Delete orderparcels against this order due to FK constraint
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                "DELETE FROM OrderParcels OP " + 
+                "WHERE OP.orderId = ? "
+            );
+            stmt.setInt(1, orderId);
+            stmt.executeUpdate();
+            
+            // Delete transactions against this order due to FK constraint
+            stmt = conn.prepareStatement("" + 
+                "DELETE FROM Transactions T " + 
+                "WHERE T.orderId = ? "
+            );
+            stmt.setInt(1, orderId);
+            stmt.executeUpdate();
+            
+            // Delete the order itself
+            stmt = conn.prepareStatement(""
+                + "DELETE FROM Orders "
+                + "WHERE id = ? "
+            );
+            stmt.setInt(1, orderId);
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+        } catch(SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        
+        return "Seller_UI";
+    }
+    
     public String createOrder()
     {
         OrderDTO newOrder = new OrderDTO(
