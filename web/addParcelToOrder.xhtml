@@ -13,6 +13,9 @@
                 <h1>Add Parcel to Order ##{orderBean.id}</h1>
                 <h:form>
                     
+                    <h:outputText value="Quantity: " />
+                    <h:inputText value="#{parcelBean.quantity}" />
+                    
                     <h:dataTable value="#{parcelBean.parcelSummaries}"
                                  var="parcelVar"
                                  styleClass="custTable center50" 
@@ -28,11 +31,6 @@
                             <f:facet name="header">Description</f:facet>
                             <f:facet name="footer">Total: #{parcelBean.totalParcels} parcels</f:facet>
                             <h:outputText value="#{parcelVar.name}" />
-                        </h:column>
-
-                        <h:column>
-                            <f:facet name="header">Quantity</f:facet>
-                            <h:inputText value="#{parcelBean.quantity}" />
                         </h:column>
                         
                         <h:column>

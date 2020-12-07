@@ -26,7 +26,7 @@ public class ParcelBean implements Serializable
     private String name;
     private String type;
     private int weightGrams;
-    private int quantity = 0;
+    private int quantity;
     
     private OrderDTO orderDetails = null;
     private ParcelDTO parcelDetails = null;

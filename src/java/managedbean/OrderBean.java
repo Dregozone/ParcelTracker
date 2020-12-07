@@ -92,6 +92,43 @@ public class OrderBean implements Serializable
         return sqlDate;
     }
     
+    public String edittingOrder(int orderId) {
+        
+        id = orderId;
+        orderDetails = findOrderById(orderId);
+        
+        recipientId = orderDetails.getRecipient().getId();
+        sellerId = orderDetails.getSeller().getId();
+        
+        return "editOrder";
+    }
+    
+    public String editOrder(int orderId) {
+        
+        try {
+            Connection conn = DbManager.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                "UPDATE ORDERS O " +
+                "SET recipientId=?, sellerId=? " + 
+                "WHERE O.ID = ? "
+            );
+            
+            stmt.setInt(1, recipientId);
+            stmt.setInt(2, sellerId);
+            stmt.setInt(3, id);
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+        } catch(SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        
+        return "Seller_UI";
+    }
+    
     public String viewDriverMetrics() {
         
         
@@ -246,6 +283,17 @@ public class OrderBean implements Serializable
                         .execute();
 
         return "viewOrder_" + role;
+    }
+    
+    public OrderDTO findOrderById(int orderID)
+    {
+        orderDetails
+                = (OrderDTO) RecipientCommandFactory
+                        .createCommand(RecipientCommandFactory.FIND_ORDER_BY_ID,
+                                orderID)
+                        .execute();
+
+        return orderDetails;
     }
 
     public int getTotalOrders()

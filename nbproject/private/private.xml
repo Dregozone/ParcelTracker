@@ -4,25 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/OrderBean.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/viewOrder_Driver.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/viewOrder_Seller.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/dto/ParcelDTO.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/register.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/viewOrder_Recipient.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/manager/ParcelManager.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/addParcel.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/viewParcel.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/Seller_UI.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/viewDriverMetrics.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/Recipient_UI.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/Driver_UI.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/resources/templates/loggedIn.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/addOrder.xhtml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/ParcelBean.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/login.xhtml</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/editParcel.xhtml</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/gateway/ParcelGateway.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/viewUser.xhtml</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/userUI/UserCommandFactory.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/manager/OrderManager.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/manager/ParcelManager.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/web/Seller_UI.xhtml</file>
         </group>
     </open-files>
 </project-private>
