@@ -10,32 +10,32 @@
     <h:body>
         <ui:composition template="/resources/templates/driverMetrics.xhtml" >
             <ui:define name="content">
-                <h1>Driver Metrics</h1>
-                <h:panelGrid  columns="2" styleClass="custTable center50" rowClasses="custTableOddRow,custTableEvenRow">
-                    <h:outputText value="ID: " />
-                    <h:outputText value="#{userBean.userDetails.id}" />
-
-                    <h:outputText value="Name: " />
-                    <h:outputText value="#{userBean.userDetails.username}" />
-
-                    <h:outputText value="Address: " styleClass="top" />
-                    <h:panelGroup>
-                        <h:outputText value="#{userBean.userDetails.addressLineOne}" /><br/>
-                        <h:outputText value="#{userBean.userDetails.town}" /><br/>
-                        <h:outputText value="#{userBean.userDetails.county}" /><br/>
-                        <h:outputText value="#{userBean.userDetails.postcode}" />
-                    </h:panelGroup>
-
-                    <h:outputText value="Email: " />
-                    <h:outputText value="#{userBean.userDetails.email}" />
+                <h1 style="text-decoration: underline;">Driver Metrics</h1>
+                
+                <h:dataTable value="#{orderBean.findDeliveryMetrics()}"
+                             var="driverVar"
+                             styleClass="custTable center50" 
+                             headerClass="custTableHeader"
+                             rowClasses="custTableOddRow,custTableEvenRow">
                     
-                    <h:outputText value="Phone: " />
-                    <h:outputText value="#{userBean.userDetails.phone}" />
+                    <h:column>
+                        <f:facet name="header">Driver</f:facet>
+                        <h:outputText value="#{driverVar.name}" />
+                    </h:column>
                     
-                    <h:outputText value="Role: " />
-                    <h:outputText value="#{userBean.userDetails.role}" />
-                </h:panelGrid>
-
+                    <h:column>    
+                        <f:facet name="header">Total deliveries</f:facet>
+                        <h:outputText value="#{driverVar.deliveryCount}" />
+                    </h:column>
+                    
+                    <h:column>    
+                        <f:facet name="header">Avg. delivery time (Days)</f:facet>
+                        <h:outputText value="#{driverVar.daysToComplete}" />
+                    </h:column>
+                </h:dataTable>
+                
+                <br />
+                
                 <h:form>
                     <h:commandButton class="button" type="submit" value="Back" action="#{user.userPage()}" />
                 </h:form>

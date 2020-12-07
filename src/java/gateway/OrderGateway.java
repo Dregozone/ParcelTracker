@@ -4,6 +4,7 @@ import manager.DbManager;
 import dto.OrderDTO;
 import dto.UserDTO;
 import dto.ParcelDTO;
+import dto.MetricDTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -251,6 +252,64 @@ public class OrderGateway
         }
         
         return orderSummaries;
+    }
+    
+    public ArrayList<MetricDTO> findDeliveryMetrics()
+    {
+        ArrayList<MetricDTO> deliveryMetrics = new ArrayList<>();
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                    "SELECT " +
+                    "    A1.username, " +
+                    "    AVG(A1.daystocomplete) AS DaysToComplete, " +
+                    "    MAX(A1.deliveryCount) AS DeliveryCount " +
+                    "FROM " +
+                    "(" +
+                    "    SELECT " +
+                    "        U.Username, " +
+                    "        {fn TIMESTAMPDIFF( SQL_TSI_DAY, O.DATEADDED, O.DateCompleted)} AS DaysToComplete, " +
+                    "        OrderCounts.DeliveryCount AS DeliveryCount " +
+                    "    FROM  ORDERS O " +
+                    "        JOIN USERS U ON O.driverid = U.id " +
+                    "        JOIN (" +
+                    "            SELECT " +
+                    "                U.username AS username, " +
+                    "                COUNT(*) AS DeliveryCount " +
+                    "            FROM ORDERS O " +
+                    "                JOIN USERS U ON O.DRIVERID = U.ID " +
+                    "            GROUP BY U.USERNAME " +
+                    "        ) OrderCounts ON U.USERNAME = OrderCounts.username " +
+                    "    WHERE O.DATECOMPLETED IS NOT NULL " +
+                    ") AS A1 " +
+                    "GROUP BY A1.username " + 
+            "");
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next())
+            {
+                MetricDTO metric = new MetricDTO(
+                        rs.getString("username"),
+                        rs.getInt("DaysToComplete"),
+                        rs.getInt("DeliveryCount")
+                );
+                
+                deliveryMetrics.add(metric);
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return deliveryMetrics;
     }
     
     public ArrayList<OrderDTO> findAllSummaries()

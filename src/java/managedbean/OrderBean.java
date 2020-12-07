@@ -4,6 +4,7 @@ import sellerUI.SellerCommandFactory;
 import recipientUI.RecipientCommandFactory;
 import dto.OrderDTO;
 import dto.ParcelDTO;
+import dto.MetricDTO;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,6 +32,16 @@ public class OrderBean implements Serializable
     
     @Inject
     UserBean userBean;
+    
+    public ArrayList<MetricDTO> findDeliveryMetrics() {
+        
+        ArrayList<MetricDTO> deliveryMetrics
+            = (ArrayList<MetricDTO>) SellerCommandFactory
+                    .createCommand(SellerCommandFactory.FIND_DELIVERY_METRICS)
+                    .execute();
+
+        return deliveryMetrics;
+    }
     
     public int getNextOrderParcelsId() {
 
@@ -131,9 +142,6 @@ public class OrderBean implements Serializable
     
     public String viewDriverMetrics() {
         
-        
-        ////
-        
         return "viewDriverMetrics";
     }
     
@@ -178,8 +186,6 @@ public class OrderBean implements Serializable
     public String addingParcelToOrder(int orderId) {
         
         this.id = orderId;
-        
-        ////
         
         return "addParcelToOrder";
     }

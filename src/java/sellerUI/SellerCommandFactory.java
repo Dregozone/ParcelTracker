@@ -20,6 +20,7 @@ public class SellerCommandFactory
     public static final int GET_PARCEL_SUMMARIES = 12;
     public static final int FIND_PARCEL_BY_ID = 13;
     public static final int CREATE_PARCEL = 14;
+    public static final int FIND_DELIVERY_METRICS = 15;
 
     public static SellerCommand createCommand(int commandType)
     {
@@ -27,10 +28,10 @@ public class SellerCommandFactory
         {
             case GET_USER_SUMMARIES:
                 return new GetUserSumariesCommand();
-            //case GET_ORDER_SUMMARIES:
-            //    return new GetOrderSumariesCommand();
             case GET_PARCEL_SUMMARIES:
                 return new GetParcelSumariesCommand();
+            case FIND_DELIVERY_METRICS: 
+                return new FindDeliveryMetricsCommand();
             default:
                 return null;
         }
@@ -42,12 +43,8 @@ public class SellerCommandFactory
         {
             case FIND_USER_BY_ID:
                 return new FindUserCommand(id);
-            //case FIND_ORDER_BY_ID:
-            //    return new FindOrderCommand(id);
             case FIND_PARCEL_BY_ID:
                 return new FindParcelCommand(id);
-            //case GET_ORDER_SUMMARIES_BY_USER:
-            //    return new GetOrderSumariesByUserCommand(id);
             case GET_PARCEL_SUMMARIES_BY_ORDER: 
                 return new GetParcelSumariesByOrderCommand(id);
             case GET_TRANSACTION_SUMMARIES_BY_ORDER: 
