@@ -8,7 +8,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
-        <title>Parcel tracker - Welcome #{user.username}</title>
+        <title>Parcel tracker - Welcome #{loginBean.username}</title>
         <h:outputStylesheet library="css" name="shared.css"/>
         <h:outputStylesheet library="css" name="loggedIn.css"/>
     </h:head>
@@ -22,8 +22,8 @@
             </div>
             <div class="headRight">
                 <h:form>
-                    Logged in as #{user.username}
-                    <h:commandButton type="submit" class="button" value="Logout" action="#{user.logout()}" />
+                    Logged in as #{loginBean.username}
+                    <h:commandButton type="submit" class="button" value="Logout" action="#{loginBean.logout()}" />
                 </h:form>
             </div>
         </div>

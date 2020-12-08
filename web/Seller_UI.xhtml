@@ -59,7 +59,7 @@
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(user.id))}" /> &nbsp;
+                            <h:commandButton class="button" value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(loginBean.id))}" /> &nbsp;
                             <h:commandButton class="button" value="Edit" action="#{orderBean.edittingOrder(orderVar.id)}" /> &nbsp;
                             <h:commandButton class="button" value="Delete" action="#{orderBean.deleteOrder(orderVar.id)}" /> &nbsp;
                         </h:column>

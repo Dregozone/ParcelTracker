@@ -17,9 +17,9 @@ import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-@Named(value = "user")
-@SessionScoped
-public class User implements Serializable
+@Named(value = "loginBean")
+@SessionScoped //Session to allow user to remain logged in for their session
+public class LoginBean implements Serializable
 {
 
     private int id;
@@ -27,7 +27,7 @@ public class User implements Serializable
     private String password;
     private boolean credentialsOK = false;
 
-    public User()
+    public LoginBean()
     {
     }
 
@@ -42,12 +42,6 @@ public class User implements Serializable
             ResultSet rs = stmt.executeQuery();
 
             credentialsOK = rs.next() && rs.getString("hashedpassword").equals(password);
-
-            /*
-            if ( rs.next() ) {
-                id = rs.getInt("id");
-            }
-            */
             
             rs.close();
             stmt.close();
@@ -115,16 +109,18 @@ public class User implements Serializable
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
     
+    /*
     public String logOff()
     {
         clearCredentials();
-        return "login";
+        return "Login_UI";
     }
+    */
     ////
     public String logout() {
         clearCredentials();
         
-        return "login";
+        return "Login_UI";
     }
     
     public boolean credentialsAreOK()
@@ -167,7 +163,7 @@ public class User implements Serializable
         catch (NoSuchAlgorithmException ex)
         {
             this.password = "";
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

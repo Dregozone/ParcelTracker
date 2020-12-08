@@ -10,10 +10,10 @@
     <h:body>
         <ui:composition template="/resources/templates/loggedIn.xhtml" >
             <ui:define name="content">
-                <h1>Recipient_UI - Your orders (#{user.username} - ##{user.id})</h1>
+                <h1>Recipient_UI - Your orders (#{loginBean.username} - ##{loginBean.id})</h1>
                 
                 <h:form>
-                    <h:dataTable value="#{orderBean.getOrderSummariesByUser(user.id)}"
+                    <h:dataTable value="#{orderBean.getOrderSummariesByUser(loginBean.id)}"
                                  var="orderVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -37,7 +37,7 @@
                         
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View delivery progress" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(user.id))}" />
+                            <h:commandButton class="button" value="View delivery progress" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(loginBean.id))}" />
                         </h:column>
                     </h:dataTable>
                     

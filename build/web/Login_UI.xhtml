@@ -15,20 +15,20 @@
                 <h:form>
                     <h:panelGrid class="center50" style="border: none;" columns="2">
                         <p>Username: </p>
-                        <h:inputText value="#{user.username}"
+                        <h:inputText value="#{loginBean.username}"
                                      class="input" 
                                      required="true"
                                      requiredMessage="Please enter your username" />
 
                         <p>Password: </p>
-                        <h:inputSecret value="#{user.password}" 
+                        <h:inputSecret value="#{loginBean.password}" 
                                        class="input" 
                                      required="true"
                                      requiredMessage="Please enter your password" />
                     </h:panelGrid>
                     
-                    <h:commandButton type="submit" class="button" value="Log in" action="#{user.checkCredentials()}" /> &nbsp;
-                    <h:commandButton type="submit" class="button" value="Register" action="register" immediate="true" />
+                    <h:commandButton type="submit" class="button" value="Log in" action="#{loginBean.checkCredentials()}" /> &nbsp;
+                    <h:commandButton type="submit" class="button" value="Register" action="Register_UI" immediate="true" />
                 </h:form>
                 
             </ui:define>

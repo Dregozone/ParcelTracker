@@ -200,7 +200,7 @@ public class TransactionBean implements Serializable
         }
         catch (Exception e)
         {
-            Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, e.toString());
+            Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, e.toString());
         }
         
         return "Driver_UI"; // + orderId + ": " + nextId

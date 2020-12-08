@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import javax.servlet.http.HttpSession;
-import managedbean.User;
+import managedbean.LoginBean;
 
 @WebFilter(filterName = "CheckLoggedIn", urlPatterns =
 {
@@ -27,7 +27,7 @@ public class CheckLoggedIn implements Filter
     private FilterConfig filterConfig = null;
     
     @Inject
-    User user;
+    LoginBean user;
 
     public CheckLoggedIn()
     {
@@ -50,8 +50,8 @@ public class CheckLoggedIn implements Filter
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         //HttpSession session = request.getSession(false);
-        String loginURI = request.getContextPath() + "/faces/login.xhtml";
-        String registerURI = request.getContextPath() + "/faces/register.xhtml";
+        String loginURI = request.getContextPath() + "/faces/Login_UI.xhtml";
+        String registerURI = request.getContextPath() + "/faces/Register_UI.xhtml";
         String sharedCssURI = request.getContextPath() + "/faces/javax.faces.resource/shared.css";
         String cssURI = request.getContextPath() + "/faces/javax.faces.resource/notLoggedIn.css";
         String logoURI = request.getContextPath() + "/faces/resources/img/logo.png";

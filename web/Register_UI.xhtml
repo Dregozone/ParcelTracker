@@ -15,83 +15,83 @@
                 <h:form>
                     <h:panelGrid class="center50" style="border: none;" columns="2">
                         <p>* <b>First name:</b><br/>(max. 20 characters)</p>
-                        <h:inputText value="#{registration.firstName}"
+                        <h:inputText value="#{registerBean.firstName}"
                                      class="input" 
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter your first name" />
 
                         <p>* <b>Last name:</b><br/>(max. 20 characters)</p>
-                        <h:inputText value="#{registration.lastName}"
+                        <h:inputText value="#{registerBean.lastName}"
                                      class="input" 
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter your last name" />
 
                         <p>* <b>Username:</b><br/>(max. 20 characters)</p>
-                        <h:inputText value="#{registration.username}"
+                        <h:inputText value="#{registerBean.username}"
                                      class="input" 
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter your username" />
 
                         <p>* <b>Password:</b><br/>(max. 20 characters)</p>
-                        <h:inputSecret value="#{registration.password1}"
+                        <h:inputSecret value="#{registerBean.password1}"
                                      class="input" 
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter your password" />
 
                         <p>* <b>Confirm password:</b><br/>(max. 20 characters)</p>
-                        <h:inputSecret value="#{registration.password2}"
+                        <h:inputSecret value="#{registerBean.password2}"
                                      class="input" 
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please confirm your password" />
                         
                         <p>* <b>Address line one:</b><br/>(max. 20 characters)</p>
-                        <h:inputText value="#{registration.addressLineOne}"
+                        <h:inputText value="#{registerBean.addressLineOne}"
                                      class="input" 
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter address line one" />
                         
                         <p><b>Town:</b><br/></p>
-                        <h:inputText value="#{registration.town}"
+                        <h:inputText value="#{registerBean.town}"
                                      class="input" 
                                      maxlength="20" 
                                       />
                         
                         <p><b>County:</b><br/></p>
-                        <h:inputText value="#{registration.county}"
+                        <h:inputText value="#{registerBean.county}"
                                      class="input" 
                                      maxlength="20" 
                                       />
                         
                         <p>* <b>Postcode:</b><br/></p>
-                        <h:inputText value="#{registration.postcode}"
+                        <h:inputText value="#{registerBean.postcode}"
                                      class="input" 
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter postcode" />
                         
                         <p>* <b>Email:</b><br/></p>
-                        <h:inputText value="#{registration.email}"
+                        <h:inputText value="#{registerBean.email}"
                                      class="input" 
                                      maxlength="20" 
                                      required="true"
                                      requiredMessage="Please enter email address" />
                         
                         <p><b>Phone no.:</b><br/></p>
-                        <h:inputText value="#{registration.phone}"
+                        <h:inputText value="#{registerBean.phone}"
                                      class="input" 
                                      maxlength="20" 
                                      />
                     </h:panelGrid>
                     <p>
-                        <h:commandButton class="button" value="Submit" action="#{registration.register()}" />&nbsp;&nbsp;
+                        <h:commandButton class="button" value="Submit" action="#{registerBean.register()}" />&nbsp;&nbsp;
                         <h:commandButton class="button" type="reset" value="Clear" />&nbsp;&nbsp;
-                        <h:commandButton class="button" type="submit" value="Back to login" action="login" immediate="true" />
+                        <h:commandButton class="button" type="submit" value="Back to login" action="Login_UI" immediate="true" />
                     </p>
                 </h:form>
         

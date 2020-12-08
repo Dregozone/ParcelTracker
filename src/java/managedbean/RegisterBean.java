@@ -17,9 +17,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-@Named(value = "registration")
+@Named(value = "registerBean")
 @RequestScoped
-public class Registration implements Serializable
+public class RegisterBean implements Serializable
 {
     private String firstName;
     private String lastName;
@@ -34,7 +34,7 @@ public class Registration implements Serializable
     private String email;
     private String phone;
 
-    public Registration()
+    public RegisterBean()
     {
     }
 
@@ -147,13 +147,13 @@ public class Registration implements Serializable
             }
             catch (Exception e)
             {
-                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, e.toString());
+                Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, e.toString());
             }
         }
 
         if (dataOK)
         {
-            return "login";
+            return "Login_UI";
         }
         else
         {
