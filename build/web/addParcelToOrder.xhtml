@@ -10,13 +10,13 @@
     <h:body>
         <ui:composition template="/resources/templates/loggedIn.xhtml" >
             <ui:define name="content">
-                <h1>Add Parcel to Order ##{orderBean.id}</h1>
+                <h1>Add Parcel to Order ##{sellerBean.id}</h1>
                 <h:form>
                     
                     <h:outputText value="Quantity: " />
-                    <h:inputText value="#{parcelBean.quantity}" />
+                    <h:inputText value="#{sellerBean.quantity}" />
                     
-                    <h:dataTable value="#{parcelBean.parcelSummaries}"
+                    <h:dataTable value="#{sellerBean.parcelSummaries}"
                                  var="parcelVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -29,13 +29,13 @@
 
                         <h:column>
                             <f:facet name="header">Description</f:facet>
-                            <f:facet name="footer">Total: #{parcelBean.totalParcels} parcels</f:facet>
+                            <f:facet name="footer">Total: #{sellerBean.totalParcels} parcels</f:facet>
                             <h:outputText value="#{parcelVar.name}" />
                         </h:column>
                         
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="Add to order" action="#{orderBean.addParcelToOrder(orderBean.id, parcelVar.id, parcelBean.quantity)}" /> &nbsp;&nbsp;
+                            <h:commandButton class="button" value="Add to order" action="#{sellerBean.addParcelToOrder(sellerBean.id, parcelVar.id, sellerBean.quantity)}" /> &nbsp;&nbsp;
                         </h:column>
                     </h:dataTable>
                     

@@ -14,7 +14,7 @@
                 
                 <h2>Users</h2>
                 <h:form>
-                    <h:dataTable value="#{userBean.userSummaries}"
+                    <h:dataTable value="#{sellerBean.userSummaries}"
                                  var="userVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -27,20 +27,20 @@
 
                         <h:column>
                             <f:facet name="header">Username</f:facet>
-                            <f:facet name="footer">Total: #{userBean.totalUsers} users</f:facet>
+                            <f:facet name="footer">Total: #{sellerBean.totalUsers} users</f:facet>
                             <h:outputText value="#{userVar.username}" />
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View user" action="#{userBean.fetchUserDetails(userVar.id)}" />
+                            <h:commandButton class="button" value="View user" action="#{sellerBean.fetchUserDetails(userVar.id)}" />
                         </h:column>
                     </h:dataTable>
                 </h:form>
                     
                 <h2>Orders</h2>
                 <h:form>
-                    <h:dataTable value="#{orderBean.orderSummaries}"
+                    <h:dataTable value="#{sellerBean.orderSummaries}"
                                  var="orderVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -53,15 +53,15 @@
 
                         <h:column>
                             <f:facet name="header">Date of order</f:facet>
-                            <f:facet name="footer">Total: #{orderBean.totalOrders} orders</f:facet>
+                            <f:facet name="footer">Total: #{sellerBean.totalOrders} orders</f:facet>
                             <h:outputText value="#{orderVar.dateAdded}" />
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(loginBean.id))}" /> &nbsp;
-                            <h:commandButton class="button" value="Edit" action="#{orderBean.edittingOrder(orderVar.id)}" /> &nbsp;
-                            <h:commandButton class="button" value="Delete" action="#{orderBean.deleteOrder(orderVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="View details" action="#{sellerBean.fetchOrderDetails(orderVar.id, recipientBean.findRoleByUser(loginBean.id))}" /> &nbsp;
+                            <h:commandButton class="button" value="Edit" action="#{sellerBean.edittingOrder(orderVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Delete" action="#{sellerBean.deleteOrder(orderVar.id)}" /> &nbsp;
                         </h:column>
                     </h:dataTable>
                     
@@ -70,7 +70,7 @@
                 
                 <h2>Parcels</h2>
                 <h:form>
-                    <h:dataTable value="#{parcelBean.parcelSummaries}"
+                    <h:dataTable value="#{sellerBean.parcelSummaries}"
                                  var="parcelVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -83,15 +83,15 @@
 
                         <h:column>
                             <f:facet name="header">Description</f:facet>
-                            <f:facet name="footer">Total: #{parcelBean.totalParcels} parcels</f:facet>
+                            <f:facet name="footer">Total: #{sellerBean.totalParcels} parcels</f:facet>
                             <h:outputText value="#{parcelVar.name}" />
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View details" action="#{parcelBean.fetchParcelDetails(parcelVar.id)}" /> &nbsp;
-                            <h:commandButton class="button" value="Edit" action="#{parcelBean.edittingParcel(parcelVar.id)}" /> &nbsp;
-                            <h:commandButton class="button" value="Delete" action="#{parcelBean.deleteParcel(parcelVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="View details" action="#{sellerBean.fetchParcelDetails(parcelVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Edit" action="#{sellerBean.edittingParcel(parcelVar.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Delete" action="#{sellerBean.deleteParcel(parcelVar.id)}" /> &nbsp;
                         </h:column>
                     </h:dataTable>
                     
@@ -105,7 +105,7 @@
                 </h2>
                 
                 <h:form>
-                    <h:commandButton class="button" value="View driver metrics" action="#{orderBean.viewDriverMetrics()}" />
+                    <h:commandButton class="button" value="View driver metrics" action="#{sellerBean.viewDriverMetrics()}" />
                 </h:form>
             </ui:define>
         </ui:composition>

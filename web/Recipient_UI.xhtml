@@ -13,7 +13,7 @@
                 <h1>Recipient_UI - Your orders (#{loginBean.username} - ##{loginBean.id})</h1>
                 
                 <h:form>
-                    <h:dataTable value="#{orderBean.getOrderSummariesByUser(loginBean.id)}"
+                    <h:dataTable value="#{recipientBean.getOrderSummariesByUser(loginBean.id)}"
                                  var="orderVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -26,7 +26,7 @@
 
                         <h:column>
                             <f:facet name="header">Date ordered</f:facet>
-                            <f:facet name="footer">Total: #{orderBean.totalOrders} orders</f:facet>
+                            <f:facet name="footer">Total: #{recipientBean.totalOrders} orders</f:facet>
                             <h:outputText value="#{orderVar.dateAdded}" />
                         </h:column>
 
@@ -37,7 +37,7 @@
                         
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View delivery progress" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(loginBean.id))}" />
+                            <h:commandButton class="button" value="View delivery progress" action="#{recipientBean.fetchOrderDetails(orderVar.id, recipientBean.findRoleByUser(loginBean.id))}" />
                         </h:column>
                     </h:dataTable>
                     

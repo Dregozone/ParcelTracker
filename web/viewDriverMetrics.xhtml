@@ -12,7 +12,7 @@
             <ui:define name="content">
                 <h1 style="text-decoration: underline;">Driver Metrics</h1>
                 
-                <h:dataTable value="#{orderBean.findDeliveryMetrics()}"
+                <h:dataTable value="#{sellerBean.findDeliveryMetrics()}"
                              var="driverVar"
                              styleClass="custTable center50" 
                              headerClass="custTableHeader"
@@ -43,4 +43,3 @@
         </ui:composition>
     </h:body>
 </html>
-

@@ -13,28 +13,28 @@
                 <h1>Order details</h1>
                 <h:panelGrid  columns="2" styleClass="custTable center50" rowClasses="custTableOddRow,custTableEvenRow">
                     <h:outputText value="ID: " />
-                    <h:outputText value="#{orderBean.orderDetails.id}" />
+                    <h:outputText value="#{recipientBean.orderDetails.id}" />
 
                     <h:outputText value="Recipient: " />
-                    <h:outputText value="#{orderBean.orderDetails.recipient.username}" />
+                    <h:outputText value="#{recipientBean.orderDetails.recipient.username}" />
                     
                     <h:outputText value="Driver: " />
-                    <h:outputText value="#{orderBean.orderDetails.driver.username}" />
+                    <h:outputText value="#{recipientBean.orderDetails.driver.username}" />
                     
                     <h:outputText value="Seller: " />
-                    <h:outputText value="#{orderBean.orderDetails.seller.username}" />
+                    <h:outputText value="#{recipientBean.orderDetails.seller.username}" />
                     
                     <h:outputText value="Date Added: " />
-                    <h:outputText value="#{orderBean.orderDetails.dateAdded}" />
+                    <h:outputText value="#{recipientBean.orderDetails.dateAdded}" />
                     
                     <h:outputText value="Date Completed: " />
-                    <h:outputText value="#{orderBean.orderDetails.dateCompleted}" />
+                    <h:outputText value="#{recipientBean.orderDetails.dateCompleted}" />
                 </h:panelGrid>
 
                 <br />
                 
-                <h2>Parcels in order ##{orderBean.orderDetails.id}</h2>
-                <h:dataTable value="#{orderBean.getOrderParcelByOrder(orderBean.orderDetails.id)}"
+                <h2>Parcels in order ##{recipientBean.orderDetails.id}</h2>
+                <h:dataTable value="#{recipientBean.getOrderParcelByOrder(recipientBean.orderDetails.id)}"
                                  var="parcelVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -53,7 +53,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Quantity</f:facet>
-                            <h:outputText value="#{parcelVar.quantityInOrder}" /> <!-- come back to this -->
+                            <h:outputText value="#{parcelVar.quantityInOrder}" />
                         </h:column>
                         <h:column>    
                             <f:facet name="header">Weight</f:facet>
@@ -67,8 +67,8 @@
                 
                 <br />
                 
-                <h2>Order progress ##{orderBean.orderDetails.id}</h2>
-                <h:dataTable value="#{transactionBean.getTransactionByOrder(orderBean.orderDetails.id)}"
+                <h2>Order progress ##{recipientBean.orderDetails.id}</h2>
+                <h:dataTable value="#{recipientBean.getTransactionByOrder(recipientBean.orderDetails.id)}"
                                  var="transactionVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"

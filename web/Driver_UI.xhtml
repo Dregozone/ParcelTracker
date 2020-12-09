@@ -13,7 +13,7 @@
                 <h1>Driver_UI</h1>
                 
                 <h:form>
-                    <h:dataTable value="#{orderBean.orderSummaries}"
+                    <h:dataTable value="#{driverBean.orderSummaries}"
                                  var="orderVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -26,15 +26,15 @@
 
                         <h:column>
                             <f:facet name="header">Name</f:facet>
-                            <f:facet name="footer">Total: #{orderBean.totalOrders} orders</f:facet>
+                            <f:facet name="footer">Total: #{driverBean.totalOrders} orders</f:facet>
                             <h:outputText value="#{orderVar.dateAdded}" />
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View details" action="#{orderBean.fetchOrderDetails(orderVar.id, userBean.findRoleByUser(loginBean.id))}" /> &nbsp;
-                            <h:commandButton class="button" value="Record: Picked up" action="#{transactionBean.addTransaction(orderVar.id, 'Picked up', loginBean.id)}" /> &nbsp;
-                            <h:commandButton class="button" value="Record: Droped off" action="#{transactionBean.addTransaction(orderVar.id, 'Dropped off', loginBean.id)}" />
+                            <h:commandButton class="button" value="View details" action="#{driverBean.fetchOrderDetails(orderVar.id, recipientBean.findRoleByUser(loginBean.id))}" /> &nbsp;
+                            <h:commandButton class="button" value="Record: Picked up" action="#{driverBean.addTransaction(orderVar.id, 'Picked up', loginBean.id)}" /> &nbsp;
+                            <h:commandButton class="button" value="Record: Droped off" action="#{driverBean.addTransaction(orderVar.id, 'Dropped off', loginBean.id)}" />
                         </h:column>
                     </h:dataTable>
                     

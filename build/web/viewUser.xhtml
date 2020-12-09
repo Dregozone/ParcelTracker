@@ -10,30 +10,30 @@
     <h:body>
         <ui:composition template="/resources/templates/loggedIn.xhtml" >
             <ui:define name="content">
-                <h1>Customer details - viewUser</h1>
+                <h1>View User ##{sellerBean.userDetails.id}</h1>
                 <h:panelGrid  columns="2" styleClass="custTable center50" rowClasses="custTableOddRow,custTableEvenRow">
                     <h:outputText value="ID: " />
-                    <h:outputText value="#{userBean.userDetails.id}" />
+                    <h:outputText value="#{sellerBean.userDetails.id}" />
 
                     <h:outputText value="Name: " />
-                    <h:outputText value="#{userBean.userDetails.username}" />
+                    <h:outputText value="#{sellerBean.userDetails.username}" />
 
                     <h:outputText value="Address: " styleClass="top" />
                     <h:panelGroup>
-                        <h:outputText value="#{userBean.userDetails.addressLineOne}" /><br/>
-                        <h:outputText value="#{userBean.userDetails.town}" /><br/>
-                        <h:outputText value="#{userBean.userDetails.county}" /><br/>
-                        <h:outputText value="#{userBean.userDetails.postcode}" />
+                        <h:outputText value="#{sellerBean.userDetails.addressLineOne}" /><br/>
+                        <h:outputText value="#{sellerBean.userDetails.town}" /><br/>
+                        <h:outputText value="#{sellerBean.userDetails.county}" /><br/>
+                        <h:outputText value="#{sellerBean.userDetails.postcode}" />
                     </h:panelGroup>
 
                     <h:outputText value="Email: " />
-                    <h:outputText value="#{userBean.userDetails.email}" />
+                    <h:outputText value="#{sellerBean.userDetails.email}" />
                     
                     <h:outputText value="Phone: " />
-                    <h:outputText value="#{userBean.userDetails.phone}" />
+                    <h:outputText value="#{sellerBean.userDetails.phone}" />
                     
                     <h:outputText value="Role: " />
-                    <h:outputText value="#{userBean.userDetails.role}" />
+                    <h:outputText value="#{sellerBean.userDetails.role}" />
                 </h:panelGrid>
 
                 <h:form>
@@ -43,4 +43,3 @@
         </ui:composition>
     </h:body>
 </html>
-

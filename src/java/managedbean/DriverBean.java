@@ -5,6 +5,8 @@ import recipientUI.RecipientCommandFactory;
 import dto.OrderDTO;
 import dto.ParcelDTO;
 import dto.MetricDTO;
+import dto.TransactionDTO;
+import dto.UserDTO;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,26 +14,245 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
 import manager.DbManager;
 
-@Named(value = "orderBean")
+@Named(value = "driverBean")
 @SessionScoped
-public class OrderBean implements Serializable
+public class DriverBean implements Serializable
 {
+    private String role;
     private int id;
     private int recipientId;
     private int sellerId;
     
+    private UserDTO userDetails = null;
     private OrderDTO orderDetails = null;
     private ParcelDTO parcelDetails = null;
     private int totalOrders = 0;
     private int totalParcels = 0;
+    private int totalTransactions = 0;
     
-    @Inject
-    UserBean userBean;
+    public UserDTO findUserDetailsById(int userID)
+    {
+        userDetails
+                = (UserDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.FIND_USER_BY_ID,
+                                userID)
+                        .execute();
+
+        return userDetails;
+    }
+    
+    public String findRoleByUser(int userID)
+    {
+        
+        try {        
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                    "SELECT R.name AS Role " + 
+                    "FROM USERS U " +
+                    "JOIN USERROLES UR ON U.ID = UR.userid " + 
+                    "JOIN ROLES R ON UR.roleid = R.id " +
+                    "WHERE U.ID = ? " + 
+            "");
+            
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next())
+            {
+                role = rs.getString("Role");
+            }
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        return role;
+    }
+    
+    public String deleteTransaction(int transactionId, String role, OrderDTO orderDetails, TransactionDTO transaction) {
+        
+        try {
+            Connection conn = DbManager.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(""
+                + "DELETE FROM Transactions "
+                + "WHERE id = ? "
+            );
+
+            stmt.setInt(1, transactionId);
+
+            stmt.executeUpdate();
+            
+            switch ( transaction.getName() ) {
+                case "Picked up":
+                    // Also change orders.driver back to id4 (None)
+                    stmt = conn.prepareStatement(""
+                        + "UPDATE Orders "
+                        + "SET DriverID = 4 "
+                        + "WHERE id = ? "
+                    );
+
+                    stmt.setInt(1, orderDetails.getId());
+                    stmt.executeUpdate();
+                    
+                    break;
+                    
+                case "Dropped off":
+                    // Also change orders.isComplete=false, orders.datecompleted=NULL
+                    stmt = conn.prepareStatement(""
+                        + "UPDATE Orders "
+                        + "SET IsComplete = false, DateCompleted = NULL "
+                        + "WHERE id = ? "
+                    );
+
+                    stmt.setInt(1, orderDetails.getId());
+                    stmt.executeUpdate();
+                    
+                    break;
+                default:
+                    //
+                    break;
+            }
+            
+            stmt.close();
+            conn.close();
+        } catch(SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        
+        return "viewOrder_" + role;
+    }
+    
+    public int getNextTransactionId() {
+
+        int nextId = 0;
+        
+        try {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement("SELECT ID+1 AS ID FROM Transactions ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+
+            ResultSet rs = stmt.executeQuery();
+
+            if ( rs.next() ) {
+                nextId = rs.getInt("ID");
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch ( SQLException sqle ) {
+            sqle.printStackTrace();
+        }
+        
+        return nextId;
+    }
+    
+    public String addTransaction(int orderId, String transaction, int userId) {
+        
+        int nextId = getNextTransactionId();
+        
+        try
+        {
+            try {
+                Connection conn = DbManager.getConnection();
+
+                PreparedStatement stmt = conn.prepareStatement(""
+                        + "INSERT INTO Transactions "
+                        + "(id, orderid, name, addedby, dateAdded) "
+                        + "VALUES "
+                        + "(?, ?, ?, ?, ?)"
+                );
+
+                stmt.setInt(1, nextId);
+                stmt.setInt(2, orderId);
+                stmt.setString(3, transaction);
+                stmt.setInt(4, userId);
+                stmt.setDate(5, getDate() );
+
+                stmt.executeUpdate();
+                
+                switch ( transaction ) {
+                    case "Picked up": 
+                        // also update Orders.DriverID
+                        try {
+                            stmt = conn.prepareStatement(""
+                                    + "UPDATE Orders "
+                                    + "SET driverID = ? "
+                                    + "WHERE id = ? "
+                            );
+
+                            stmt.setInt(1, userId);
+                            stmt.setInt(2, orderId);
+
+                            stmt.executeUpdate();
+                        } catch(SQLException sqle) {
+                            sqle.printStackTrace();
+                        }
+                        
+                        break;
+                    case "Dropped off":
+                        // also update Orders.IsComplete
+                        try {
+                            stmt = conn.prepareStatement(""
+                                    + "UPDATE Orders "
+                                    + "SET isComplete = true, dateCompleted = ? "
+                                    + "WHERE id = ? "
+                            );
+
+                            stmt.setDate(1, getDate());
+                            stmt.setInt(2, orderId);
+
+                            stmt.executeUpdate();
+                        } catch(SQLException sqle) {
+                            sqle.printStackTrace();
+                        }
+                        
+                        break;
+                    default:
+                        //
+                        break;
+                }
+
+                stmt.close();
+                conn.close();
+            } catch(SQLException sqle) {
+                sqle.printStackTrace();
+            }
+        }
+        catch (Exception e)
+        {
+            Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, e.toString());
+        }
+        
+        return "Driver_UI";
+    }
+    
+    public ArrayList<TransactionDTO> getTransactionByOrder(int OrderID)
+    {
+        ArrayList<TransactionDTO> transactionSummaries
+                = (ArrayList<TransactionDTO>) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.GET_TRANSACTION_SUMMARIES_BY_ORDER,
+                                OrderID)
+                        .execute();
+
+        totalTransactions = transactionSummaries.size();
+
+        return transactionSummaries;
+    }
     
     public ArrayList<MetricDTO> findDeliveryMetrics() {
         
@@ -223,9 +444,9 @@ public class OrderBean implements Serializable
     {
         OrderDTO newOrder = new OrderDTO(
                                     getNextId(),
-                                    userBean.findUserDetailsById(recipientId),
-                                    userBean.findUserDetailsById(4),
-                                    userBean.findUserDetailsById(sellerId),
+                                    findUserDetailsById(recipientId),
+                                    findUserDetailsById(4),
+                                    findUserDetailsById(sellerId),
                                     "", /* will be now() on insert */
                                     false,
                                     "" /* will be null on insert */
@@ -311,6 +532,10 @@ public class OrderBean implements Serializable
         return orderDetails;
     }
 
+    public UserDTO getUserDetails() {
+        return userDetails;
+    }
+
     public int getId() {
         return id;
     }
@@ -351,11 +576,19 @@ public class OrderBean implements Serializable
         this.totalParcels = totalParcels;
     }
 
-    public UserBean getUserBean() {
-        return userBean;
+    public int getTotalTransactions() {
+        return totalTransactions;
     }
 
-    public void setUserBean(UserBean userBean) {
-        this.userBean = userBean;
+    public void setTotalTransactions(int totalTransactions) {
+        this.totalTransactions = totalTransactions;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

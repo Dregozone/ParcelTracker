@@ -13,28 +13,28 @@
                 <h1>Order details</h1>
                 <h:panelGrid  columns="2" styleClass="custTable center50" rowClasses="custTableOddRow,custTableEvenRow">
                     <h:outputText value="ID: " />
-                    <h:outputText value="#{orderBean.orderDetails.id}" />
+                    <h:outputText value="#{driverBean.orderDetails.id}" />
 
                     <h:outputText value="Recipient: " />
-                    <h:outputText value="#{orderBean.orderDetails.recipient.username}" />
+                    <h:outputText value="#{driverBean.orderDetails.recipient.username}" />
                     
                     <h:outputText value="Driver: " />
-                    <h:outputText value="#{orderBean.orderDetails.driver.username}" />
+                    <h:outputText value="#{driverBean.orderDetails.driver.username}" />
                     
                     <h:outputText value="Seller: " />
-                    <h:outputText value="#{orderBean.orderDetails.seller.username}" />
+                    <h:outputText value="#{driverBean.orderDetails.seller.username}" />
                     
                     <h:outputText value="Date Added: " />
-                    <h:outputText value="#{orderBean.orderDetails.dateAdded}" />
+                    <h:outputText value="#{driverBean.orderDetails.dateAdded}" />
                     
                     <h:outputText value="Date Completed: " />
-                    <h:outputText value="#{orderBean.orderDetails.dateCompleted}" />
+                    <h:outputText value="#{driverBean.orderDetails.dateCompleted}" />
                 </h:panelGrid>
 
                 <br />
                 
-                <h2>Parcels in order ##{orderBean.orderDetails.id}</h2>
-                <h:dataTable value="#{orderBean.getOrderParcelByOrder(orderBean.orderDetails.id)}"
+                <h2>Parcels in order ##{driverBean.orderDetails.id}</h2>
+                <h:dataTable value="#{driverBean.getOrderParcelByOrder(driverBean.orderDetails.id)}"
                                  var="parcelVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -53,7 +53,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Quantity</f:facet>
-                            <h:outputText value="#{parcelVar.quantityInOrder}" /> <!-- come back to this -->
+                            <h:outputText value="#{parcelVar.quantityInOrder}" />
                         </h:column>
                         <h:column>    
                             <f:facet name="header">Weight</f:facet>
@@ -67,8 +67,8 @@
                 
                 <br />
                 
-                <h2>Order progress ##{orderBean.orderDetails.id}</h2>
-                <h:dataTable value="#{transactionBean.getTransactionByOrder(orderBean.orderDetails.id)}"
+                <h2>Order progress ##{driverBean.orderDetails.id}</h2>
+                <h:dataTable value="#{driverBean.getTransactionByOrder(driverBean.orderDetails.id)}"
                                  var="transactionVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -91,7 +91,7 @@
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
                             <h:form>
-                                <h:commandButton class="button" type="submit" value="Delete" action="#{transactionBean.deleteTransaction(transactionVar.id, userBean.getRole(), orderBean.orderDetails, transactionVar )}" />
+                                <h:commandButton class="button" type="submit" value="Delete" action="#{driverBean.deleteTransaction(transactionVar.id, driverBean.getRole(), driverBean.orderDetails, transactionVar )}" />
                             </h:form>
                         </h:column>
                 </h:dataTable>
