@@ -31,6 +31,42 @@ public class ParcelGateway
             
             PreparedStatement stmt = conn.prepareStatement(""
                     + "UPDATE Parcels "
+                    + "SET name = ?, type = ?, weightGrams = ?, sellerid = ? "
+                    + "WHERE id = ? "
+            );
+            
+            stmt.setString(1, parcel.getName());
+            stmt.setString(2, parcel.getType());
+            stmt.setInt(3, parcel.getWeightGrams());
+            
+            stmt.setInt(4, parcel.getSeller().getId());
+            stmt.setInt(5, parcel.getId());
+            
+            stmt.executeUpdate();
+            
+            System.out.println("\n\n" + parcel.getId() + "\n\n");
+            
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            
+            return false;
+        }
+        
+        return true;
+    }
+    
+    /*
+    public boolean editParcel(ParcelDTO parcel)
+    {        
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement(""
+                    + "UPDATE Parcels "
                     + "SET name = ?, type = ?, weightGrams = ?, sellerId = ?, dateModified = ? "
                     + "WHERE id = ? "
             );
@@ -55,6 +91,7 @@ public class ParcelGateway
         
         return true;
     }
+    */
     
     public boolean deleteParcel(int parcelId)
     {        

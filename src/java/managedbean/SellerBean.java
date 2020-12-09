@@ -127,7 +127,7 @@ public class SellerBean implements Serializable
     public String editParcel(int parcelId) {
         
         ParcelDTO edittedParcel = new ParcelDTO(
-                                    getNextParcelId(),
+                                    parcelId,
                                     name,
                                     type,
                                     weightGrams,

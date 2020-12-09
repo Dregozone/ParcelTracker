@@ -21,7 +21,6 @@ import javax.faces.context.FacesContext;
 @SessionScoped //Session to allow user to remain logged in for their session
 public class LoginBean implements Serializable
 {
-
     private int id;
     private String username;
     private String password;
