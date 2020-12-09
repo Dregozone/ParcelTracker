@@ -1,12 +1,12 @@
-package sellerUI;
+package driverUI;
 
 import manager.OrderManager;
 
-public class FindDeliveryMetricsCommand implements SellerCommand
+public class ViewAllDeliveriesCommand implements DriverCommand
 {
     private final OrderManager orderMgr;
 
-    public FindDeliveryMetricsCommand()
+    public ViewAllDeliveriesCommand()
     {
         orderMgr = new OrderManager();
     }
@@ -14,6 +14,6 @@ public class FindDeliveryMetricsCommand implements SellerCommand
     @Override
     public Object execute()
     {
-        return orderMgr.findDeliveryMetrics();
+        return orderMgr.getOrderSummaries();
     }
 }

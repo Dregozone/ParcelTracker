@@ -1,5 +1,6 @@
 package managedbean;
 
+import driverUI.DriverCommandFactory;
 import sellerUI.SellerCommandFactory;
 import recipientUI.RecipientCommandFactory;
 import dto.OrderDTO;
@@ -45,7 +46,7 @@ public class SellerBean implements Serializable
     {
         userDetails
                 = (UserDTO) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.FIND_USER_BY_ID,
+                        .createCommand(SellerCommandFactory.VIEW_USER,
                                 userID)
                         .execute();
 
@@ -89,7 +90,7 @@ public class SellerBean implements Serializable
     {
         ArrayList<UserDTO> userSummaries
                 = (ArrayList<UserDTO>) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.GET_USER_SUMMARIES)
+                        .createCommand(SellerCommandFactory.VIEW_ALL_USERS)
                         .execute();
 
         totalUsers = userSummaries.size();
@@ -101,7 +102,7 @@ public class SellerBean implements Serializable
     {
         userDetails
                 = (UserDTO) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.FIND_USER_BY_ID,
+                        .createCommand(SellerCommandFactory.VIEW_USER,
                                 userID)
                         .execute();
 
@@ -208,7 +209,7 @@ public class SellerBean implements Serializable
     {
         ArrayList<ParcelDTO> parcelSummaries
                 = (ArrayList<ParcelDTO>) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.GET_PARCEL_SUMMARIES_BY_ORDER,
+                        .createCommand(SellerCommandFactory.VIEW_ORDER_PARCELS,
                                 OrderID)
                         .execute();
 
@@ -221,32 +222,19 @@ public class SellerBean implements Serializable
     {
         ArrayList<ParcelDTO> parcelSummaries
                 = (ArrayList<ParcelDTO>) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.GET_PARCEL_SUMMARIES)
+                        .createCommand(SellerCommandFactory.VIEW_ALL_PARCELS)
                         .execute();
 
         totalParcels = parcelSummaries.size();
 
         return parcelSummaries;
     }
-    
-    public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
-    {
-        ArrayList<OrderDTO> orderSummaries
-                = (ArrayList<OrderDTO>) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.GET_ORDER_SUMMARIES_BY_USER,
-                                UserID)
-                        .execute();
-
-        totalOrders = orderSummaries.size();
-
-        return orderSummaries;
-    }
 
     public ParcelDTO findParcelById(int parcelId) {
         
         parcelDetails
                 = (ParcelDTO) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.FIND_PARCEL_BY_ID,
+                        .createCommand(SellerCommandFactory.VIEW_PARCEL,
                                 parcelId)
                         .execute();
         
@@ -257,7 +245,7 @@ public class SellerBean implements Serializable
     {
         parcelDetails
                 = (ParcelDTO) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.FIND_PARCEL_BY_ID,
+                        .createCommand(SellerCommandFactory.VIEW_PARCEL,
                                 parcelID)
                         .execute();
 
@@ -294,7 +282,7 @@ public class SellerBean implements Serializable
     {
         ArrayList<TransactionDTO> transactionSummaries
                 = (ArrayList<TransactionDTO>) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.GET_TRANSACTION_SUMMARIES_BY_ORDER,
+                        .createCommand(SellerCommandFactory.VIEW_ORDER_TRANSACTIONS,
                                 OrderID)
                         .execute();
 
@@ -307,7 +295,7 @@ public class SellerBean implements Serializable
         
         ArrayList<MetricDTO> deliveryMetrics
             = (ArrayList<MetricDTO>) SellerCommandFactory
-                    .createCommand(SellerCommandFactory.FIND_DELIVERY_METRICS)
+                    .createCommand(SellerCommandFactory.VIEW_DRIVER_METRICS)
                     .execute();
 
         return deliveryMetrics;
@@ -515,8 +503,8 @@ public class SellerBean implements Serializable
     public ArrayList<OrderDTO> getOrderSummaries()
     {
         ArrayList<OrderDTO> orderSummaries
-                = (ArrayList<OrderDTO>) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.GET_ORDER_SUMMARIES)
+                = (ArrayList<OrderDTO>) DriverCommandFactory
+                        .createCommand(DriverCommandFactory.VIEW_ALL_DELIVERIES)
                         .execute();
 
         totalOrders = orderSummaries.size();
@@ -528,7 +516,7 @@ public class SellerBean implements Serializable
     {
         orderDetails
                 = (OrderDTO) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.FIND_ORDER_BY_ID,
+                        .createCommand(RecipientCommandFactory.VIEW_DELIVERY_PROGRESS,
                                 orderID)
                         .execute();
 
@@ -539,7 +527,7 @@ public class SellerBean implements Serializable
     {
         orderDetails
                 = (OrderDTO) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.FIND_ORDER_BY_ID,
+                        .createCommand(RecipientCommandFactory.VIEW_DELIVERY_PROGRESS,
                                 orderID)
                         .execute();
 

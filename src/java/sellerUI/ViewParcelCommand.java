@@ -2,17 +2,15 @@ package sellerUI;
 
 import manager.ParcelManager;
 
-public class FindParcelCommand implements SellerCommand
+public class ViewParcelCommand implements SellerCommand
 {
-
     private final int parcelId;
     private final ParcelManager parcelMgr;
 
-    public FindParcelCommand(int parcelId)
+    public ViewParcelCommand(int parcelId)
     {
         this.parcelId = parcelId;
         parcelMgr = new ParcelManager();
-
     }
 
     @Override

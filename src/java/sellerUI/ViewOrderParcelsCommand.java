@@ -2,12 +2,12 @@ package sellerUI;
 
 import manager.OrderManager;
 
-public class GetParcelSumariesByOrderCommand implements SellerCommand
+public class ViewOrderParcelsCommand implements SellerCommand
 {    
     private final int orderId;       
     private final OrderManager orderMgr;
 
-    public GetParcelSumariesByOrderCommand(int orderId)
+    public ViewOrderParcelsCommand(int orderId)
     {
         this.orderId = orderId;
         orderMgr = new OrderManager();

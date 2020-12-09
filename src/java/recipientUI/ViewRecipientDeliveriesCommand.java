@@ -1,14 +1,13 @@
 package recipientUI;
 
 import manager.OrderManager;
-import recipientUI.RecipientCommand;
 
-public class GetOrderSumariesByUserCommand implements RecipientCommand
+public class ViewRecipientDeliveriesCommand implements RecipientCommand
 {    
     private final int userId;       
     private final OrderManager orderMgr;
 
-    public GetOrderSumariesByUserCommand(int userId)
+    public ViewRecipientDeliveriesCommand(int userId)
     {
         this.userId = userId;
         orderMgr = new OrderManager();

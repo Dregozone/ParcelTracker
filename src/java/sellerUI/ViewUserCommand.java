@@ -2,19 +2,20 @@ package sellerUI;
 
 import manager.UserManager;
 
-public class GetUserSumariesCommand implements SellerCommand
+public class ViewUserCommand implements SellerCommand
 {
-
+    private final int userId;
     private final UserManager userMgr;
 
-    public GetUserSumariesCommand()
+    public ViewUserCommand(int userId)
     {
+        this.userId = userId;
         userMgr = new UserManager();
     }
 
     @Override
     public Object execute()
     {
-        return userMgr.getUserSummaries();
+        return userMgr.findUser(userId);
     }
 }

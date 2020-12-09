@@ -1,37 +1,30 @@
 package sellerUI;
 
-//import orderUI.GetOrderSumariesByUserCommand;
-//import orderUI.GetOrderSumariesCommand;
-//import orderUI.CreateOrderCommand;
-//import orderUI.FindOrderCommand;
 import dto.OrderDTO;
 import dto.ParcelDTO;
 
 public class SellerCommandFactory
 {
-    public static final int GET_USER_SUMMARIES = 4;
-    public static final int FIND_USER_BY_ID = 5;
-    public static final int GET_ORDER_SUMMARIES = 6;
-    public static final int FIND_ORDER_BY_ID = 7;
-    public static final int GET_ORDER_SUMMARIES_BY_USER = 8;
-    public static final int GET_PARCEL_SUMMARIES_BY_ORDER = 9;
-    public static final int GET_TRANSACTION_SUMMARIES_BY_ORDER = 10;
+    public static final int VIEW_ALL_USERS = 4;
+    public static final int VIEW_USER = 5;
+    public static final int VIEW_ORDER_PARCELS = 9;
+    public static final int VIEW_ORDER_TRANSACTIONS = 10;
     public static final int CREATE_ORDER = 11;
-    public static final int GET_PARCEL_SUMMARIES = 12;
-    public static final int FIND_PARCEL_BY_ID = 13;
+    public static final int VIEW_ALL_PARCELS = 12;
+    public static final int VIEW_PARCEL = 13;
     public static final int CREATE_PARCEL = 14;
-    public static final int FIND_DELIVERY_METRICS = 15;
+    public static final int VIEW_DRIVER_METRICS = 15;
 
     public static SellerCommand createCommand(int commandType)
     {
         switch (commandType)
         {
-            case GET_USER_SUMMARIES:
-                return new GetUserSumariesCommand();
-            case GET_PARCEL_SUMMARIES:
-                return new GetParcelSumariesCommand();
-            case FIND_DELIVERY_METRICS: 
-                return new FindDeliveryMetricsCommand();
+            case VIEW_ALL_USERS:
+                return new ViewAllUsersCommand();
+            case VIEW_ALL_PARCELS:
+                return new ViewAllParcelsCommand();
+            case VIEW_DRIVER_METRICS: 
+                return new ViewDriverMetricsCommand();
             default:
                 return null;
         }
@@ -41,14 +34,14 @@ public class SellerCommandFactory
     {
         switch (commandType)
         {
-            case FIND_USER_BY_ID:
-                return new FindUserCommand(id);
-            case FIND_PARCEL_BY_ID:
-                return new FindParcelCommand(id);
-            case GET_PARCEL_SUMMARIES_BY_ORDER: 
-                return new GetParcelSumariesByOrderCommand(id);
-            case GET_TRANSACTION_SUMMARIES_BY_ORDER: 
-                return new GetTransactionSumariesByOrderCommand(id);
+            case VIEW_USER: /* By userId */
+                return new ViewUserCommand(id);
+            case VIEW_PARCEL: /* By parcelId */
+                return new ViewParcelCommand(id);
+            case VIEW_ORDER_PARCELS: /* By orderId */
+                return new ViewOrderParcelsCommand(id);
+            case VIEW_ORDER_TRANSACTIONS: /* By orderId */ 
+                return new ViewOrderTransactionsCommand(id);
             default:
                 return null;
         }

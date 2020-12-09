@@ -1,34 +1,18 @@
 package recipientUI;
 
-import sellerUI.CreateOrderCommand;
-import dto.OrderDTO;
-
 public class RecipientCommandFactory
 {
-    public static final int GET_ORDER_SUMMARIES = 6;
-    public static final int FIND_ORDER_BY_ID = 7;
-    public static final int GET_ORDER_SUMMARIES_BY_USER = 8;
-    public static final int CREATE_ORDER = 11;
-    
-    public static RecipientCommand createCommand(int commandType)
-    {
-        switch (commandType)
-        {
-            case GET_ORDER_SUMMARIES:
-                return new GetOrderSumariesCommand();
-            default:
-                return null;
-        }
-    }
+    public static final int VIEW_DELIVERY_PROGRESS = 7;
+    public static final int VIEW_RECIPIENT_DELIVERIES = 8;
 
     public static RecipientCommand createCommand(int commandType, int id)
     {
         switch (commandType)
         {
-            case FIND_ORDER_BY_ID:
-                return new FindOrderCommand(id);
-            case GET_ORDER_SUMMARIES_BY_USER:
-                return new GetOrderSumariesByUserCommand(id);
+            case VIEW_DELIVERY_PROGRESS: /* By orderId */
+                return new ViewDeliveryProgressCommand(id);
+            case VIEW_RECIPIENT_DELIVERIES: /* By userId */
+                return new ViewRecipientDeliveriesCommand(id);
             default:
                 return null;
         }

@@ -1,19 +1,16 @@
 package recipientUI;
 
 import manager.OrderManager;
-import recipientUI.RecipientCommand;
 
-public class FindOrderCommand implements RecipientCommand
+public class ViewDeliveryProgressCommand implements RecipientCommand
 {
-
     private final int orderId;
     private final OrderManager orderMgr;
 
-    public FindOrderCommand(int orderId)
+    public ViewDeliveryProgressCommand(int orderId)
     {
         this.orderId = orderId;
         orderMgr = new OrderManager();
-
     }
 
     @Override

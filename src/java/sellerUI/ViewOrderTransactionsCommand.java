@@ -2,12 +2,12 @@ package sellerUI;
 
 import manager.TransactionManager;
 
-public class GetTransactionSumariesByOrderCommand implements SellerCommand
+public class ViewOrderTransactionsCommand implements SellerCommand
 {    
     private final int orderId;       
     private final TransactionManager transactionMgr;
 
-    public GetTransactionSumariesByOrderCommand(int orderId)
+    public ViewOrderTransactionsCommand(int orderId)
     {
         this.orderId = orderId;
         transactionMgr = new TransactionManager();

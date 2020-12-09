@@ -2,12 +2,12 @@ package sellerUI;
 
 import manager.ParcelManager;
 
-public class GetParcelSumariesCommand implements SellerCommand
+public class ViewAllParcelsCommand implements SellerCommand
 {
 
     private final ParcelManager parcelMgr;
 
-    public GetParcelSumariesCommand()
+    public ViewAllParcelsCommand()
     {
         parcelMgr = new ParcelManager();
     }
