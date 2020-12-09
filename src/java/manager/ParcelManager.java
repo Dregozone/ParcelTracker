@@ -36,4 +36,9 @@ public class ParcelManager
         
         return gateway.createParcel(parcel);
     }
+    
+    public boolean editParcel(ParcelDTO parcel) {
+        
+        return gateway.editParcel(parcel);
+    }
 }

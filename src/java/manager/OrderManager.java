@@ -45,4 +45,9 @@ public class OrderManager
         
         return gateway.createOrder(order);
     }
+    
+    public boolean editOrder(OrderDTO order) {
+        
+        return gateway.editOrder(order);
+    }
 }

@@ -57,6 +57,36 @@ public class OrderGateway
         return insertOK;
     }
     
+    public boolean editOrder(OrderDTO order)
+    {        
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement(""
+                    + "UPDATE Orders "
+                    + "SET recipientid = ?, sellerid = ? "
+                    + "WHERE id = ? "
+            );
+            
+            stmt.setInt(1, order.getRecipient().getId());
+            stmt.setInt(2, order.getSeller().getId());
+            stmt.setInt(3, order.getId());
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            
+            return false;
+        }
+        
+        return true;
+    }
+    
     public OrderDTO find(int OrderID)
     {
         OrderDTO orderDetails = null;

@@ -42,6 +42,9 @@ public class SellerBean implements Serializable
     private int totalTransactions = 0;
     private int totalUsers = 0;
     
+    @Inject
+    LoginBean loginBean;
+    
     public UserDTO findUserDetailsById(int userID)
     {
         userDetails
@@ -123,6 +126,28 @@ public class SellerBean implements Serializable
     
     public String editParcel(int parcelId) {
         
+        ParcelDTO edittedParcel = new ParcelDTO(
+                                    getNextParcelId(),
+                                    name,
+                                    type,
+                                    weightGrams,
+                                    findUserDetailsById(sellerId),
+                                    "", /* will be now() on insert */
+                                    "",
+                                    0, /* times sold */
+                                    0  /* quantityInOrder placeholder */
+        );
+
+        ParcelDTO newParcel 
+                = (ParcelDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.EDIT_PARCEL,
+                                edittedParcel)
+                        .execute();
+
+        parcelDetails = newParcel;
+        
+        
+        /*
         try {
             Connection conn = DbManager.getConnection();
 
@@ -146,6 +171,7 @@ public class SellerBean implements Serializable
         } catch(SQLException sqle) {
             sqle.printStackTrace();
         }
+        */
         
         return "Seller_UI";
     }
@@ -499,6 +525,29 @@ public class SellerBean implements Serializable
 
         return "Seller_UI";
     }
+    
+    public String editOrder()
+    {
+        OrderDTO newOrder = new OrderDTO(
+                                    getNextOrderId(),
+                                    findUserDetailsById(recipientId),
+                                    findUserDetailsById(4),
+                                    findUserDetailsById(sellerId),
+                                    "", /* will be now() on insert */
+                                    false,
+                                    "" /* will be null on insert */
+        );
+
+        OrderDTO updatedOrder 
+                = (OrderDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.EDIT_ORDER,
+                                newOrder)
+                        .execute();
+
+        orderDetails = updatedOrder;
+
+        return "Seller_UI";
+    }
             
     public ArrayList<OrderDTO> getOrderSummaries()
     {
@@ -520,7 +569,7 @@ public class SellerBean implements Serializable
                                 orderID)
                         .execute();
 
-        return "viewOrder_" + role;
+        return "viewOrder_" + findRoleByUser(loginBean.getId());
     }
     
     public OrderDTO findOrderById(int orderID)

@@ -36,6 +36,9 @@ public class RecipientBean implements Serializable
     private int totalParcels = 0;
     private int totalTransactions = 0;
     
+    @Inject
+    LoginBean loginBean;
+    
     public UserDTO findUserDetailsById(int userID)
     {
         userDetails
@@ -316,20 +319,6 @@ public class RecipientBean implements Serializable
 
         return parcelSummaries;
     }
-            
-    /*
-    public ArrayList<OrderDTO> getOrderSummaries()
-    {
-        ArrayList<OrderDTO> orderSummaries
-                = (ArrayList<OrderDTO>) DriverCommandFactory
-                        .createCommand(DriverCommandFactory.GET_ORDER_SUMMARIES)
-                        .execute();
-
-        totalOrders = orderSummaries.size();
-
-        return orderSummaries;
-    }
-    */
     
     public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
     {
@@ -352,7 +341,7 @@ public class RecipientBean implements Serializable
                                 orderID)
                         .execute();
 
-        return "viewOrder_" + role;
+        return "viewOrder_" + findRoleByUser(loginBean.getId());
     }
     
     public OrderDTO findOrderById(int orderID)

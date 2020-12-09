@@ -3,12 +3,12 @@ package sellerUI;
 import dto.OrderDTO;
 import manager.OrderManager;
 
-public class CreateOrderCommand implements SellerCommand
+public class EditOrderCommand implements SellerCommand
 {
     private final OrderDTO orderDTO;
     private final OrderManager orderMgr;
 
-    public CreateOrderCommand(OrderDTO orderDTO)
+    public EditOrderCommand(OrderDTO orderDTO)
     {
         this.orderDTO = orderDTO;
         orderMgr = new OrderManager();
@@ -17,7 +17,7 @@ public class CreateOrderCommand implements SellerCommand
     @Override
     public Object execute()
     {
-        if (orderMgr.createOrder(orderDTO))
+        if (orderMgr.editOrder(orderDTO))
         {
             return orderMgr
                     .findOrder( orderDTO.getId() );

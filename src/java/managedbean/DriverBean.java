@@ -5,7 +5,6 @@ import sellerUI.SellerCommandFactory;
 import driverUI.DriverCommandFactory;
 import dto.OrderDTO;
 import dto.ParcelDTO;
-import dto.MetricDTO;
 import dto.TransactionDTO;
 import dto.UserDTO;
 import java.io.Serializable;
@@ -18,8 +17,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.inject.Inject;
+import javax.inject.Named;
 import manager.DbManager;
 
 @Named(value = "driverBean")
@@ -37,6 +36,9 @@ public class DriverBean implements Serializable
     private int totalOrders = 0;
     private int totalParcels = 0;
     private int totalTransactions = 0;
+    
+    @Inject 
+    LoginBean loginBean;
     
     public UserDTO findUserDetailsById(int userID)
     {
@@ -133,7 +135,7 @@ public class DriverBean implements Serializable
             sqle.printStackTrace();
         }
         
-        return "viewOrder_" + role;
+        return "viewOrder_" + findRoleByUser(loginBean.getId());
     }
     
     public int getNextTransactionId() {
@@ -487,7 +489,7 @@ public class DriverBean implements Serializable
                                 orderID)
                         .execute();
 
-        return "viewOrder_" + role;
+        return "viewOrder_" + findRoleByUser(loginBean.getId());
     }
     
     public OrderDTO findOrderById(int orderID)
