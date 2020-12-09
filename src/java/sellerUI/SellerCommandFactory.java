@@ -16,6 +16,8 @@ public class SellerCommandFactory
     public static final int CREATE_PARCEL = 14;
     public static final int EDIT_PARCEL = 16;
     public static final int VIEW_DRIVER_METRICS = 15;
+    public static final int DELETE_ORDER = 17;
+    public static final int DELETE_PARCEL = 18;
 
     public static SellerCommand createCommand(int commandType)
     {
@@ -44,6 +46,12 @@ public class SellerCommandFactory
                 return new ViewOrderParcelsCommand(id);
             case VIEW_ORDER_TRANSACTIONS: /* By orderId */ 
                 return new ViewOrderTransactionsCommand(id);
+                
+            case DELETE_ORDER: /* By orderId */
+                return new DeleteOrderCommand(id);
+            case DELETE_PARCEL: /* By parcelId */
+                return new DeleteParcelCommand(id);
+                
             default:
                 return null;
         }

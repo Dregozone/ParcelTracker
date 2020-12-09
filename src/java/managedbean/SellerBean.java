@@ -146,38 +146,18 @@ public class SellerBean implements Serializable
 
         parcelDetails = newParcel;
         
-        
-        /*
-        try {
-            Connection conn = DbManager.getConnection();
-
-            PreparedStatement stmt = conn.prepareStatement("" + 
-                "UPDATE PARCELS P " +
-                "SET name=?, type=?, weightgrams=?, sellerid=?, datemodified=? " + 
-                "WHERE P.ID = ? "
-            );
-            
-            stmt.setString(1, name);
-            stmt.setString(2, type);
-            stmt.setInt(3, weightGrams);
-            stmt.setInt(4, sellerId);
-            stmt.setDate(5, getDate());
-            stmt.setInt(6, parcelId);
-            
-            stmt.executeUpdate();
-            
-            stmt.close();
-            conn.close();
-        } catch(SQLException sqle) {
-            sqle.printStackTrace();
-        }
-        */
-        
         return "Seller_UI";
     }
     
     public String deleteParcel(int parcelId) {
         
+        ParcelDTO parcel 
+                = (ParcelDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.DELETE_PARCEL,
+                                parcelId)
+                        .execute();
+        
+        /*
         try {
             Connection conn = DbManager.getConnection();
 
@@ -202,6 +182,7 @@ public class SellerBean implements Serializable
         } catch(SQLException sqle) {
             sqle.printStackTrace();
         }
+        */
         
         return "Seller_UI";
     }
@@ -400,69 +381,34 @@ public class SellerBean implements Serializable
     
     public String editOrder(int orderId) {
         
-        try {
-            Connection conn = DbManager.getConnection();
+        OrderDTO order = new OrderDTO(
+                                    orderId,
+                                    findUserDetailsById(recipientId),
+                                    findUserDetailsById(4),
+                                    findUserDetailsById(sellerId),
+                                    "", /* will be now() on insert */
+                                    false,
+                                    "" /* will be null on insert */
+        );
 
-            PreparedStatement stmt = conn.prepareStatement("" + 
-                "UPDATE ORDERS O " +
-                "SET recipientId=?, sellerId=? " + 
-                "WHERE O.ID = ? "
-            );
-            
-            stmt.setInt(1, recipientId);
-            stmt.setInt(2, sellerId);
-            stmt.setInt(3, id);
-            
-            stmt.executeUpdate();
-            
-            stmt.close();
-            conn.close();
-        } catch(SQLException sqle) {
-            sqle.printStackTrace();
-        }
+        OrderDTO edittedOrder 
+                = (OrderDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.EDIT_ORDER,
+                                order)
+                        .execute();
+
+        orderDetails = edittedOrder;
         
         return "Seller_UI";
     }
     
-    public String viewDriverMetrics() {
-        
-        return "viewDriverMetrics";
-    }
-    
     public String deleteOrder(int orderId) {
         
-        try {
-            Connection conn = DbManager.getConnection();
-
-            // Delete orderparcels against this order due to FK constraint
-            PreparedStatement stmt = conn.prepareStatement("" + 
-                "DELETE FROM OrderParcels OP " + 
-                "WHERE OP.orderId = ? "
-            );
-            stmt.setInt(1, orderId);
-            stmt.executeUpdate();
-            
-            // Delete transactions against this order due to FK constraint
-            stmt = conn.prepareStatement("" + 
-                "DELETE FROM Transactions T " + 
-                "WHERE T.orderId = ? "
-            );
-            stmt.setInt(1, orderId);
-            stmt.executeUpdate();
-            
-            // Delete the order itself
-            stmt = conn.prepareStatement(""
-                + "DELETE FROM Orders "
-                + "WHERE id = ? "
-            );
-            stmt.setInt(1, orderId);
-            stmt.executeUpdate();
-            
-            stmt.close();
-            conn.close();
-        } catch(SQLException sqle) {
-            sqle.printStackTrace();
-        }
+        OrderDTO order 
+                = (OrderDTO) SellerCommandFactory
+                        .createCommand(SellerCommandFactory.DELETE_ORDER,
+                                orderId)
+                        .execute();
         
         return "Seller_UI";
     }

@@ -14,6 +14,6 @@ public class ViewDriverMetricsCommand implements SellerCommand
     @Override
     public Object execute()
     {
-        return orderMgr.findDeliveryMetrics();
+        return orderMgr.viewDriverMetrics();
     }
 }

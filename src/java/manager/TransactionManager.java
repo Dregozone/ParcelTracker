@@ -16,9 +16,9 @@ public class TransactionManager
 {
     private TransactionGateway gateway = new TransactionGateway();
     
-    public OrderDTO findOrder(int OrderID)
+    public OrderDTO findTransaction(int TransactionID)
     {
-        return gateway.find(OrderID);
+        return gateway.find(TransactionID);
     }
     
     public ArrayList<TransactionDTO> getTransactionSummariesByOrder(int OrderID)
@@ -26,8 +26,13 @@ public class TransactionManager
         return gateway.findAllTransactionSummariesByOrder(OrderID);
     }
     
-    public ArrayList<OrderDTO> getOrderSummaries()
-    {
-        return gateway.findAllSummaries();
+    public boolean addTransaction(TransactionDTO transaction) {
+        
+        return gateway.addTransaction(transaction);
+    }
+    
+    public boolean removeTransaction(TransactionDTO transaction) {
+        
+        return gateway.removeTransaction(transaction);
     }
 }

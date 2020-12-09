@@ -26,9 +26,9 @@ public class OrderManager
         return gateway.findAllSummariesByUser(UserID);
     }
     
-    public ArrayList<MetricDTO> findDeliveryMetrics()
+    public ArrayList<MetricDTO> viewDriverMetrics()
     {
-        return gateway.findDeliveryMetrics();
+        return gateway.viewDriverMetrics();
     }
     
     public ArrayList<ParcelDTO> getParcelSummariesByOrder(int OrderID)
@@ -49,5 +49,10 @@ public class OrderManager
     public boolean editOrder(OrderDTO order) {
         
         return gateway.editOrder(order);
+    }
+    
+    public boolean deleteOrder(int orderId) {
+        
+        return gateway.deleteOrder(orderId);
     }
 }

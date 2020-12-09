@@ -41,4 +41,9 @@ public class ParcelManager
         
         return gateway.editParcel(parcel);
     }
+    
+    public boolean deleteParcel(int parcelId) {
+        
+        return gateway.deleteParcel(parcelId);
+    }
 }

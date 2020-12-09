@@ -56,6 +56,40 @@ public class ParcelGateway
         return true;
     }
     
+    public boolean deleteParcel(int parcelId)
+    {        
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            // Delete orderparcels that contain this parcel due to FK constraint
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                "DELETE FROM OrderParcels OP " + 
+                "WHERE OP.parcelId = ? "
+            );
+            stmt.setInt(1, parcelId);
+            stmt.executeUpdate();
+            
+            // Delete the parcel itself
+            stmt = conn.prepareStatement(""
+                + "DELETE FROM Parcels "
+                + "WHERE id = ? "
+            );
+            stmt.setInt(1, parcelId);
+            stmt.executeUpdate();
+
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            
+            return false;
+        }
+        
+        return true;
+    }
+    
     public boolean createParcel(ParcelDTO parcel)
     {
         boolean insertOK = false;

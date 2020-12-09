@@ -1,19 +1,157 @@
 package gateway;
 
+import driverUI.DriverCommandFactory;
 import manager.DbManager;
 import dto.OrderDTO;
 import dto.UserDTO;
-import dto.ParcelDTO;
 import dto.TransactionDTO;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import manager.TransactionManager;
 
 public class TransactionGateway
 {
+    public boolean removeTransaction(TransactionDTO transaction)
+    {   
+        try {
+            Connection conn = DbManager.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(""
+                + "DELETE FROM Transactions "
+                + "WHERE id = ? "
+            );
+
+            stmt.setInt(1, transaction.getId());
+            stmt.executeUpdate();
+            
+            switch ( transaction.getName() ) {
+                case "Picked up":
+                    // Also change orders.driver back to id4 (None)
+                    stmt = conn.prepareStatement(""
+                        + "UPDATE Orders "
+                        + "SET DriverID = 4 "
+                        + "WHERE id = ? "
+                    );
+
+                    stmt.setInt(1, transaction.getOrderId());
+                    stmt.executeUpdate();
+                    
+                    break;
+                    
+                case "Dropped off":
+                    // Also change orders.isComplete=false, orders.datecompleted=NULL
+                    stmt = conn.prepareStatement(""
+                        + "UPDATE Orders "
+                        + "SET IsComplete = false, DateCompleted = NULL "
+                        + "WHERE id = ? "
+                    );
+
+                    stmt.setInt(1, transaction.getOrderId());
+                    stmt.executeUpdate();
+                    
+                    break;
+                default:
+                    //
+                    break;
+            }
+            
+            stmt.close();
+            conn.close();
+        } catch(SQLException sqle) {
+            sqle.printStackTrace();
+            
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public java.sql.Date getDate() {
+        
+        Date now = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+
+        return sqlDate;
+    }
+    
+    public boolean addTransaction(TransactionDTO transaction)
+    {
+        boolean insertOK = false;
+        
+        try
+        {
+            Connection conn = DbManager.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(""
+                    + "INSERT INTO Transactions "
+                    + "(id, orderid, name, addedby, dateAdded) "
+                    + "VALUES "
+                    + "(?, ?, ?, ?, ?)"
+            );
+
+            stmt.setInt(1, transaction.getId());
+            stmt.setInt(2, transaction.getOrderId());
+            stmt.setString(3, transaction.getName());
+            stmt.setInt(4, transaction.getAddedBy().getId());
+            stmt.setDate(5, getDate() );
+
+            stmt.executeUpdate();
+            
+            switch ( transaction.getName() ) {
+                case "Picked up": 
+                    // also update Orders.DriverID
+                    try {
+                        stmt = conn.prepareStatement(""
+                                + "UPDATE Orders "
+                                + "SET driverID = ? "
+                                + "WHERE id = ? "
+                        );
+
+                        stmt.setInt(1, transaction.getAddedBy().getId());
+                        stmt.setInt(2, transaction.getOrderId());
+
+                        stmt.executeUpdate();
+                    } catch(SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+
+                    break;
+                case "Dropped off":
+                    // also update Orders.IsComplete
+                    try {
+                        stmt = conn.prepareStatement(""
+                                + "UPDATE Orders "
+                                + "SET isComplete = true, dateCompleted = ? "
+                                + "WHERE id = ? "
+                        );
+
+                        stmt.setDate(1, getDate());
+                        stmt.setInt(2, transaction.getOrderId());
+
+                        stmt.executeUpdate();
+                    } catch(SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+
+                    break;
+                default:
+                    //
+                    break;
+            }            
+            
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return insertOK;
+    }
+    
     public OrderDTO find(int OrderID)
     {
         OrderDTO orderDetails = null;
@@ -113,6 +251,7 @@ public class TransactionGateway
         return orderDetails;
     }
     
+    /*
     public ArrayList<OrderDTO> findAllSummaries()
     {
         ArrayList<OrderDTO> orderSummaries = new ArrayList<>();
@@ -208,6 +347,7 @@ public class TransactionGateway
         
         return orderSummaries;
     }
+    */
 
     /** Find list of transactions by orderID
      * 
@@ -256,36 +396,4 @@ public class TransactionGateway
         
         return transactionSummaries;
     }
-    
-    /*
-    public boolean insert(CustomerDTO cust)
-    {
-        boolean insertOK = false;
-        try
-        {
-            Connection conn = DbManager.getConnectionSample();
-            
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Customer (customer_id, discount_code, zip, name, addressline1, addressline2, city, state) values (?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setInt(1, cust.getId());
-            stmt.setString(2, cust.getDiscount().getCode());
-            stmt.setString(3, cust.getZipCode());
-            stmt.setString(4, cust.getName());
-            stmt.setString(5, cust.getAddressLine1());
-            stmt.setString(6, cust.getAddressLine2());
-            stmt.setString(7, cust.getCity());
-            stmt.setString(8, cust.getState());
-            
-            int rows = stmt.executeUpdate();
-            
-            insertOK = rows == 1;
-
-            stmt.close();
-            conn.close();
-        }
-        catch (SQLException sqle)
-        {
-        }
-        return insertOK;
-    }
-    */
 }

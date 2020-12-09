@@ -33,6 +33,8 @@ public class DriverBean implements Serializable
     private UserDTO userDetails = null;
     private OrderDTO orderDetails = null;
     private ParcelDTO parcelDetails = null;
+    private TransactionDTO transactionDetails = null;
+            
     private int totalOrders = 0;
     private int totalParcels = 0;
     private int totalTransactions = 0;
@@ -85,55 +87,11 @@ public class DriverBean implements Serializable
     }
     
     public String deleteTransaction(int transactionId, String role, OrderDTO orderDetails, TransactionDTO transaction) {
-        
-        try {
-            Connection conn = DbManager.getConnection();
 
-            PreparedStatement stmt = conn.prepareStatement(""
-                + "DELETE FROM Transactions "
-                + "WHERE id = ? "
-            );
-
-            stmt.setInt(1, transactionId);
-
-            stmt.executeUpdate();
-            
-            switch ( transaction.getName() ) {
-                case "Picked up":
-                    // Also change orders.driver back to id4 (None)
-                    stmt = conn.prepareStatement(""
-                        + "UPDATE Orders "
-                        + "SET DriverID = 4 "
-                        + "WHERE id = ? "
-                    );
-
-                    stmt.setInt(1, orderDetails.getId());
-                    stmt.executeUpdate();
-                    
-                    break;
-                    
-                case "Dropped off":
-                    // Also change orders.isComplete=false, orders.datecompleted=NULL
-                    stmt = conn.prepareStatement(""
-                        + "UPDATE Orders "
-                        + "SET IsComplete = false, DateCompleted = NULL "
-                        + "WHERE id = ? "
-                    );
-
-                    stmt.setInt(1, orderDetails.getId());
-                    stmt.executeUpdate();
-                    
-                    break;
-                default:
-                    //
-                    break;
-            }
-            
-            stmt.close();
-            conn.close();
-        } catch(SQLException sqle) {
-            sqle.printStackTrace();
-        }
+        DriverCommandFactory
+            .createCommand(DriverCommandFactory.REMOVE_TRANSACTION,
+                    transaction)
+            .execute();
         
         return "viewOrder_" + findRoleByUser(loginBean.getId());
     }
@@ -168,9 +126,24 @@ public class DriverBean implements Serializable
         
         int nextId = getNextTransactionId();
         
-        try
-        {
-            try {
+        TransactionDTO transactionDTO = new TransactionDTO(nextId, orderId, transaction, findUserDetailsById(userId), "" /*getDate()*/ );
+        
+        TransactionDTO insertedTransaction 
+                = (TransactionDTO) DriverCommandFactory
+                        .createCommand(DriverCommandFactory.ADD_TRANSACTION,
+                                transactionDTO)
+                        .execute();
+
+        transactionDetails = insertedTransaction;
+        
+        
+        //try
+        //{
+            //try {
+                
+                
+                
+                /*
                 Connection conn = DbManager.getConnection();
 
                 PreparedStatement stmt = conn.prepareStatement(""
@@ -187,59 +160,25 @@ public class DriverBean implements Serializable
                 stmt.setDate(5, getDate() );
 
                 stmt.executeUpdate();
+                */
                 
-                switch ( transaction ) {
-                    case "Picked up": 
-                        // also update Orders.DriverID
-                        try {
-                            stmt = conn.prepareStatement(""
-                                    + "UPDATE Orders "
-                                    + "SET driverID = ? "
-                                    + "WHERE id = ? "
-                            );
+                
+                
+                //Connection conn = DbManager.getConnection();
+                //PreparedStatement stmt = conn.prepareStatement("");
+                
+                
 
-                            stmt.setInt(1, userId);
-                            stmt.setInt(2, orderId);
-
-                            stmt.executeUpdate();
-                        } catch(SQLException sqle) {
-                            sqle.printStackTrace();
-                        }
-                        
-                        break;
-                    case "Dropped off":
-                        // also update Orders.IsComplete
-                        try {
-                            stmt = conn.prepareStatement(""
-                                    + "UPDATE Orders "
-                                    + "SET isComplete = true, dateCompleted = ? "
-                                    + "WHERE id = ? "
-                            );
-
-                            stmt.setDate(1, getDate());
-                            stmt.setInt(2, orderId);
-
-                            stmt.executeUpdate();
-                        } catch(SQLException sqle) {
-                            sqle.printStackTrace();
-                        }
-                        
-                        break;
-                    default:
-                        //
-                        break;
-                }
-
-                stmt.close();
-                conn.close();
-            } catch(SQLException sqle) {
-                sqle.printStackTrace();
-            }
-        }
-        catch (Exception e)
-        {
-            Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, e.toString());
-        }
+                //stmt.close();
+                //conn.close();
+            //} catch(SQLException sqle) {
+            //    sqle.printStackTrace();
+            //}
+        //}
+        //catch (Exception e)
+        //{
+        //    Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, e.toString());
+        //}
         
         return "Driver_UI";
     }
@@ -317,6 +256,7 @@ public class DriverBean implements Serializable
         return sqlDate;
     }
     
+    /*
     public String edittingOrder(int orderId) {
         
         id = orderId;
@@ -432,7 +372,9 @@ public class DriverBean implements Serializable
         
         return "Seller_UI";
     }
+    */
     
+    /*
     public String createOrder()
     {
         OrderDTO newOrder = new OrderDTO(
@@ -440,9 +382,9 @@ public class DriverBean implements Serializable
                                     findUserDetailsById(recipientId),
                                     findUserDetailsById(4),
                                     findUserDetailsById(sellerId),
-                                    "", /* will be now() on insert */
+                                    "", 
                                     false,
-                                    "" /* will be null on insert */
+                                    "" 
         );
 
         OrderDTO insertedOrder 
@@ -455,6 +397,7 @@ public class DriverBean implements Serializable
 
         return "Seller_UI";
     }
+    */
 
     public ArrayList<ParcelDTO> getOrderParcelByOrder(int OrderID)
     {
