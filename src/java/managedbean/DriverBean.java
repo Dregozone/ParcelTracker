@@ -40,7 +40,7 @@ public class DriverBean implements Serializable
     @Inject 
     LoginBean loginBean;
     
-    public UserDTO findUserDetailsById(int userID)
+    public UserDTO findUser(int userID)
     {
         userDetails
                 = (UserDTO) SellerCommandFactory
@@ -124,7 +124,7 @@ public class DriverBean implements Serializable
         
         int nextId = getNextTransactionId();
         
-        TransactionDTO transactionDTO = new TransactionDTO(nextId, orderId, transaction, findUserDetailsById(userId), "" /*getDate()*/ );
+        TransactionDTO transactionDTO = new TransactionDTO(nextId, orderId, transaction, findUser(userId), "");
         
         TransactionDTO insertedTransaction 
                 = (TransactionDTO) DriverCommandFactory
@@ -235,7 +235,7 @@ public class DriverBean implements Serializable
         return orderSummaries;
     }
 
-    public String fetchOrderDetails(int orderID, String role)
+    public String viewDeliveryProgress(int orderID, String role)
     {
         orderDetails
                 = (OrderDTO) RecipientCommandFactory
@@ -244,17 +244,6 @@ public class DriverBean implements Serializable
                         .execute();
 
         return "viewOrder_" + findRoleByUser(loginBean.getId());
-    }
-    
-    public OrderDTO findOrderById(int orderID)
-    {
-        orderDetails
-                = (OrderDTO) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.VIEW_DELIVERY_PROGRESS,
-                                orderID)
-                        .execute();
-
-        return orderDetails;
     }
 
     public int getTotalOrders()

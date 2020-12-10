@@ -32,7 +32,7 @@
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View details" action="#{driverBean.fetchOrderDetails(orderVar.id, recipientBean.findRoleByUser(loginBean.id))}" /> &nbsp;
+                            <h:commandButton class="button" value="View details" action="#{driverBean.viewDeliveryProgress(orderVar.id, recipientBean.findRoleByUser(loginBean.id))}" /> &nbsp;
                             <h:commandButton class="button" value="Record: Picked up" action="#{driverBean.addTransaction(orderVar.id, 'Picked up', loginBean.id)}" /> &nbsp;
                             <h:commandButton class="button" value="Record: Droped off" action="#{driverBean.addTransaction(orderVar.id, 'Dropped off', loginBean.id)}" />
                         </h:column>

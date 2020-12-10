@@ -45,7 +45,7 @@ public class SellerBean implements Serializable
     @Inject
     LoginBean loginBean;
     
-    private UserDTO findUserDetailsById(int userID)
+    private UserDTO findUser(int userID)
     {
         userDetails
                 = (UserDTO) SellerCommandFactory
@@ -131,7 +131,7 @@ public class SellerBean implements Serializable
                                     name,
                                     type,
                                     weightGrams,
-                                    findUserDetailsById(sellerId),
+                                    findUser(sellerId),
                                     "", /* will be now() on insert */
                                     "",
                                     0, /* times sold */
@@ -167,7 +167,7 @@ public class SellerBean implements Serializable
                                     name,
                                     type,
                                     weightGrams,
-                                    findUserDetailsById(sellerId),
+                                    findUser(sellerId),
                                     "", /* will be now() on insert */
                                     "",
                                     0, /* times sold */
@@ -356,9 +356,9 @@ public class SellerBean implements Serializable
         
         OrderDTO order = new OrderDTO(
                                     orderId,
-                                    findUserDetailsById(recipientId),
-                                    findUserDetailsById(4),
-                                    findUserDetailsById(sellerId),
+                                    findUser(recipientId),
+                                    findUser(4),
+                                    findUser(sellerId),
                                     "", /* will be now() on insert */
                                     false,
                                     "" /* will be null on insert */
@@ -426,9 +426,9 @@ public class SellerBean implements Serializable
     {
         OrderDTO newOrder = new OrderDTO(
                                     getNextOrderId(),
-                                    findUserDetailsById(recipientId),
-                                    findUserDetailsById(4),
-                                    findUserDetailsById(sellerId),
+                                    findUser(recipientId),
+                                    findUser(4),
+                                    findUser(sellerId),
                                     "", /* will be now() on insert */
                                     false,
                                     "" /* will be null on insert */
@@ -444,32 +444,7 @@ public class SellerBean implements Serializable
 
         return "Seller_UI";
     }
-    
-    /*
-    public String editOrder()
-    {
-        OrderDTO newOrder = new OrderDTO(
-                                    getNextOrderId(),
-                                    findUserDetailsById(recipientId),
-                                    findUserDetailsById(4),
-                                    findUserDetailsById(sellerId),
-                                    "", 
-                                    false,
-                                    "" 
-        );
-
-        OrderDTO updatedOrder 
-                = (OrderDTO) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.EDIT_ORDER,
-                                newOrder)
-                        .execute();
-
-        orderDetails = updatedOrder;
-
-        return "Seller_UI";
-    }
-    */
-            
+       
     public ArrayList<OrderDTO> viewAllDeliveries()
     {
         ArrayList<OrderDTO> orderSummaries

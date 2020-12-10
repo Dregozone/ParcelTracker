@@ -37,19 +37,6 @@ public class RecipientBean implements Serializable
     @Inject
     LoginBean loginBean;
     
-    /*
-    public UserDTO findUserDetailsById(int userID)
-    {
-        userDetails
-                = (UserDTO) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.VIEW_USER,
-                                userID)
-                        .execute();
-
-        return userDetails;
-    }
-    */
-    
     public String findRoleByUser(int userID)
     {
         
@@ -140,18 +127,6 @@ public class RecipientBean implements Serializable
 
         return "viewOrder_" + findRoleByUser(loginBean.getId());
     }
-    /*
-    public OrderDTO findOrderById(int orderID)
-    {
-        orderDetails
-                = (OrderDTO) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.VIEW_DELIVERY_PROGRESS,
-                                orderID)
-                        .execute();
-
-        return orderDetails;
-    }
-    */
 
     public int getTotalOrders()
     {
