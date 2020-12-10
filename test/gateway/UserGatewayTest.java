@@ -1,7 +1,6 @@
 package gateway;
 
 import dto.UserDTO;
-import java.util.ArrayList;
 import static junit.framework.Assert.*;
 import org.junit.Test;
 
@@ -10,28 +9,42 @@ public class UserGatewayTest {
     public UserGatewayTest() {
     }
 
-    /**
-     * Test of find method, of class UserGateway.
-     */
     @Test
-    public void testFind() {
+    public void testFindUserReturnsCorrectUserWhenIdIsValid() {
         System.out.println("find");
-        int UserID = 0;
+        
         UserGateway instance = new UserGateway();
-        UserDTO expResult = null;
-        UserDTO result = instance.find(UserID);
-        assertEquals(expResult, result);
+        
+        UserDTO expectedResult = new UserDTO(
+                                        1, 
+                                        "Anders", 
+                                        "Learmonth", 
+                                        "recipient", 
+                                        "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=", 
+                                        "2020-01-01", 
+                                        "2020-01-01", 
+                                        "line 1", 
+                                        "abc", 
+                                        "hants", 
+                                        "rg11222", 
+                                        "a@b.net", 
+                                        "012345", 
+                                        true, 
+                                        "Recipient"
+        );
+        
+        UserDTO actualResult = instance.find(1);
+        
+        assertEquals(expectedResult, actualResult);
     }
-
-    /**
-     * Test of findAllUsers method, of class UserGateway.
-     */
+    
     @Test
-    public void testFindAllUsers() {
-        System.out.println("findAllUsers");
+    public void testFindUserReturnsNullWhenIdIsInvalid() {
+        System.out.println("find");
+        
         UserGateway instance = new UserGateway();
-        ArrayList<UserDTO> expResult = null;
-        ArrayList<UserDTO> result = instance.findAllUsers();
-        assertEquals(expResult, result);
+        UserDTO actualResult = instance.find(-1);
+        
+        assertNull(actualResult);
     }
 }
