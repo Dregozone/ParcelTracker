@@ -84,6 +84,13 @@ public class RegisterBean implements Serializable
         return isValid;
     }
     
+    private String hashPassword(String unhashed) {
+        
+        String hashed = unhashed; ////todo
+        
+        return hashed;
+    }
+    
     public String register()
     {
         boolean dataOK = false;

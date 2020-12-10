@@ -2,7 +2,6 @@ package driverUI;
 
 import dto.TransactionDTO;
 import manager.TransactionManager;
-import sellerUI.SellerCommand;
 
 public class AddTransactionCommand implements DriverCommand
 {

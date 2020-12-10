@@ -34,7 +34,7 @@
                 <br />
                 
                 <h2>Parcels in order ##{recipientBean.orderDetails.id}</h2>
-                <h:dataTable value="#{recipientBean.getOrderParcelByOrder(recipientBean.orderDetails.id)}"
+                <h:dataTable value="#{recipientBean.viewOrderParcels(recipientBean.orderDetails.id)}"
                                  var="parcelVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -68,7 +68,7 @@
                 <br />
                 
                 <h2>Order progress ##{recipientBean.orderDetails.id}</h2>
-                <h:dataTable value="#{recipientBean.getTransactionByOrder(recipientBean.orderDetails.id)}"
+                <h:dataTable value="#{recipientBean.viewOrderTransactions(recipientBean.orderDetails.id)}"
                                  var="transactionVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"

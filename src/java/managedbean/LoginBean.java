@@ -30,6 +30,13 @@ public class LoginBean implements Serializable
     {
     }
 
+    private String hashPassword(String password) {
+        
+        String hashed = password; ////
+        
+        return hashed;
+    }
+    
     public String checkCredentials()
     {
         credentialsOK = false;
@@ -108,14 +115,6 @@ public class LoginBean implements Serializable
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
     
-    /*
-    public String logOff()
-    {
-        clearCredentials();
-        return "Login_UI";
-    }
-    */
-    ////
     public String logout() {
         clearCredentials();
         
@@ -165,5 +164,4 @@ public class LoginBean implements Serializable
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

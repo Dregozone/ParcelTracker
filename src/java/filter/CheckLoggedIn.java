@@ -11,7 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.HttpSession;
 import managedbean.LoginBean;
 
 @WebFilter(filterName = "CheckLoggedIn", urlPatterns =
@@ -20,10 +19,6 @@ import managedbean.LoginBean;
 })
 public class CheckLoggedIn implements Filter
 {
-
-    // The filter configuration object we are associated with.  If
-    // this value is null, this filter instance is not currently
-    // configured. 
     private FilterConfig filterConfig = null;
     
     @Inject
@@ -33,15 +28,6 @@ public class CheckLoggedIn implements Filter
     {
     }
 
-    /*
-     *
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     * @param chain The filter chain we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
-     */
     @Override
     public void doFilter(ServletRequest req, ServletResponse res,
             FilterChain chain)
@@ -49,7 +35,6 @@ public class CheckLoggedIn implements Filter
     {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        //HttpSession session = request.getSession(false);
         String loginURI = request.getContextPath() + "/faces/Login_UI.xhtml";
         String registerURI = request.getContextPath() + "/faces/Register_UI.xhtml";
         String sharedCssURI = request.getContextPath() + "/faces/javax.faces.resource/shared.css";
@@ -75,18 +60,12 @@ public class CheckLoggedIn implements Filter
         }
     }
 
-    /*
-     * Destroy method for this filter
-     */
     @Override
     public void destroy()
     {
         this.filterConfig = null;
     }
 
-    /*
-     * Init method for this filter
-     */
     @Override
     public void init(FilterConfig filterConfig)
     {
@@ -97,5 +76,4 @@ public class CheckLoggedIn implements Filter
     {
         filterConfig.getServletContext().log(msg);
     }
-
 }

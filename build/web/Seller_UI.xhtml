@@ -14,7 +14,7 @@
                 
                 <h2>Users</h2>
                 <h:form>
-                    <h:dataTable value="#{sellerBean.userSummaries}"
+                    <h:dataTable value="#{sellerBean.viewAllUsers()}"
                                  var="userVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -33,14 +33,14 @@
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton class="button" value="View user" action="#{sellerBean.fetchUserDetails(userVar.id)}" />
+                            <h:commandButton class="button" value="View user" action="#{sellerBean.viewUser(userVar.id)}" />
                         </h:column>
                     </h:dataTable>
                 </h:form>
                     
                 <h2>Orders</h2>
                 <h:form>
-                    <h:dataTable value="#{sellerBean.orderSummaries}"
+                    <h:dataTable value="#{sellerBean.viewAllDeliveries()}"
                                  var="orderVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"
@@ -70,7 +70,7 @@
                 
                 <h2>Parcels</h2>
                 <h:form>
-                    <h:dataTable value="#{sellerBean.parcelSummaries}"
+                    <h:dataTable value="#{sellerBean.viewAllParcels()}"
                                  var="parcelVar"
                                  styleClass="custTable center50" 
                                  headerClass="custTableHeader"

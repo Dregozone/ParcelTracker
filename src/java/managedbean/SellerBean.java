@@ -45,7 +45,7 @@ public class SellerBean implements Serializable
     @Inject
     LoginBean loginBean;
     
-    public UserDTO findUserDetailsById(int userID)
+    private UserDTO findUserDetailsById(int userID)
     {
         userDetails
                 = (UserDTO) SellerCommandFactory
@@ -89,7 +89,7 @@ public class SellerBean implements Serializable
         return role;
     }
     
-    public ArrayList<UserDTO> getUserSummaries()
+    public ArrayList<UserDTO> viewAllUsers()
     {
         ArrayList<UserDTO> userSummaries
                 = (ArrayList<UserDTO>) SellerCommandFactory
@@ -101,7 +101,7 @@ public class SellerBean implements Serializable
         return userSummaries;
     }
     
-    public String fetchUserDetails(int userID)
+    public String viewUser(int userID)
     {
         userDetails
                 = (UserDTO) SellerCommandFactory
@@ -198,7 +198,7 @@ public class SellerBean implements Serializable
         return parcelSummaries;
     }
             
-    public ArrayList<ParcelDTO> getParcelSummaries()
+    public ArrayList<ParcelDTO> viewAllParcels()
     {
         ArrayList<ParcelDTO> parcelSummaries
                 = (ArrayList<ParcelDTO>) SellerCommandFactory
@@ -271,7 +271,7 @@ public class SellerBean implements Serializable
         return transactionSummaries;
     }
     
-    public ArrayList<MetricDTO> findDeliveryMetrics() {
+    public ArrayList<MetricDTO> viewDriverMetrics() {
         
         ArrayList<MetricDTO> deliveryMetrics
             = (ArrayList<MetricDTO>) SellerCommandFactory
@@ -445,6 +445,7 @@ public class SellerBean implements Serializable
         return "Seller_UI";
     }
     
+    /*
     public String editOrder()
     {
         OrderDTO newOrder = new OrderDTO(
@@ -452,9 +453,9 @@ public class SellerBean implements Serializable
                                     findUserDetailsById(recipientId),
                                     findUserDetailsById(4),
                                     findUserDetailsById(sellerId),
-                                    "", /* will be now() on insert */
+                                    "", 
                                     false,
-                                    "" /* will be null on insert */
+                                    "" 
         );
 
         OrderDTO updatedOrder 
@@ -467,8 +468,9 @@ public class SellerBean implements Serializable
 
         return "Seller_UI";
     }
+    */
             
-    public ArrayList<OrderDTO> getOrderSummaries()
+    public ArrayList<OrderDTO> viewAllDeliveries()
     {
         ArrayList<OrderDTO> orderSummaries
                 = (ArrayList<OrderDTO>) DriverCommandFactory
