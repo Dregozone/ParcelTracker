@@ -14,6 +14,6 @@ public class ViewAllDeliveriesCommand implements DriverCommand
     @Override
     public Object execute()
     {
-        return orderMgr.getOrderSummaries();
+        return orderMgr.viewAllDeliveries();
     }
 }

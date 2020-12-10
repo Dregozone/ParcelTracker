@@ -3,7 +3,6 @@ package gateway;
 import manager.DbManager;
 import dto.UserDTO;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,7 +64,7 @@ public class UserGateway
         return userDetails;
     }
 
-    public ArrayList<UserDTO> findAllSummaries()
+    public ArrayList<UserDTO> findAllUsers()
     {
         ArrayList<UserDTO> userSummaries = new ArrayList<>();
         try

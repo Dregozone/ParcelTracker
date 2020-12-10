@@ -1,38 +1,30 @@
 package manager;
 
-import dto.UserDTO;
-import dto.OrderDTO;
-import dto.ParcelDTO;
 import dto.TransactionDTO;
 import gateway.TransactionGateway;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TransactionManager
 {
     private TransactionGateway gateway = new TransactionGateway();
     
-    public OrderDTO findTransaction(int TransactionID)
+    public TransactionDTO findTransaction(int TransactionID)
     {
         return gateway.find(TransactionID);
     }
     
-    public ArrayList<TransactionDTO> getTransactionSummariesByOrder(int OrderID)
+    public ArrayList<TransactionDTO> viewOrderTransactions(int OrderID)
     {
-        return gateway.findAllTransactionSummariesByOrder(OrderID);
+        return gateway.findOrderTransactions(OrderID);
     }
     
     public boolean addTransaction(TransactionDTO transaction) {
         
-        return gateway.addTransaction(transaction);
+        return gateway.insertTransaction(transaction);
     }
     
     public boolean removeTransaction(TransactionDTO transaction) {
         
-        return gateway.removeTransaction(transaction);
+        return gateway.deleteTransaction(transaction);
     }
 }

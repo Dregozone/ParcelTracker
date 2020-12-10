@@ -15,6 +15,6 @@ public class ViewAllUsersCommand implements SellerCommand
     @Override
     public Object execute()
     {
-        return userMgr.getUserSummaries();
+        return userMgr.viewAllUsers();
     }
 }

@@ -6,31 +6,26 @@ import java.util.ArrayList;
 
 public class ParcelManager
 {
-    private ParcelGateway gateway = new ParcelGateway();
+    private final ParcelGateway gateway = new ParcelGateway();
     
     public ParcelDTO findParcel(int ParcelID)
     {
         return gateway.find(ParcelID);
     }
     
-    public ArrayList<ParcelDTO> getParcelSummaries()
+    public ArrayList<ParcelDTO> viewAllParcels()
     {
-        return gateway.findAllParcelSummaries();
-    }
-    
-    public ArrayList<ParcelDTO> getParcelSummariesByOrder(int OrderID)
-    {
-        return gateway.findAllSummariesByOrder(OrderID);
+        return gateway.findAllParcels();
     }
     
     public boolean createParcel(ParcelDTO parcel) {
         
-        return gateway.createParcel(parcel);
+        return gateway.insertParcel(parcel);
     }
     
     public boolean editParcel(ParcelDTO parcel) {
         
-        return gateway.editParcel(parcel);
+        return gateway.updateParcel(parcel);
     }
     
     public boolean deleteParcel(int parcelId) {

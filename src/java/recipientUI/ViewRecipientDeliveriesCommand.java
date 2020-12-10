@@ -16,6 +16,6 @@ public class ViewRecipientDeliveriesCommand implements RecipientCommand
     @Override
     public Object execute()
     {
-        return orderMgr.getOrderSummariesByUser(userId);
+        return orderMgr.viewRecipientDeliveries(userId);
     }
 }

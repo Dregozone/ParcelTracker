@@ -1,15 +1,9 @@
 package manager;
 
-import dto.UserDTO;
 import dto.OrderDTO;
 import dto.MetricDTO;
 import dto.ParcelDTO;
 import gateway.OrderGateway;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrderManager
@@ -21,34 +15,34 @@ public class OrderManager
         return gateway.find(OrderID);
     }
 
-    public ArrayList<OrderDTO> getOrderSummariesByUser(int UserID)
+    public ArrayList<OrderDTO> viewRecipientDeliveries(int UserID)
     {
-        return gateway.findAllSummariesByUser(UserID);
+        return gateway.findRecipientDeliveries(UserID);
     }
     
     public ArrayList<MetricDTO> viewDriverMetrics()
     {
-        return gateway.viewDriverMetrics();
+        return gateway.findDriverMetrics();
     }
     
-    public ArrayList<ParcelDTO> getParcelSummariesByOrder(int OrderID)
+    public ArrayList<ParcelDTO> viewOrderParcels(int OrderID)
     {
-        return gateway.findAllSummariesByOrder(OrderID);
+        return gateway.findOrderParcels(OrderID);
     }
     
-    public ArrayList<OrderDTO> getOrderSummaries()
+    public ArrayList<OrderDTO> viewAllDeliveries()
     {
-        return gateway.findAllSummaries();
+        return gateway.findAllDeliveries();
     }
     
     public boolean createOrder(OrderDTO order) {
         
-        return gateway.createOrder(order);
+        return gateway.insertOrder(order);
     }
     
     public boolean editOrder(OrderDTO order) {
         
-        return gateway.editOrder(order);
+        return gateway.updateOrder(order);
     }
     
     public boolean deleteOrder(int orderId) {

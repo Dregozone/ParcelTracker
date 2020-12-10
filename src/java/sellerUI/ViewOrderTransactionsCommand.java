@@ -16,6 +16,6 @@ public class ViewOrderTransactionsCommand implements SellerCommand
     @Override
     public Object execute()
     {
-        return transactionMgr.getTransactionSummariesByOrder(orderId);
+        return transactionMgr.viewOrderTransactions(orderId);
     }
 }

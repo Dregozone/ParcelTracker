@@ -15,6 +15,6 @@ public class ViewAllParcelsCommand implements SellerCommand
     @Override
     public Object execute()
     {
-        return parcelMgr.getParcelSummaries();
+        return parcelMgr.viewAllParcels();
     }
 }

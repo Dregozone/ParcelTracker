@@ -22,7 +22,7 @@ public class OrderGateway
         return sqlDate;
     }
     
-    public boolean createOrder(OrderDTO order)
+    public boolean insertOrder(OrderDTO order)
     {
         boolean insertOK = false;
         
@@ -56,7 +56,7 @@ public class OrderGateway
         return insertOK;
     }
     
-    public boolean editOrder(OrderDTO order)
+    public boolean updateOrder(OrderDTO order)
     {        
         try
         {
@@ -227,7 +227,7 @@ public class OrderGateway
         return orderDetails;
     }
 
-    public ArrayList<OrderDTO> findAllSummariesByUser(int UserID)
+    public ArrayList<OrderDTO> findRecipientDeliveries(int UserID)
     {
         ArrayList<OrderDTO> orderSummaries = new ArrayList<>();
         try
@@ -325,7 +325,7 @@ public class OrderGateway
         return orderSummaries;
     }
     
-    public ArrayList<MetricDTO> viewDriverMetrics()
+    public ArrayList<MetricDTO> findDriverMetrics()
     {
         ArrayList<MetricDTO> deliveryMetrics = new ArrayList<>();
         try
@@ -383,7 +383,7 @@ public class OrderGateway
         return deliveryMetrics;
     }
     
-    public ArrayList<OrderDTO> findAllSummaries()
+    public ArrayList<OrderDTO> findAllDeliveries()
     {
         ArrayList<OrderDTO> orderSummaries = new ArrayList<>();
         try
@@ -484,7 +484,7 @@ public class OrderGateway
      * @param OrderID
      * @return 
      */
-    public ArrayList<ParcelDTO> findAllSummariesByOrder(int OrderID)
+    public ArrayList<ParcelDTO> findOrderParcels(int OrderID)
     {
         ArrayList<ParcelDTO> parcelSummaries = new ArrayList<>();
         try

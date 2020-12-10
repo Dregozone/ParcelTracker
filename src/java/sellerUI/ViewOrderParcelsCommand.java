@@ -16,6 +16,6 @@ public class ViewOrderParcelsCommand implements SellerCommand
     @Override
     public Object execute()
     {
-        return orderMgr.getParcelSummariesByOrder(orderId);
+        return orderMgr.viewOrderParcels(orderId);
     }
 }

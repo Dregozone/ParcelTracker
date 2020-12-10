@@ -1,12 +1,9 @@
 package gateway;
 
 import manager.DbManager;
-import dto.OrderDTO;
-import dto.ParcelDTO;
 import dto.UserDTO;
 import dto.ParcelDTO;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,111 +20,7 @@ public class ParcelGateway
         return sqlDate;
     }
     
-    public boolean editParcel(ParcelDTO parcel)
-    {        
-        try
-        {
-            Connection conn = DbManager.getConnection();
-            
-            PreparedStatement stmt = conn.prepareStatement(""
-                    + "UPDATE Parcels "
-                    + "SET name = ?, type = ?, weightGrams = ?, sellerid = ? "
-                    + "WHERE id = ? "
-            );
-            
-            stmt.setString(1, parcel.getName());
-            stmt.setString(2, parcel.getType());
-            stmt.setInt(3, parcel.getWeightGrams());
-            
-            stmt.setInt(4, parcel.getSeller().getId());
-            stmt.setInt(5, parcel.getId());
-            
-            stmt.executeUpdate();
-            
-            System.out.println("\n\n" + parcel.getId() + "\n\n");
-            
-            stmt.close();
-            conn.close();
-        }
-        catch (SQLException sqle) {
-            sqle.printStackTrace();
-            
-            return false;
-        }
-        
-        return true;
-    }
-    
-    /*
-    public boolean editParcel(ParcelDTO parcel)
-    {        
-        try
-        {
-            Connection conn = DbManager.getConnection();
-            
-            PreparedStatement stmt = conn.prepareStatement(""
-                    + "UPDATE Parcels "
-                    + "SET name = ?, type = ?, weightGrams = ?, sellerId = ?, dateModified = ? "
-                    + "WHERE id = ? "
-            );
-            
-            stmt.setString(1, parcel.getName());
-            stmt.setString(2, parcel.getType());
-            stmt.setInt(3, parcel.getWeightGrams());
-            stmt.setInt(4, parcel.getSeller().getId());
-            stmt.setDate(5, getDate() );
-            stmt.setInt(6, parcel.getId());
-            
-            stmt.executeUpdate();
-
-            stmt.close();
-            conn.close();
-        }
-        catch (SQLException sqle) {
-            sqle.printStackTrace();
-            
-            return false;
-        }
-        
-        return true;
-    }
-    */
-    
-    public boolean deleteParcel(int parcelId)
-    {        
-        try
-        {
-            Connection conn = DbManager.getConnection();
-            
-            // Delete orderparcels that contain this parcel due to FK constraint
-            PreparedStatement stmt = conn.prepareStatement("" + 
-                "DELETE FROM OrderParcels OP " + 
-                "WHERE OP.parcelId = ? "
-            );
-            stmt.setInt(1, parcelId);
-            stmt.executeUpdate();
-            
-            // Delete the parcel itself
-            stmt = conn.prepareStatement(""
-                + "DELETE FROM Parcels "
-                + "WHERE id = ? "
-            );
-            stmt.setInt(1, parcelId);
-            stmt.executeUpdate();
-
-            stmt.close();
-            conn.close();
-        }
-        catch (SQLException sqle) {
-            sqle.printStackTrace();
-            
-            return false;
-        }
-        
-        return true;
-    }
-    
-    public boolean createParcel(ParcelDTO parcel)
+    public boolean insertParcel(ParcelDTO parcel)
     {
         boolean insertOK = false;
         
@@ -163,6 +56,75 @@ public class ParcelGateway
         return insertOK;
     }
     
+    public boolean updateParcel(ParcelDTO parcel)
+    {        
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            PreparedStatement stmt = conn.prepareStatement(""
+                    + "UPDATE Parcels "
+                    + "SET name = ?, type = ?, weightGrams = ?, sellerid = ? "
+                    + "WHERE id = ? "
+            );
+            
+            stmt.setString(1, parcel.getName());
+            stmt.setString(2, parcel.getType());
+            stmt.setInt(3, parcel.getWeightGrams());
+            
+            stmt.setInt(4, parcel.getSeller().getId());
+            stmt.setInt(5, parcel.getId());
+            
+            stmt.executeUpdate();
+            
+            System.out.println("\n\n" + parcel.getId() + "\n\n");
+            
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean deleteParcel(int parcelId)
+    {        
+        try
+        {
+            Connection conn = DbManager.getConnection();
+            
+            // Delete orderparcels that contain this parcel due to FK constraint
+            PreparedStatement stmt = conn.prepareStatement("" + 
+                "DELETE FROM OrderParcels OP " + 
+                "WHERE OP.parcelId = ? "
+            );
+            stmt.setInt(1, parcelId);
+            stmt.executeUpdate();
+            
+            // Delete the parcel itself
+            stmt = conn.prepareStatement(""
+                + "DELETE FROM Parcels "
+                + "WHERE id = ? "
+            );
+            stmt.setInt(1, parcelId);
+            stmt.executeUpdate();
+
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            
+            return false;
+        }
+        
+        return true;
+    }
+        
     public ParcelDTO find(int ParcelID)
     {
         ParcelDTO parcelDetails = null;
@@ -213,7 +175,7 @@ public class ParcelGateway
         return parcelDetails;
     }
     
-    public ArrayList<ParcelDTO> findAllParcelSummaries()
+    public ArrayList<ParcelDTO> findAllParcels()
     {
         ArrayList<ParcelDTO> parcelSummaries = new ArrayList<>();
         try
@@ -264,7 +226,7 @@ public class ParcelGateway
      * @param ParcelID
      * @return 
      */
-    public ArrayList<ParcelDTO> findAllSummariesByOrder(int OrderID)
+    public ArrayList<ParcelDTO> findOrderParcels(int OrderID)
     {
         ArrayList<ParcelDTO> parcelSummaries = new ArrayList<>();
         try
