@@ -1,5 +1,7 @@
 package managedbean;
 
+import Register_UI.RegisterCommandFactory;
+import dto.UserDTO;
 import manager.DbManager;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -33,6 +35,8 @@ public class RegisterBean implements Serializable
     private String postcode;
     private String email;
     private String phone;
+    
+    private UserDTO userDetails = null;
 
     public RegisterBean()
     {
@@ -97,7 +101,7 @@ public class RegisterBean implements Serializable
         int id = getNextId();
         
         if ( validateInputs() )
-        {
+        {            
             try
             {
                 byte[] hash
@@ -105,52 +109,34 @@ public class RegisterBean implements Serializable
                                 .digest(password1.getBytes(StandardCharsets.UTF_8));
 
                 password1 = Base64.getEncoder().encodeToString(hash);
+                
+                UserDTO newUser = new UserDTO(
+                                    id,
+                                    firstName,
+                                    lastName, 
+                                    username, 
+                                    password1, 
+                                    "",
+                                    "",
+                                    addressLineOne,
+                                    town,
+                                    county,
+                                    postcode, 
+                                    email, 
+                                    phone,
+                                    true,
+                                    "Recipient"
+                );
 
-                try {
-                    Connection conn = DbManager.getConnection();
-                    
-                    PreparedStatement stmt = conn.prepareStatement(""
-                            + "INSERT INTO Users "
-                            + "(id, firstname, lastname, username, hashedpassword, dateadded, datemodified, addresslineone, town, county, postcode, email, phone, isactive) "
-                            + "VALUES "
-                            + "(?, ?, ?, ?, ?, CURRENT_DATE, CURRENT_DATE, ?, ?, ?, ?, ?, ?, true)"
-                    );
-                    
-                    stmt.setInt(1, id);
-                    stmt.setString(2, firstName);
-                    stmt.setString(3, lastName);
-                    stmt.setString(4, username);
-                    stmt.setString(5, password1);
-                    stmt.setString(6, addressLineOne);
-                    stmt.setString(7, town);
-                    stmt.setString(8, county);
-                    stmt.setString(9, postcode);
-                    stmt.setString(10, email);
-                    stmt.setString(11, phone);
-                    
-                    int rows = stmt.executeUpdate();
+                UserDTO insertedUser 
+                        = (UserDTO) RegisterCommandFactory
+                                .createCommand(RegisterCommandFactory.CREATE_USER,
+                                        newUser)
+                                .execute();
 
-                    dataOK = rows == 1;
+                userDetails = insertedUser;
 
-                    stmt = conn.prepareStatement(""
-                            + "INSERT INTO UserRoles "
-                            + "(id, userid, roleid, dateadded) "
-                            + "VALUES "
-                            + "(?, ?, ?, ?)"
-                    );
-                    
-                    stmt.setInt(1, id);
-                    stmt.setInt(2, id);
-                    stmt.setInt(3, 1); /* Recipient */
-                    stmt.setDate(4, getDate() );
-                    
-                    stmt.executeUpdate();
-                    
-                    stmt.close();
-                    conn.close();
-                } catch(SQLException sqle) {
-                    sqle.printStackTrace();
-                }
+                dataOK = true;
             }
             catch (Exception e)
             {
@@ -158,7 +144,7 @@ public class RegisterBean implements Serializable
             }
         }
 
-        if (dataOK)
+        if ( dataOK )
         {
             return "Login_UI";
         }

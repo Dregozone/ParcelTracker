@@ -4,7 +4,6 @@ import manager.UserManager;
 
 public class ViewAllUsersCommand implements SellerCommand
 {
-
     private final UserManager userMgr;
 
     public ViewAllUsersCommand()

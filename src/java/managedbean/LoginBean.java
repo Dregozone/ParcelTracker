@@ -1,5 +1,7 @@
 package managedbean;
 
+import Login_UI.LoginCommandFactory;
+import dto.UserDTO;
 import manager.DbManager;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -24,6 +26,7 @@ public class LoginBean implements Serializable
     private int id;
     private String username;
     private String password;
+    private String role;
     private boolean credentialsOK = false;
 
     public LoginBean()
@@ -76,8 +79,35 @@ public class LoginBean implements Serializable
 
     private String findUserRole() {
         
-        String role = "Recipient"; // Set default
+        //int id = -1;
+        //String role = "Recipient"; // Set default
         
+        UserDTO userDetails = null;
+        
+        /*
+        role
+                = (String) LoginCommandFactory
+                        .createCommand(LoginCommandFactory.VIEW_USER_ROLE,
+                                username)
+                        .execute();
+        
+        id 
+                = (int) LoginCommandFactory
+                        .createCommand(LoginCommandFactory.VIEW_USER_ID,
+                                username)
+                        .execute();
+        */
+        
+        userDetails
+                = (UserDTO) LoginCommandFactory
+                        .createCommand(LoginCommandFactory.VIEW_USER_BY_USERNAME,
+                                username)
+                        .execute();
+        
+        this.id = userDetails.getId();
+        this.role = userDetails.getRole();
+        
+        /*
         try {
             Connection conn = DbManager.getConnection();
             
@@ -104,8 +134,9 @@ public class LoginBean implements Serializable
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        return role;
+        */
+
+        return this.role;
     }
     
     private void clearCredentials()
