@@ -10,8 +10,9 @@
     <h:body>
         <ui:composition template="/resources/templates/loggedIn.xhtml" >
             <ui:define name="content">
-                <h1>Recipient_UI - Your orders (#{loginBean.username} - ##{loginBean.id})</h1>
+                <h1>Welcome, #{loginBean.username} (Recipient)</h1>
                 
+                <h2>Your orders</h2>
                 <h:form>
                     <h:dataTable value="#{recipientBean.viewRecipientDeliveries(loginBean.id)}"
                                  var="orderVar"

@@ -10,8 +10,9 @@
     <h:body>
         <ui:composition template="/resources/templates/loggedIn.xhtml" >
             <ui:define name="content">
-                <h1>Driver_UI</h1>
+                <h1>Welcome, #{loginBean.username} (Driver)</h1>
                 
+                <h2>Orders</h2>
                 <h:form>
                     <h:dataTable value="#{driverBean.orderSummaries}"
                                  var="orderVar"
