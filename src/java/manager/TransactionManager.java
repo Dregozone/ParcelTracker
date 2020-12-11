@@ -8,16 +8,6 @@ public class TransactionManager
 {
     private TransactionGateway gateway = new TransactionGateway();
     
-    public TransactionDTO findTransaction(int TransactionID)
-    {
-        return gateway.find(TransactionID);
-    }
-    
-    public ArrayList<TransactionDTO> viewOrderTransactions(int OrderID)
-    {
-        return gateway.findOrderTransactions(OrderID);
-    }
-    
     public boolean addTransaction(TransactionDTO transaction) {
         
         return gateway.insertTransaction(transaction);
@@ -26,5 +16,15 @@ public class TransactionManager
     public boolean removeTransaction(TransactionDTO transaction) {
         
         return gateway.deleteTransaction(transaction);
+    }
+    
+    public TransactionDTO findTransaction(int TransactionID)
+    {
+        return gateway.find(TransactionID);
+    }
+    
+    public ArrayList<TransactionDTO> viewOrderTransactions(int OrderID)
+    {
+        return gateway.findOrderTransactions(OrderID);
     }
 }

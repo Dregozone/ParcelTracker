@@ -41,54 +41,6 @@ public class UserDTO implements Serializable
         this.role = role;
     }
 
-    /*
-    @Override
-    public boolean equals(Object obj) {
-        
-        if ( obj == null ) {
-            
-            return false;
-        }
-        
-        if ( !(obj instanceof UserDTO) ) {
-            
-            return false;
-        }
-        
-        if ( obj == this ) {
-            
-            return true;
-        }
-        
-        UserDTO obj1 = (UserDTO)obj;
-        
-        return (int)obj1.id == (int)id &&
-                obj1.firstName.equalsIgnoreCase(firstName) &&
-                obj1.lastName.equalsIgnoreCase(lastName) &&
-                obj1.username.equalsIgnoreCase(username) &&
-                obj1.hashedPassword.equalsIgnoreCase(hashedPassword) &&
-                obj1.dateAdded.equalsIgnoreCase(dateAdded) &&
-                obj1.dateModified.equalsIgnoreCase(dateModified) &&
-                obj1.addressLineOne.equalsIgnoreCase(addressLineOne) &&
-                obj1.town.equalsIgnoreCase(town) &&
-                obj1.county.equalsIgnoreCase(county) &&
-                obj1.postcode.equalsIgnoreCase(postcode) &&
-                obj1.email.equalsIgnoreCase(email) &&
-                obj1.phone.equalsIgnoreCase(phone) &&
-                obj1.isActive == isActive &&
-                obj1.role.equalsIgnoreCase(role);
-    }
-    
-    @Override
-    public int hashCode()
-    {
-        int hash = 7;
-        hash = 67 * hash + this.code.hashCode();
-        hash = 67 * hash + (int) (Double.doubleToLongBits(this.rate) ^ (Double.doubleToLongBits(this.rate) >>> 32));
-        return hash;
-    }
-    */
-
     @Override
     public int hashCode() {
         int hash = 3;

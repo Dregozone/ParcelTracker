@@ -10,6 +10,21 @@ public class OrderManager
 {
     private OrderGateway gateway = new OrderGateway();
     
+    public boolean createOrder(OrderDTO order) {
+        
+        return gateway.insertOrder(order);
+    }
+    
+    public boolean editOrder(OrderDTO order) {
+        
+        return gateway.updateOrder(order);
+    }
+    
+    public boolean deleteOrder(int orderId) {
+        
+        return gateway.deleteOrder(orderId);
+    }
+    
     public OrderDTO findOrder(int OrderID)
     {
         return gateway.find(OrderID);
@@ -33,20 +48,5 @@ public class OrderManager
     public ArrayList<OrderDTO> viewAllDeliveries()
     {
         return gateway.findAllDeliveries();
-    }
-    
-    public boolean createOrder(OrderDTO order) {
-        
-        return gateway.insertOrder(order);
-    }
-    
-    public boolean editOrder(OrderDTO order) {
-        
-        return gateway.updateOrder(order);
-    }
-    
-    public boolean deleteOrder(int orderId) {
-        
-        return gateway.deleteOrder(orderId);
     }
 }

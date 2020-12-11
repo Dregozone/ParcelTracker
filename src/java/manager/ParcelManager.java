@@ -8,16 +8,6 @@ public class ParcelManager
 {
     private final ParcelGateway gateway = new ParcelGateway();
     
-    public ParcelDTO findParcel(int ParcelID)
-    {
-        return gateway.find(ParcelID);
-    }
-    
-    public ArrayList<ParcelDTO> viewAllParcels()
-    {
-        return gateway.findAllParcels();
-    }
-    
     public boolean createParcel(ParcelDTO parcel) {
         
         return gateway.insertParcel(parcel);
@@ -31,5 +21,15 @@ public class ParcelManager
     public boolean deleteParcel(int parcelId) {
         
         return gateway.deleteParcel(parcelId);
+    }
+    
+    public ParcelDTO findParcel(int ParcelID)
+    {
+        return gateway.find(ParcelID);
+    }
+    
+    public ArrayList<ParcelDTO> viewAllParcels()
+    {
+        return gateway.findAllParcels();
     }
 }
