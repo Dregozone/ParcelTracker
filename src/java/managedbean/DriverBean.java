@@ -1,8 +1,8 @@
 package managedbean;
 
-import recipientUI.RecipientCommandFactory;
-import sellerUI.SellerCommandFactory;
-import driverUI.DriverCommandFactory;
+import Recipient_UI.RecipientCommandFactory;
+import Seller_UI.SellerCommandFactory;
+import Driver_UI.DriverCommandFactory;
 import dto.OrderDTO;
 import dto.ParcelDTO;
 import dto.TransactionDTO;
