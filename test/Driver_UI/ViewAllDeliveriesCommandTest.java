@@ -23,7 +23,7 @@ public class ViewAllDeliveriesCommandTest {
     @Test
     public void testExecute() {
         System.out.println("execute");
-        ViewAllDeliveriesCommand instance = new ViewAllDeliveriesCommand();
+        ViewAllOrdersCommand instance = new ViewAllOrdersCommand();
         Object expResult = null;
         Object result = instance.execute();
         assertEquals(expResult, result);

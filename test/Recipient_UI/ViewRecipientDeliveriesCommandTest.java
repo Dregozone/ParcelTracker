@@ -23,7 +23,7 @@ public class ViewRecipientDeliveriesCommandTest {
     @Test
     public void testExecute() {
         System.out.println("execute");
-        ViewRecipientDeliveriesCommand instance = null;
+        ViewRecipientOrdersCommand instance = null;
         Object expResult = null;
         Object result = instance.execute();
         assertEquals(expResult, result);

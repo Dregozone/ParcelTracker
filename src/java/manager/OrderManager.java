@@ -30,9 +30,9 @@ public class OrderManager
         return gateway.find(OrderID);
     }
 
-    public ArrayList<OrderDTO> viewRecipientDeliveries(int UserID)
+    public ArrayList<OrderDTO> viewRecipientOrders(int UserID)
     {
-        return gateway.findRecipientDeliveries(UserID);
+        return gateway.findRecipientOrders(UserID);
     }
     
     public ArrayList<MetricDTO> viewDriverMetrics()
@@ -45,8 +45,8 @@ public class OrderManager
         return gateway.findOrderParcels(OrderID);
     }
     
-    public ArrayList<OrderDTO> viewAllDeliveries()
+    public ArrayList<OrderDTO> viewAllOrders()
     {
-        return gateway.findAllDeliveries();
+        return gateway.findAllOrders();
     }
 }

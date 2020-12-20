@@ -2,11 +2,11 @@ package Driver_UI;
 
 import manager.OrderManager;
 
-public class ViewAllDeliveriesCommand implements DriverCommand
+public class ViewAllOrdersCommand implements DriverCommand
 {
     private final OrderManager orderMgr;
 
-    public ViewAllDeliveriesCommand()
+    public ViewAllOrdersCommand()
     {
         orderMgr = new OrderManager();
     }
@@ -14,6 +14,6 @@ public class ViewAllDeliveriesCommand implements DriverCommand
     @Override
     public Object execute()
     {
-        return orderMgr.viewAllDeliveries();
+        return orderMgr.viewAllOrders();
     }
 }

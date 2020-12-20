@@ -227,7 +227,7 @@ public class DriverBean implements Serializable
     {
         ArrayList<OrderDTO> orderSummaries
                 = (ArrayList<OrderDTO>) DriverCommandFactory
-                        .createCommand(DriverCommandFactory.VIEW_ALL_DELIVERIES)
+                        .createCommand(DriverCommandFactory.VIEW_ALL_ORDERS)
                         .execute();
 
         totalOrders = orderSummaries.size();
@@ -235,11 +235,11 @@ public class DriverBean implements Serializable
         return orderSummaries;
     }
 
-    public String viewDeliveryProgress(int orderID, String role)
+    public String viewOrderProgress(int orderID, String role)
     {
         orderDetails
                 = (OrderDTO) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.VIEW_DELIVERY_PROGRESS,
+                        .createCommand(RecipientCommandFactory.VIEW_ORDER_PROGRESS,
                                 orderID)
                         .execute();
 

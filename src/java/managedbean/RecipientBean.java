@@ -104,11 +104,11 @@ public class RecipientBean implements Serializable
         return parcelSummaries;
     }
     
-    public ArrayList<OrderDTO> viewRecipientDeliveries(int UserID)
+    public ArrayList<OrderDTO> viewRecipientOrders(int UserID)
     {
         ArrayList<OrderDTO> orderSummaries
                 = (ArrayList<OrderDTO>) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.VIEW_RECIPIENT_DELIVERIES,
+                        .createCommand(RecipientCommandFactory.VIEW_RECIPIENT_ORDERS,
                                 UserID)
                         .execute();
 
@@ -117,11 +117,11 @@ public class RecipientBean implements Serializable
         return orderSummaries;
     }
 
-    public String viewDeliveryProgress(int orderID)
+    public String viewOrderProgress(int orderID)
     {
         orderDetails
                 = (OrderDTO) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.VIEW_DELIVERY_PROGRESS,
+                        .createCommand(RecipientCommandFactory.VIEW_ORDER_PROGRESS,
                                 orderID)
                         .execute();
 

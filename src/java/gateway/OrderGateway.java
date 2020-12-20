@@ -227,7 +227,7 @@ public class OrderGateway
         return orderDetails;
     }
 
-    public ArrayList<OrderDTO> findRecipientDeliveries(int UserID)
+    public ArrayList<OrderDTO> findRecipientOrders(int UserID)
     {
         ArrayList<OrderDTO> orderSummaries = new ArrayList<>();
         try
@@ -383,7 +383,7 @@ public class OrderGateway
         return deliveryMetrics;
     }
     
-    public ArrayList<OrderDTO> findAllDeliveries()
+    public ArrayList<OrderDTO> findAllOrders()
     {
         ArrayList<OrderDTO> orderSummaries = new ArrayList<>();
         try

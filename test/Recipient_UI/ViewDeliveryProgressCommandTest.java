@@ -23,7 +23,7 @@ public class ViewDeliveryProgressCommandTest {
     @Test
     public void testExecute() {
         System.out.println("execute");
-        ViewDeliveryProgressCommand instance = null;
+        ViewOrderProgressCommand instance = null;
         Object expResult = null;
         Object result = instance.execute();
         assertEquals(expResult, result);

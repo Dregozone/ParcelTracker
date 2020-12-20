@@ -2,12 +2,12 @@ package Recipient_UI;
 
 import manager.OrderManager;
 
-public class ViewDeliveryProgressCommand implements RecipientCommand
+public class ViewOrderProgressCommand implements RecipientCommand
 {
     private final int orderId;
     private final OrderManager orderMgr;
 
-    public ViewDeliveryProgressCommand(int orderId)
+    public ViewOrderProgressCommand(int orderId)
     {
         this.orderId = orderId;
         orderMgr = new OrderManager();

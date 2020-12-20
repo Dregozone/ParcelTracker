@@ -445,11 +445,11 @@ public class SellerBean implements Serializable
         return "Seller_UI";
     }
        
-    public ArrayList<OrderDTO> viewAllDeliveries()
+    public ArrayList<OrderDTO> viewAllOrders()
     {
         ArrayList<OrderDTO> orderSummaries
                 = (ArrayList<OrderDTO>) DriverCommandFactory
-                        .createCommand(DriverCommandFactory.VIEW_ALL_DELIVERIES)
+                        .createCommand(DriverCommandFactory.VIEW_ALL_ORDERS)
                         .execute();
 
         totalOrders = orderSummaries.size();
@@ -461,7 +461,7 @@ public class SellerBean implements Serializable
     {
         orderDetails
                 = (OrderDTO) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.VIEW_DELIVERY_PROGRESS,
+                        .createCommand(RecipientCommandFactory.VIEW_ORDER_PROGRESS,
                                 orderID)
                         .execute();
 
@@ -472,7 +472,7 @@ public class SellerBean implements Serializable
     {
         orderDetails
                 = (OrderDTO) RecipientCommandFactory
-                        .createCommand(RecipientCommandFactory.VIEW_DELIVERY_PROGRESS,
+                        .createCommand(RecipientCommandFactory.VIEW_ORDER_PROGRESS,
                                 orderID)
                         .execute();
 
