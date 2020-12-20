@@ -26,7 +26,7 @@ public class GuestCommandFactory
         switch (commandType)
         {
             case CREATE_USER:
-                return new CreateUserCommand(userDTO);
+                return new RegisterCommand(userDTO);
             default:
                 return null;
         }

@@ -3,12 +3,12 @@ package Guest_UI;
 import dto.UserDTO;
 import manager.UserManager;
 
-public class CreateUserCommand implements GuestCommand
+public class RegisterCommand implements GuestCommand
 {
     private final UserDTO userDTO;
     private final UserManager userMgr;
 
-    public CreateUserCommand(UserDTO userDTO)
+    public RegisterCommand(UserDTO userDTO)
     {
         this.userDTO = userDTO;
         userMgr = new UserManager();
