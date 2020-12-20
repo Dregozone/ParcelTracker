@@ -12,10 +12,9 @@ public class ParcelDTO implements Serializable
     private final UserDTO seller;
     private final String dateAdded;
     private final String dateModified;
-    private final int timesSold;
     private int quantityInOrder;
 
-    public ParcelDTO(int id, String name, String type, int weightGrams, UserDTO seller, String dateAdded, String dateModified, int timesSold, int quantityInOrder)
+    public ParcelDTO(int id, String name, String type, int weightGrams, UserDTO seller, String dateAdded, String dateModified, int quantityInOrder)
     {
         this.id = id;
         this.name = name;
@@ -24,7 +23,6 @@ public class ParcelDTO implements Serializable
         this.seller = seller;
         this.dateAdded = dateAdded;
         this.dateModified = dateModified;
-        this.timesSold = timesSold; 
         this.quantityInOrder = quantityInOrder;
     }
 
@@ -38,7 +36,6 @@ public class ParcelDTO implements Serializable
         hash = 29 * hash + Objects.hashCode(this.seller);
         hash = 29 * hash + Objects.hashCode(this.dateAdded);
         hash = 29 * hash + Objects.hashCode(this.dateModified);
-        hash = 29 * hash + this.timesSold;
         hash = 29 * hash + this.quantityInOrder;
         return hash;
     }
@@ -59,9 +56,6 @@ public class ParcelDTO implements Serializable
             return false;
         }
         if (this.weightGrams != other.weightGrams) {
-            return false;
-        }
-        if (this.timesSold != other.timesSold) {
             return false;
         }
         if (this.quantityInOrder != other.quantityInOrder) {
@@ -112,10 +106,6 @@ public class ParcelDTO implements Serializable
 
     public String getDateModified() {
         return dateModified;
-    }
-
-    public int getTimesSold() {
-        return timesSold;
     }
 
     public int getQuantityInOrder() {

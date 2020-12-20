@@ -492,7 +492,7 @@ public class OrderGateway
             Connection conn = DbManager.getConnection();
             
             PreparedStatement stmt = conn.prepareStatement("" + 
-                    "SELECT P.id AS pid, OP.quantity, p.name AS pn, p.type AS pt, p.weightgrams AS pw, P.DATEADDED AS pda, P.datemodified AS pdm, P.timessold AS pts, Seller.* " + 
+                    "SELECT P.id AS pid, OP.quantity, p.name AS pn, p.type AS pt, p.weightgrams AS pw, P.DATEADDED AS pda, P.datemodified AS pdm, Seller.* " + 
                     "FROM ORDERS AS O " +
                     "JOIN OrderParcels OP ON O.id = OP.ORDERID " +
                     "JOIN Parcels P ON OP.PARCELID = P.ID " +
@@ -513,7 +513,6 @@ public class OrderGateway
                         new UserDTO(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("username"), rs.getString("hashedPassword"), rs.getString("dateAdded"), rs.getString("dateModified"), rs.getString("addressLineOne"), rs.getString("town"), rs.getString("county"), rs.getString("postcode"), rs.getString("email"), rs.getString("phone"), rs.getBoolean("isActive"), "Recipient"),
                         rs.getString("pda"),
                         rs.getString("pdm"),
-                        rs.getInt("pts"),
                         rs.getInt("quantity")
                 );
                 

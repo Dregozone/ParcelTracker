@@ -30,9 +30,9 @@ public class ParcelGateway
             
             PreparedStatement stmt = conn.prepareStatement(""
                     + "INSERT INTO Parcels "
-                    + "(id, sellerId, name, type, weightGrams, dateAdded, dateModified, timesSold) "
+                    + "(id, sellerId, name, type, weightGrams, dateAdded, dateModified) "
                     + "values "
-                    + "(?, ?, ?, ?, ?, ?, ?, 0)"
+                    + "(?, ?, ?, ?, ?, ?, ?)"
             );
             
             stmt.setInt(1, parcel.getId());
@@ -158,7 +158,6 @@ public class ParcelGateway
                         new UserDTO(rs.getInt("sid"), rs.getString("sf"), rs.getString("sl"), rs.getString("su"), rs.getString("sh"), rs.getString("sda"), rs.getString("sdm"), rs.getString("sa"), rs.getString("st"), rs.getString("sc"), rs.getString("sp"), rs.getString("se"), rs.getString("sp"), rs.getBoolean("si"), rs.getString("sr")),
                         rs.getString("dateAdded"),
                         rs.getString("dateModified"),
-                        rs.getInt("timesSold"),
                         0 /* quantityInOrder placeholder */
                 );
             }
@@ -202,7 +201,6 @@ public class ParcelGateway
                         new UserDTO(rs.getInt("sid"), rs.getString("sf"), rs.getString("sl"), rs.getString("su"), rs.getString("sh"), rs.getString("sda"), rs.getString("sdm"), rs.getString("sa"), rs.getString("st"), rs.getString("sc"), rs.getString("sp"), rs.getString("se"), rs.getString("sp"), rs.getBoolean("si"), rs.getString("sr")),
                         rs.getString("dateAdded"),
                         rs.getString("dateModified"),
-                        rs.getInt("timesSold"),
                         0 /* quantityInOrder placeholder */
                 );
                 
@@ -234,7 +232,7 @@ public class ParcelGateway
             Connection conn = DbManager.getConnection();
             
             PreparedStatement stmt = conn.prepareStatement("" + 
-                    "SELECT P.id AS pid, OP.quantity, p.name AS pn, p.type AS pt, p.weightgrams AS pw, P.DATEADDED AS pda, P.datemodified AS pdm, P.timessold AS pts, Seller.* " + 
+                    "SELECT P.id AS pid, OP.quantity, p.name AS pn, p.type AS pt, p.weightgrams AS pw, P.DATEADDED AS pda, P.datemodified AS pdm, Seller.* " + 
                     "FROM ORDERS AS O " +
                     "JOIN OrderParcels OP ON O.id = OP.ORDERID " +
                     "JOIN Parcels P ON OP.PARCELID = P.ID " +
@@ -255,7 +253,6 @@ public class ParcelGateway
                         new UserDTO(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("username"), rs.getString("hashedPassword"), rs.getString("dateAdded"), rs.getString("dateModified"), rs.getString("addressLineOne"), rs.getString("town"), rs.getString("county"), rs.getString("postcode"), rs.getString("email"), rs.getString("phone"), rs.getBoolean("isActive"), "Recipient"),
                         rs.getString("pda"),
                         rs.getString("pdm"),
-                        rs.getInt("pts"),
                         rs.getInt("quantity")
                 );
                 

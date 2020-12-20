@@ -134,7 +134,6 @@ public class SellerBean implements Serializable
                                     findUser(sellerId),
                                     "", /* will be now() on insert */
                                     "",
-                                    0, /* times sold */
                                     0  /* quantityInOrder placeholder */
         );
 
@@ -170,7 +169,6 @@ public class SellerBean implements Serializable
                                     findUser(sellerId),
                                     "", /* will be now() on insert */
                                     "",
-                                    0, /* times sold */
                                     0  /* quantityInOrder placeholder */
         );
 

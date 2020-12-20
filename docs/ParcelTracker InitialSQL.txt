@@ -70,7 +70,6 @@ create table Parcels (
     weightGrams int not null,
     dateAdded date not null,
     dateModified date not null,
-    timesSold integer not null,
     foreign key (sellerID) references Users(id)
 );
 
@@ -122,10 +121,10 @@ insert into Transactions(id, orderID, name, addedBy, dateAdded)
 insert into Transactions(id, orderID, name, addedBy, dateAdded)
     values (2, 1, 'Parcel delivered', 1, '2020-03-04');
 
-insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModified, timesSold)
-    values (1, 1, 'Item One', 'Large Box', 95, '2020-02-01', '2020-02-01', 3);
-insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModified, timesSold)
-    values (2, 1, 'Item Two', 'Small Letter', 10, '2020-02-01', '2020-02-01', 1);
+insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModified)
+    values (1, 1, 'Item One', 'Large Box', 95, '2020-02-01', '2020-02-01');
+insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModified)
+    values (2, 1, 'Item Two', 'Small Letter', 10, '2020-02-01', '2020-02-01');
 
 insert into OrderParcels(id, orderID, parcelID, quantity, dateAdded)
     values(1, 1, 1, 2, '2020-03-10');
