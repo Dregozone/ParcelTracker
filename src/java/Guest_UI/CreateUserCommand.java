@@ -1,9 +1,9 @@
-package Register_UI;
+package Guest_UI;
 
 import dto.UserDTO;
 import manager.UserManager;
 
-public class CreateUserCommand implements RegisterCommand
+public class CreateUserCommand implements GuestCommand
 {
     private final UserDTO userDTO;
     private final UserManager userMgr;

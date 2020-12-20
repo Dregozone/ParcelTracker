@@ -1,6 +1,6 @@
 package managedbean;
 
-import Register_UI.RegisterCommandFactory;
+import Guest_UI.GuestCommandFactory;
 import dto.UserDTO;
 import manager.DbManager;
 import javax.inject.Named;
@@ -129,8 +129,8 @@ public class RegisterBean implements Serializable
                 );
 
                 UserDTO insertedUser 
-                        = (UserDTO) RegisterCommandFactory
-                                .createCommand(RegisterCommandFactory.CREATE_USER,
+                        = (UserDTO) GuestCommandFactory
+                                .createCommand(GuestCommandFactory.CREATE_USER,
                                         newUser)
                                 .execute();
 

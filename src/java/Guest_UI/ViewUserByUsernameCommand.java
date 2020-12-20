@@ -1,8 +1,8 @@
-package Login_UI;
+package Guest_UI;
 
 import manager.UserManager;
 
-public class ViewUserByUsernameCommand implements LoginCommand
+public class ViewUserByUsernameCommand implements GuestCommand
 {
     private final String username;
     private final UserManager userMgr;

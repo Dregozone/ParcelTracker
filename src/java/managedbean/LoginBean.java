@@ -1,6 +1,6 @@
 package managedbean;
 
-import Login_UI.LoginCommandFactory;
+import Guest_UI.GuestCommandFactory;
 import dto.UserDTO;
 import manager.DbManager;
 import javax.inject.Named;
@@ -79,62 +79,16 @@ public class LoginBean implements Serializable
 
     private String findUserRole() {
         
-        //int id = -1;
-        //String role = "Recipient"; // Set default
-        
         UserDTO userDetails = null;
         
-        /*
-        role
-                = (String) LoginCommandFactory
-                        .createCommand(LoginCommandFactory.VIEW_USER_ROLE,
-                                username)
-                        .execute();
-        
-        id 
-                = (int) LoginCommandFactory
-                        .createCommand(LoginCommandFactory.VIEW_USER_ID,
-                                username)
-                        .execute();
-        */
-        
         userDetails
-                = (UserDTO) LoginCommandFactory
-                        .createCommand(LoginCommandFactory.VIEW_USER_BY_USERNAME,
+                = (UserDTO) GuestCommandFactory
+                        .createCommand(GuestCommandFactory.VIEW_USER_BY_USERNAME,
                                 username)
                         .execute();
         
         this.id = userDetails.getId();
         this.role = userDetails.getRole();
-        
-        /*
-        try {
-            Connection conn = DbManager.getConnection();
-            
-            PreparedStatement stmt = conn.prepareStatement(""
-                    + "SELECT R.name AS ROLE, U.id "
-                    + "FROM UserRoles UR "
-                    + "INNER JOIN Users U ON UR.UserID = U.ID "
-                    + "INNER JOIN Roles R ON UR.RoleID = R.ID "
-                    + "WHERE U.username = ?"
-            );
-            
-            stmt.setString(1, username);
-            
-            ResultSet rs = stmt.executeQuery();
-
-            if ( rs.next() ) {
-                role = rs.getString("ROLE");
-                id = rs.getInt("id");
-            }
-
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        */
 
         return this.role;
     }
