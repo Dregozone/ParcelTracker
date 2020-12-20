@@ -145,20 +145,6 @@ public class ParcelDTOTest {
     }
 
     /**
-     * Test of getTimesSold method, of class ParcelDTO.
-     */
-    @Test
-    public void testGetTimesSold() {
-        System.out.println("getTimesSold");
-        ParcelDTO instance = null;
-        int expResult = 0;
-        int result = instance.getTimesSold();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getQuantityInOrder method, of class ParcelDTO.
      */
     @Test

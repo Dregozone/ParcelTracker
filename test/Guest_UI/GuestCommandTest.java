@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Register_UI;
+package Guest_UI;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -12,18 +12,18 @@ import static org.junit.Assert.*;
  *
  * @author aclea
  */
-public class RegisterCommandTest {
+public class GuestCommandTest {
     
-    public RegisterCommandTest() {
+    public GuestCommandTest() {
     }
 
     /**
-     * Test of execute method, of class RegisterCommand.
+     * Test of execute method, of class GuestCommand.
      */
     @Test
     public void testExecute() {
         System.out.println("execute");
-        RegisterCommand instance = new RegisterCommandImpl();
+        GuestCommand instance = new GuestCommandImpl();
         Object expResult = null;
         Object result = instance.execute();
         assertEquals(expResult, result);
@@ -31,7 +31,7 @@ public class RegisterCommandTest {
         fail("The test case is a prototype.");
     }
 
-    public class RegisterCommandImpl implements RegisterCommand {
+    public class GuestCommandImpl implements GuestCommand {
 
         public Object execute() {
             return null;

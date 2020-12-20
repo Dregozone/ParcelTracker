@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Login_UI;
+package Guest_UI;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -12,20 +12,20 @@ import static org.junit.Assert.*;
  *
  * @author aclea
  */
-public class ViewUserByUsernameCommandTest {
+public class ViewUserRoleCommandTest {
     
-    public ViewUserByUsernameCommandTest() {
+    public ViewUserRoleCommandTest() {
     }
 
     /**
-     * Test of execute method, of class ViewUserByUsernameCommand.
+     * Test of execute method, of class ViewUserRoleCommand.
      */
     @Test
     public void testExecute() {
         System.out.println("execute");
-        ViewUserByUsernameCommand instance = null;
-        Object expResult = null;
-        Object result = instance.execute();
+        ViewUserRoleCommand instance = null;
+        String expResult = "";
+        String result = instance.execute();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

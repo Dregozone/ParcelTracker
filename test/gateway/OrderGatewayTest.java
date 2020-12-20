@@ -100,12 +100,12 @@ public class OrderGatewayTest {
      * Test of findRecipientDeliveries method, of class OrderGateway.
      */
     @Test
-    public void testFindRecipientDeliveries() {
-        System.out.println("findRecipientDeliveries");
+    public void testFindRecipientOrders() {
+        System.out.println("findRecipientOrders");
         int UserID = 0;
         OrderGateway instance = new OrderGateway();
         ArrayList<OrderDTO> expResult = null;
-        ArrayList<OrderDTO> result = instance.findRecipientDeliveries(UserID);
+        ArrayList<OrderDTO> result = instance.findRecipientOrders(UserID);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -129,11 +129,11 @@ public class OrderGatewayTest {
      * Test of findAllDeliveries method, of class OrderGateway.
      */
     @Test
-    public void testFindAllDeliveries() {
-        System.out.println("findAllDeliveries");
+    public void testFindAllOrders() {
+        System.out.println("findAllOrders");
         OrderGateway instance = new OrderGateway();
         ArrayList<OrderDTO> expResult = null;
-        ArrayList<OrderDTO> result = instance.findAllDeliveries();
+        ArrayList<OrderDTO> result = instance.findAllOrders();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

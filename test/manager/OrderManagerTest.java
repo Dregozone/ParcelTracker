@@ -85,12 +85,12 @@ public class OrderManagerTest {
      * Test of viewRecipientDeliveries method, of class OrderManager.
      */
     @Test
-    public void testViewRecipientDeliveries() {
-        System.out.println("viewRecipientDeliveries");
+    public void testViewRecipientOrders() {
+        System.out.println("viewRecipientOrders");
         int UserID = 0;
         OrderManager instance = new OrderManager();
         ArrayList<OrderDTO> expResult = null;
-        ArrayList<OrderDTO> result = instance.viewRecipientDeliveries(UserID);
+        ArrayList<OrderDTO> result = instance.viewRecipientOrders(UserID);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -129,11 +129,11 @@ public class OrderManagerTest {
      * Test of viewAllDeliveries method, of class OrderManager.
      */
     @Test
-    public void testViewAllDeliveries() {
-        System.out.println("viewAllDeliveries");
+    public void testViewAllOrders() {
+        System.out.println("viewAllOrders");
         OrderManager instance = new OrderManager();
         ArrayList<OrderDTO> expResult = null;
-        ArrayList<OrderDTO> result = instance.viewAllDeliveries();
+        ArrayList<OrderDTO> result = instance.viewAllOrders();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

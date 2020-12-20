@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Register_UI;
+package Guest_UI;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -12,18 +12,18 @@ import static org.junit.Assert.*;
  *
  * @author aclea
  */
-public class CreateUserCommandTest {
+public class RegisterCommandTest {
     
-    public CreateUserCommandTest() {
+    public RegisterCommandTest() {
     }
 
     /**
-     * Test of execute method, of class CreateUserCommand.
+     * Test of execute method, of class RegisterCommand.
      */
     @Test
     public void testExecute() {
         System.out.println("execute");
-        CreateUserCommand instance = null;
+        RegisterCommand instance = null;
         Object expResult = null;
         Object result = instance.execute();
         assertEquals(expResult, result);
