@@ -67,7 +67,7 @@ public class LoginBean implements Serializable
         else
         {
             clearCredentials();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login credentials are not correct1"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login credentials are not correct"));
             return null;
         }
     }
