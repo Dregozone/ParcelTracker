@@ -19,7 +19,7 @@ public class UserDTO implements Serializable
     private final String postcode;
     private final String email;
     private final String phone;
-    private final boolean isActive;
+    private boolean isActive = false; // Used for checking if user exists as well as if user is activated
     private final String role;
 
     public UserDTO(int id, String firstName, String lastName, String username, String hashedPassword, String dateAdded, String dateModified, String addressLineOne, String town, String county, String postcode, String email, String phone, boolean isActive, String role)

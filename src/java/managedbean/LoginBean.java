@@ -115,6 +115,10 @@ public class LoginBean implements Serializable
     {
         return id;
     }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername()
     {

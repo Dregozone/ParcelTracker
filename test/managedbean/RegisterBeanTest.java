@@ -1,360 +1,254 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package managedbean;
 
 import java.sql.Date;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class RegisterBeanTest {
     
     public RegisterBeanTest() {
     }
 
-    /**
-     * Test of getDate method, of class RegisterBean.
-     */
     @Test
-    public void testGetDate() {
+    public void testGetDate() { // getDate is now()
         System.out.println("getDate");
+        
         RegisterBean instance = new RegisterBean();
-        Date expResult = null;
+        
+        java.util.Date now = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+        
+        Date expResult = sqlDate;
         Date result = instance.getDate();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getNextId method, of class RegisterBean.
-     */
     @Test
-    public void testGetNextId() {
+    public void testGetNextId() { // getNextId returns a positive integer
         System.out.println("getNextId");
+        
         RegisterBean instance = new RegisterBean();
         int expResult = 0;
         int result = instance.getNextId();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertTrue(result >= expResult);
     }
 
-    /**
-     * Test of register method, of class RegisterBean.
-     */
+    /* Test:T1 */
     @Test
-    public void testRegister() {
-        System.out.println("register");
+    public void testRegisterValid() { // Check that the next user ID increases after calling register()
+        System.out.println("register (valid values)");
+        
         RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.register();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getFirstName method, of class RegisterBean.
-     */
-    @Test
-    public void testGetFirstName() {
-        System.out.println("getFirstName");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getFirstName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getLastName method, of class RegisterBean.
-     */
-    @Test
-    public void testGetLastName() {
-        System.out.println("getLastName");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getLastName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPassword1 method, of class RegisterBean.
-     */
-    @Test
-    public void testGetPassword1() {
-        System.out.println("getPassword1");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getPassword1();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPassword2 method, of class RegisterBean.
-     */
-    @Test
-    public void testGetPassword2() {
-        System.out.println("getPassword2");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getPassword2();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getUsername method, of class RegisterBean.
-     */
-    @Test
-    public void testGetUsername() {
-        System.out.println("getUsername");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getUsername();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setFirstName method, of class RegisterBean.
-     */
-    @Test
-    public void testSetFirstName() {
-        System.out.println("setFirstName");
-        String name = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setFirstName(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setLastName method, of class RegisterBean.
-     */
-    @Test
-    public void testSetLastName() {
-        System.out.println("setLastName");
-        String name = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setLastName(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setUsername method, of class RegisterBean.
-     */
-    @Test
-    public void testSetUsername() {
-        System.out.println("setUsername");
-        String username = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setUsername(username);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setPassword1 method, of class RegisterBean.
-     */
-    @Test
-    public void testSetPassword1() {
-        System.out.println("setPassword1");
-        String password1 = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setPassword1(password1);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setPassword2 method, of class RegisterBean.
-     */
-    @Test
-    public void testSetPassword2() {
-        System.out.println("setPassword2");
-        String password2 = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setPassword2(password2);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getAddressLineOne method, of class RegisterBean.
-     */
-    @Test
-    public void testGetAddressLineOne() {
-        System.out.println("getAddressLineOne");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getAddressLineOne();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setAddressLineOne method, of class RegisterBean.
-     */
-    @Test
-    public void testSetAddressLineOne() {
-        System.out.println("setAddressLineOne");
-        String addressLineOne = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setAddressLineOne(addressLineOne);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTown method, of class RegisterBean.
-     */
-    @Test
-    public void testGetTown() {
-        System.out.println("getTown");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getTown();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setTown method, of class RegisterBean.
-     */
-    @Test
-    public void testSetTown() {
-        System.out.println("setTown");
-        String town = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setTown(town);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getCounty method, of class RegisterBean.
-     */
-    @Test
-    public void testGetCounty() {
-        System.out.println("getCounty");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getCounty();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setCounty method, of class RegisterBean.
-     */
-    @Test
-    public void testSetCounty() {
-        System.out.println("setCounty");
-        String county = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setCounty(county);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPostcode method, of class RegisterBean.
-     */
-    @Test
-    public void testGetPostcode() {
-        System.out.println("getPostcode");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getPostcode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setPostcode method, of class RegisterBean.
-     */
-    @Test
-    public void testSetPostcode() {
-        System.out.println("setPostcode");
-        String postcode = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setPostcode(postcode);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getEmail method, of class RegisterBean.
-     */
-    @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getEmail();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setEmail method, of class RegisterBean.
-     */
-    @Test
-    public void testSetEmail() {
-        System.out.println("setEmail");
-        String email = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setEmail(email);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPhone method, of class RegisterBean.
-     */
-    @Test
-    public void testGetPhone() {
-        System.out.println("getPhone");
-        RegisterBean instance = new RegisterBean();
-        String expResult = "";
-        String result = instance.getPhone();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setPhone method, of class RegisterBean.
-     */
-    @Test
-    public void testSetPhone() {
-        System.out.println("setPhone");
-        String phone = "";
-        RegisterBean instance = new RegisterBean();
-        instance.setPhone(phone);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Find next user ID value
+        int CurrentNextUserID = instance.getNextId();
+        
+        // Load values to use with register
+        instance.setFirstName("Anders");
+        instance.setLastName("L");
+        instance.setUsername("TestUser");
+        instance.setPassword1("pass");
+        instance.setPassword2("pass");
+        instance.setAddressLineOne("123 Road Name");
+        instance.setTown("Basingstoke");
+        instance.setCounty("Hants");
+        instance.setPostcode("RG112AA");
+        instance.setEmail("a@b.com");
+        instance.setPhone("01234567890");
+        
+        // Run registration
+        try {
+            instance.register();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            //System.out.print("Caught the NullPointerException!!!");
+        }
+        
+        // Find new next user ID value
+        int NewNextUserID = instance.getNextId();
+        
+        //assertNotNull(returned);
+        assertTrue(NewNextUserID > CurrentNextUserID);
     }
     
+    /* Test:T2 */
+    @Test
+    public void testRegisterInvalid() { // Check that the next user ID increases after calling register()
+        System.out.println("register (invalid values)");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        // Find next user ID value
+        int CurrentNextUserID = instance.getNextId();
+        
+        // Load values to use with register
+        instance.setFirstName("Anders");
+        instance.setLastName("L");
+        instance.setUsername("TestUser");
+        instance.setPassword1("pass");
+        instance.setPassword2("wrong");
+        instance.setAddressLineOne("123 Road Name");
+        instance.setTown("Basingstoke");
+        instance.setCounty("Hants");
+        instance.setPostcode("RG112AA");
+        instance.setEmail("a@b.com");
+        instance.setPhone("01234567890");
+        
+        // Run registration
+        try {
+            instance.register();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            //System.out.print("Caught the NullPointerException!!!");
+        }
+        
+        // Find new next user ID value
+        int NewNextUserID = instance.getNextId();
+        
+        // Check no record was added to DB by ensuring the get next user ID value is the same as before the register call
+        assertTrue(NewNextUserID == CurrentNextUserID);
+    }
+
+    @Test
+    public void testSetAndGetFirstName() { // Can set and get first name within bean
+        System.out.println("FirstName");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "Anders";
+        instance.setFirstName(expResult);        
+        String result = instance.getFirstName();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetLastName() { // Can set and get last name within bean
+        System.out.println("LastName");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "Learmonth";
+        instance.setLastName(expResult);
+        String result = instance.getLastName();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetPassword1() {
+        System.out.println("Password1");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "pass1";
+        instance.setPassword1(expResult);
+        String result = instance.getPassword1();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetPassword2() {
+        System.out.println("Password2");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "pass2";
+        instance.setPassword2(expResult);
+        String result = instance.getPassword2();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetUsername() {
+        System.out.println("Username");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "Anders1";
+        instance.setUsername(expResult);
+        String result = instance.getUsername();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetAddressLineOne() {
+        System.out.println("AddressLineOne");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "123 Road Name";
+        instance.setAddressLineOne(expResult);
+        String result = instance.getAddressLineOne();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetTown() {
+        System.out.println("Town");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "Basingstoke";
+        instance.setTown(expResult);
+        String result = instance.getTown();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetCounty() {
+        System.out.println("County");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "Hants";
+        instance.setCounty(expResult);
+        String result = instance.getCounty();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetPostcode() {
+        System.out.println("Postcode");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "RG112AA";
+        instance.setPostcode(expResult);
+        String result = instance.getPostcode();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetEmail() {
+        System.out.println("Email");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "a@b.com";
+        instance.setEmail(expResult);
+        String result = instance.getEmail();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetPhone() {
+        System.out.println("Phone");
+        
+        RegisterBean instance = new RegisterBean();
+        
+        String expResult = "01234567890";
+        instance.setPhone(expResult); 
+        String result = instance.getPhone();
+        
+        assertEquals(expResult, result);
+    }    
 }

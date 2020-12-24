@@ -16,6 +16,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.inject.Inject;
 import manager.DbManager;
@@ -150,11 +152,10 @@ public class SellerBean implements Serializable
     
     public String deleteParcel(int parcelId) {
         
-        /*ParcelDTO parcel 
-                = (ParcelDTO)*/ SellerCommandFactory
-                        .createCommand(SellerCommandFactory.DELETE_PARCEL,
-                                parcelId)
-                        .execute();
+        SellerCommandFactory
+            .createCommand(SellerCommandFactory.DELETE_PARCEL,
+                    parcelId)
+            .execute();
 
         return "Seller_UI";
     }
@@ -481,9 +482,17 @@ public class SellerBean implements Serializable
     {
         return totalOrders;
     }
+    
+    public void setTotalOrders(int totalOrders) {
+        this.totalOrders = totalOrders;
+    }
 
     public OrderDTO getOrderDetails() {
         return orderDetails;
+    }
+    
+    public void setOrderDetails(OrderDTO orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
     public int getId() {

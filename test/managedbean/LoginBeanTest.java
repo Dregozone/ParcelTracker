@@ -1,144 +1,114 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package managedbean;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class LoginBeanTest {
     
     public LoginBeanTest() {
     }
 
-    /**
-     * Test of checkCredentials method, of class LoginBean.
-     */
-    @Test
-    public void testCheckCredentials() {
-        System.out.println("checkCredentials");
-        LoginBean instance = new LoginBean();
-        String expResult = "";
-        String result = instance.checkCredentials();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of userPage method, of class LoginBean.
-     */
     @Test
     public void testUserPage() {
         System.out.println("userPage");
+        
         LoginBean instance = new LoginBean();
-        String expResult = "";
+        
+        // Log in as seller
+        instance.setUsername("seller");
+        instance.setPassword("123");
+        
+        // Find calculated user page value
+        String expResult = "Seller_UI"; // Initial user "seller" has a known userPage of "Seller_UI"
         String result = instance.userPage();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of logout method, of class LoginBean.
-     */
     @Test
     public void testLogout() {
         System.out.println("logout");
+        
         LoginBean instance = new LoginBean();
+        
+        // Log in as seller
+        instance.setUsername("seller");
+        instance.setPassword("123");
+        
         String expResult = "";
-        String result = instance.logout();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of credentialsAreOK method, of class LoginBean.
-     */
-    @Test
-    public void testCredentialsAreOK() {
-        System.out.println("credentialsAreOK");
-        LoginBean instance = new LoginBean();
-        boolean expResult = false;
-        boolean result = instance.credentialsAreOK();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getId method, of class LoginBean.
-     */
-    @Test
-    public void testGetId() {
-        System.out.println("getId");
-        LoginBean instance = new LoginBean();
-        int expResult = 0;
-        int result = instance.getId();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getUsername method, of class LoginBean.
-     */
-    @Test
-    public void testGetUsername() {
-        System.out.println("getUsername");
-        LoginBean instance = new LoginBean();
-        String expResult = "";
+        
+        try {
+            instance.logout();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            //System.out.print("Caught the NullPointerException!!!");
+        }
+        
         String result = instance.getUsername();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getPassword method, of class LoginBean.
-     */
     @Test
-    public void testGetPassword() {
+    public void testCheckCredentialsAndFindIfCredentialsAreOKValid() { // Load values, check if valid against DB, then pull bool value from class
+        System.out.println("Credentials (valid)");
+        
+        LoginBean instance = new LoginBean();
+        
+        // Load credentials for checking
+        instance.setUsername("seller");
+        instance.setPassword("123");
+        
+        // Perform check of provided credentials
+        try {
+            instance.checkCredentials();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            //System.out.print("Caught the NullPointerException!!!");
+        }
+        
+        // Get valid/invalid credentials value as boolean from class
+        boolean result = instance.credentialsAreOK();
+        
+        assertTrue( result );
+    }
+
+    @Test
+    public void testSetAndGetId() {
+        System.out.println("getId");
+        
+        LoginBean instance = new LoginBean();
+        
+        int expResult = 0;
+        instance.setId(expResult);
+        int result = instance.getId();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetUsername() {
+        System.out.println("getUsername");
+        
+        LoginBean instance = new LoginBean();
+        
+        String expResult = "TestUser";
+        instance.setUsername(expResult);
+        String result = instance.getUsername();
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetAndGetPassword() {
         System.out.println("getPassword");
+        
         LoginBean instance = new LoginBean();
-        String expResult = "";
+        
+        String unhashedPassword = "pass";
+        instance.setPassword(unhashedPassword);
+        
+        String hashedPassword = "10/w7o2juYBrGMh32/KbveULW9jk2tejpyUAD+uC6PE="; // This is precalculated as the hash of "pass"
         String result = instance.getPassword();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertEquals(hashedPassword, result);
     }
-
-    /**
-     * Test of setUsername method, of class LoginBean.
-     */
-    @Test
-    public void testSetUsername() {
-        System.out.println("setUsername");
-        String username = "";
-        LoginBean instance = new LoginBean();
-        instance.setUsername(username);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setPassword method, of class LoginBean.
-     */
-    @Test
-    public void testSetPassword() {
-        System.out.println("setPassword");
-        String password = "";
-        LoginBean instance = new LoginBean();
-        instance.setPassword(password);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

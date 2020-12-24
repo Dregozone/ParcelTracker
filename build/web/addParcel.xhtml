@@ -20,10 +20,13 @@
                         <h:inputText value="#{sellerBean.type}" />
                         
                         <h:outputText value="Weight (g): " />
-                        <h:inputText value="#{sellerBean.weightGrams}" />
+                        <h:inputText value="#{sellerBean.weightGrams}" converterMessage="Please enter positive numbers only." />
                         
                         <h:outputText value="Seller ID: " />
-                        <h:inputText value="#{sellerBean.sellerId}" />
+                        <h:inputText value="#{sellerBean.sellerId}" converterMessage="Please enter a valid userID." validatorMessage="Please enter a valid userID">
+                            <f:convertNumber integerOnly="true" />
+                            <f:validateLongRange minimum="1" />
+                        </h:inputText>
 
                     </h:panelGrid>
                     <h:commandButton class="button" type="submit" value="Back" action="Seller_UI" /> &nbsp;&nbsp;

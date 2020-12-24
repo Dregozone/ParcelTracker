@@ -1,0 +1,14 @@
+Log in as Seller
+
+	LoginBean instance = new LoginBean();
+        
+        // Load credentials for checking
+        instance.setUsername("seller");
+        instance.setPassword("123");
+        
+        // Perform check of provided credentials
+        try {
+            instance.checkCredentials();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            System.out.print("Caught the NullPointerException!!!");
+        }

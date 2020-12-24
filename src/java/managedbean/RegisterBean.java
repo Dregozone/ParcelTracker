@@ -151,6 +151,7 @@ public class RegisterBean implements Serializable
         else
         {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registration failed checks: Please check values entered"));
+            
             return null;
         }
     }
