@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package manager;
 
 import dto.ParcelDTO;
@@ -10,18 +5,26 @@ import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class ParcelManagerTest {
     
     public ParcelManagerTest() {
     }
 
-    /**
-     * Test of createParcel method, of class ParcelManager.
-     */
+    @Test
+    public void testFindParcel() {
+        System.out.println("findParcel");
+        
+        int ParcelID = 1;
+        
+        ParcelManager instance = new ParcelManager();
+        
+        String expResult = "Item One";
+        ParcelDTO result = instance.findParcel(ParcelID);
+        
+        assertEquals( expResult, result.getName() );
+    }
+    
+    /*
     @Test
     public void testCreateParcel() {
         System.out.println("createParcel");
@@ -34,9 +37,6 @@ public class ParcelManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of editParcel method, of class ParcelManager.
-     */
     @Test
     public void testEditParcel() {
         System.out.println("editParcel");
@@ -49,9 +49,6 @@ public class ParcelManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of deleteParcel method, of class ParcelManager.
-     */
     @Test
     public void testDeleteParcel() {
         System.out.println("deleteParcel");
@@ -64,24 +61,6 @@ public class ParcelManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of findParcel method, of class ParcelManager.
-     */
-    @Test
-    public void testFindParcel() {
-        System.out.println("findParcel");
-        int ParcelID = 0;
-        ParcelManager instance = new ParcelManager();
-        ParcelDTO expResult = null;
-        ParcelDTO result = instance.findParcel(ParcelID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of viewAllParcels method, of class ParcelManager.
-     */
     @Test
     public void testViewAllParcels() {
         System.out.println("viewAllParcels");
@@ -92,5 +71,5 @@ public class ParcelManagerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+    */
 }

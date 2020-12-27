@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package manager;
 
 import dto.TransactionDTO;
@@ -10,18 +5,26 @@ import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class TransactionManagerTest {
     
     public TransactionManagerTest() {
     }
 
-    /**
-     * Test of addTransaction method, of class TransactionManager.
-     */
+    @Test
+    public void testFindTransaction() {
+        System.out.println("__ findTransaction");
+        
+        int TransactionID = 1;
+        
+        TransactionManager instance = new TransactionManager();
+        
+        String expResult = "Parcel collected";
+        TransactionDTO result = instance.findTransaction(TransactionID);
+        
+        assertEquals( expResult, result.getName() );
+    }
+    
+    /*
     @Test
     public void testAddTransaction() {
         System.out.println("addTransaction");
@@ -34,9 +37,6 @@ public class TransactionManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of removeTransaction method, of class TransactionManager.
-     */
     @Test
     public void testRemoveTransaction() {
         System.out.println("removeTransaction");
@@ -49,24 +49,6 @@ public class TransactionManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of findTransaction method, of class TransactionManager.
-     */
-    @Test
-    public void testFindTransaction() {
-        System.out.println("findTransaction");
-        int TransactionID = 0;
-        TransactionManager instance = new TransactionManager();
-        TransactionDTO expResult = null;
-        TransactionDTO result = instance.findTransaction(TransactionID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of viewOrderTransactions method, of class TransactionManager.
-     */
     @Test
     public void testViewOrderTransactions() {
         System.out.println("viewOrderTransactions");
@@ -78,5 +60,5 @@ public class TransactionManagerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+    */
 }

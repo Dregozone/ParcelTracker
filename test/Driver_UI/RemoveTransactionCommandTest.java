@@ -1,34 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Driver_UI;
 
+import dto.TransactionDTO;
+import dto.UserDTO;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class RemoveTransactionCommandTest {
     
     public RemoveTransactionCommandTest() {
     }
 
-    /**
-     * Test of execute method, of class RemoveTransactionCommand.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        RemoveTransactionCommand instance = null;
+        System.out.println("__ DriverRemoveTransactionCommand execute");
+        
+        UserDTO addedBy = new UserDTO(2, "a", "a", "a", "a", "1900-01-01", "1900-01-01", "a", "a", "a", "a", "a", "a", true, "Driver");
+        TransactionDTO transaction = new TransactionDTO(100, 2, "Picked up", addedBy, "1900-01-01");
+        
+        RemoveTransactionCommand instance = new RemoveTransactionCommand(transaction);
+        
         Object expResult = null;
         Object result = instance.execute();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }

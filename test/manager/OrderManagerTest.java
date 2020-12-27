@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package manager;
 
 import dto.MetricDTO;
@@ -12,18 +7,27 @@ import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class OrderManagerTest {
     
     public OrderManagerTest() {
     }
 
-    /**
-     * Test of createOrder method, of class OrderManager.
-     */
+    @Test
+    public void testFindOrder() {
+        System.out.println("findOrder");
+        
+        int OrderID = 0;
+        
+        OrderManager instance = new OrderManager();
+        
+        OrderDTO expResult = null;
+        
+        OrderDTO result = instance.findOrder(OrderID);
+        
+        assertEquals(expResult, result);
+    }
+    
+    /*
     @Test
     public void testCreateOrder() {
         System.out.println("createOrder");
@@ -36,9 +40,6 @@ public class OrderManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of editOrder method, of class OrderManager.
-     */
     @Test
     public void testEditOrder() {
         System.out.println("editOrder");
@@ -51,9 +52,6 @@ public class OrderManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of deleteOrder method, of class OrderManager.
-     */
     @Test
     public void testDeleteOrder() {
         System.out.println("deleteOrder");
@@ -66,24 +64,6 @@ public class OrderManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of findOrder method, of class OrderManager.
-     */
-    @Test
-    public void testFindOrder() {
-        System.out.println("findOrder");
-        int OrderID = 0;
-        OrderManager instance = new OrderManager();
-        OrderDTO expResult = null;
-        OrderDTO result = instance.findOrder(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of viewRecipientDeliveries method, of class OrderManager.
-     */
     @Test
     public void testViewRecipientOrders() {
         System.out.println("viewRecipientOrders");
@@ -96,9 +76,6 @@ public class OrderManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of viewDriverMetrics method, of class OrderManager.
-     */
     @Test
     public void testViewDriverMetrics() {
         System.out.println("viewDriverMetrics");
@@ -110,9 +87,6 @@ public class OrderManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of viewOrderParcels method, of class OrderManager.
-     */
     @Test
     public void testViewOrderParcels() {
         System.out.println("viewOrderParcels");
@@ -125,9 +99,6 @@ public class OrderManagerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of viewAllDeliveries method, of class OrderManager.
-     */
     @Test
     public void testViewAllOrders() {
         System.out.println("viewAllOrders");
@@ -138,5 +109,5 @@ public class OrderManagerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+    */
 }

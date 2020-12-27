@@ -71,7 +71,7 @@ public class SellerBean implements Serializable
         }
     }
     
-    private UserDTO findUser(int userID)
+    public UserDTO findUser(int userID)
     {
         userDetails
                 = (UserDTO) SellerCommandFactory

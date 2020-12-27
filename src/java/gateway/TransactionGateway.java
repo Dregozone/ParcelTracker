@@ -160,7 +160,7 @@ public class TransactionGateway
             String sqlStr = "" + 
                     "SELECT " +
                     "    T.id AS tid, T.name AS tn, T.DATEADDED AS td, " +
-                    "    U.id AS uid, U.FIRSTNAME AS uf, U.LASTNAME AS ul, U.USERNAME AS uu, U.HASHEDPASSWORD AS uh, U.DateAdded AS uda, U.DATEMODIFIED AS udm, U.ADDRESSLINEONE AS ua, U.TOWN AS ut, U.COUNTY AS uc, U.POSTCODE AS up, U.email AS ue, U.PHONE AS up, U.ISACTIVE AS ui, R.name AS ur, " +
+                    "    U.id AS uid, U.FIRSTNAME AS uf, U.LASTNAME AS ul, U.USERNAME AS uu, U.HASHEDPASSWORD AS uh, U.DateAdded AS uda, U.DATEMODIFIED AS udm, U.ADDRESSLINEONE AS ua, U.TOWN AS ut, U.COUNTY AS uc, U.POSTCODE AS upc, U.email AS ue, U.PHONE AS up, U.ISACTIVE AS ui, R.name AS ur, " +
                     "    O.id AS oid, O.dateadded AS oda, O.ISCOMPLETE AS oi, O.DATECOMPLETED AS odc, " +
                     "    Rec.id AS rid, Rec.FIRSTNAME AS rf, Rec.LASTNAME AS rl, Rec.USERNAME AS ru, Rec.HASHEDPASSWORD AS rh, Rec.DateAdded AS rda, Rec.DATEMODIFIED AS rdm, Rec.ADDRESSLINEONE AS ra, Rec.TOWN AS rt, Rec.COUNTY AS rc, Rec.POSTCODE AS rp, Rec.email AS re, Rec.PHONE AS rp, Rec.ISACTIVE AS ri, RRec.name AS rr, " +
                     "    Dri.id AS did, Dri.FIRSTNAME AS df, Dri.LASTNAME AS dl, Dri.USERNAME AS du, Dri.HASHEDPASSWORD AS dh, Dri.DateAdded AS dda, Dri.DATEMODIFIED AS ddm, Dri.ADDRESSLINEONE AS da, Dri.TOWN AS dt, Dri.COUNTY AS dc, Dri.POSTCODE AS dp, Dri.email AS de, Dri.PHONE AS dp, Dri.ISACTIVE AS di, RDri.name AS dr, " +
@@ -205,7 +205,8 @@ public class TransactionGateway
                         ),
                         */
                         rs.getString("tn"),
-                        new UserDTO(rs.getInt("uid"), rs.getString("ufn"), rs.getString("uln"), rs.getString("uu"), rs.getString("uhp"), rs.getString("uda"), rs.getString("udm"), rs.getString("ua"), rs.getString("ut"), rs.getString("uc"), rs.getString("up"), rs.getString("ue"), rs.getString("up"), rs.getBoolean("ui"), rs.getString("ur")),
+                        //new UserDTO(rs.getInt("uid"), rs.getString("ufn"), rs.getString("uln"), rs.getString("uu"), rs.getString("uhp"), rs.getString("uda"), rs.getString("udm"), rs.getString("ua"), rs.getString("ut"), rs.getString("uc"), rs.getString("up"), rs.getString("ue"), rs.getString("up"), rs.getBoolean("ui"), rs.getString("ur")),
+                        new UserDTO(rs.getInt("uid"), rs.getString("uf"), rs.getString("ul"), rs.getString("uu"), rs.getString("uh"), rs.getString("uda"), rs.getString("udm"), rs.getString("ua"), rs.getString("ut"), rs.getString("uc"), rs.getString("upc"), rs.getString("ue"), rs.getString("up"), rs.getBoolean("ui"), rs.getString("ur")),
                         rs.getString("td")
                 );
             }

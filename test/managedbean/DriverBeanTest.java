@@ -16,7 +16,7 @@ public class DriverBeanTest {
 
     @Test
     public void testFindUser() {
-        System.out.println("findUser");
+        System.out.println("__ findUser");
         
         int userID = 2;
         
@@ -30,7 +30,7 @@ public class DriverBeanTest {
 
     @Test
     public void testFindRoleByUser() {
-        System.out.println("findRoleByUser");
+        System.out.println("__ findRoleByUser");
         
         int userID = 2;
         
@@ -42,24 +42,70 @@ public class DriverBeanTest {
         assertEquals(expResult, result);
     }
 
-    @Test
-    public void testDeleteTransaction() {
-        System.out.println("deleteTransaction");
-        int transactionId = 0;
-        String role = "";
-        OrderDTO orderDetails = null;
-        TransactionDTO transaction = null;
+    @Test /* T27 */
+    public void testAddAndDeleteTransaction() {
+        System.out.println("T27 - addAndRemoveTransaction");
+        
         DriverBean instance = new DriverBean();
-        String expResult = "";
-        String result = instance.deleteTransaction(transactionId, role, orderDetails, transaction);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        SellerBean sellerInstance = new SellerBean();
+        LoginBean loginInstance = new LoginBean();
+        
+        // Login
+        loginInstance.setUsername("driver");
+        
+        // Prep order
+        int orderId = sellerInstance.getNextOrderId();
+        sellerInstance.setRecipientId(1);
+        sellerInstance.setSellerId(3);
+        
+        // Create order
+        sellerInstance.createOrder();
+        OrderDTO orderDetails = sellerInstance.getOrderDetails();
+        
+        // Add transaction
+        int currentNextTransactionId = instance.getNextTransactionId();
+        instance.addTransaction(orderId, "Picked up", 2);
+        TransactionDTO transaction = new TransactionDTO(currentNextTransactionId, orderId, "Picked up", sellerInstance.findUser(2), "");
+
+        // Perform checks actual against expected
+        boolean passed = true;
+        
+        if (
+            transaction.getId() != currentNextTransactionId ||
+            !transaction.getName().equalsIgnoreCase("Picked up") ||
+            transaction.getOrderId() != orderId
+        ) {
+            passed = false;
+        }
+        
+        //System.out.println( transaction.getId() + ", " + currentNextTransactionId );
+        //System.out.println( orderDetails );
+        //System.out.println( transaction );
+        
+        
+        /* *** Can not delete transaction because of injection requirement for manager *** */
+        // Perform deletion
+        //instance.deleteTransaction(transaction.getId(), "Driver", orderDetails, transaction);
+        
+        // Deletion checks
+        //ArrayList<TransactionDTO> transactions = sellerInstance.getTransactionByOrder(orderId);
+        
+        // Pass check
+        /*
+        if ( (transactions.size() > 0) ) { // No transactions should remain against this order
+            passed = false;
+        }
+        */
+        
+        // Tidy up
+        sellerInstance.deleteOrder(orderId);
+        
+        assertTrue(passed);
     }
 
     @Test
     public void testGetNextTransactionId() {
-        System.out.println("getNextTransactionId");
+        System.out.println("__ getNextTransactionId");
         
         DriverBean instance = new DriverBean();
         
@@ -69,34 +115,8 @@ public class DriverBeanTest {
     }
 
     @Test
-    public void testAddTransaction() {
-        System.out.println("addTransaction");
-        int orderId = 0;
-        String transaction = "";
-        int userId = 0;
-        DriverBean instance = new DriverBean();
-        String expResult = "";
-        String result = instance.addTransaction(orderId, transaction, userId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testGetTransactionByOrder() {
-        System.out.println("getTransactionByOrder");
-        int OrderID = 0;
-        DriverBean instance = new DriverBean();
-        ArrayList<TransactionDTO> expResult = null;
-        ArrayList<TransactionDTO> result = instance.getTransactionByOrder(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
     public void testGetNextOrderParcelsId() {
-        System.out.println("getNextOrderParcelsId");
+        System.out.println("__ getNextOrderParcelsId");
         
         DriverBean instance = new DriverBean();
         
@@ -107,7 +127,7 @@ public class DriverBeanTest {
 
     @Test
     public void testGetNextId() {
-        System.out.println("getNextId");
+        System.out.println("__ getNextId");
         
         DriverBean instance = new DriverBean();
         
@@ -133,71 +153,113 @@ public class DriverBeanTest {
 
     @Test
     public void testGetOrderParcelByOrder() {
-        System.out.println("getOrderParcelByOrder");
-        int OrderID = 0;
+        System.out.println("__ getOrderParcelByOrder");
+        
         DriverBean instance = new DriverBean();
-        ArrayList<ParcelDTO> expResult = null;
-        ArrayList<ParcelDTO> result = instance.getOrderParcelByOrder(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        SellerBean sellerInstance = new SellerBean();
+        
+        // Prep order
+        int orderId = sellerInstance.getNextOrderId();
+        sellerInstance.setRecipientId(1);
+        sellerInstance.setSellerId(3);
+        
+        // Create order
+        sellerInstance.createOrder();
+        
+        // Prep parcel
+        int parcelId = sellerInstance.getNextParcelId();
+        sellerInstance.setName("NewPackage");
+        sellerInstance.setType("NewType");
+        sellerInstance.setWeightGrams(50);
+        sellerInstance.setSellerId(3);
+        
+        // Create parcel
+        sellerInstance.createParcel();
+        
+        // Add parcel to order
+        sellerInstance.addParcelToOrder(orderId, parcelId, 2);
+        
+        // Find parcels against this order for checking
+        ArrayList<ParcelDTO> parcels = instance.getOrderParcelByOrder(orderId);
+        
+        // Check values, expected against actual
+        boolean passed = true;
+        
+        if (
+            parcels.size() != 1 || /* There should only be one parcel included */ 
+            !parcels.get(0).getName().equalsIgnoreCase("NewPackage") ||
+            !parcels.get(0).getType().equalsIgnoreCase("NewType") ||
+            parcels.get(0).getWeightGrams() != 50 ||
+            !parcels.get(0).getSeller().getUsername().equalsIgnoreCase("seller") /* Check some parcel details here... */
+        ) {
+            passed = false;
+        }
+        
+        // Tidy up
+        sellerInstance.deleteOrder(orderId);
+        
+        assertTrue( passed );
     }
 
     @Test
     public void testGetOrderSummaries() {
-        System.out.println("getOrderSummaries");
+        System.out.println("__ getOrderSummaries");
+        
         DriverBean instance = new DriverBean();
-        ArrayList<OrderDTO> expResult = null;
-        ArrayList<OrderDTO> result = instance.getOrderSummaries();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Find all orders
+        instance.getOrderSummaries();
+        
+        int totalOrders = instance.getTotalOrders();
+        
+        assertTrue(totalOrders > 0); // There is at least 1 valid order returned
     }
     
-    @Test /* THIS MUST BE TESTED HERE */
+    @Test 
     public void testViewOrderProgress() {
-        System.out.println("viewOrderProgress");
-        int orderID = 0;
-        String role = "";
+        System.out.println("__ viewOrderProgress");
+        
         DriverBean instance = new DriverBean();
-        String expResult = "";
-        String result = instance.viewOrderProgress(orderID, role);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        SellerBean sellerInstance = new SellerBean();
+        LoginBean loginInstance = new LoginBean();
+        
+        // Login
+        loginInstance.setUsername("driver");
+        
+        // Prep order
+        int orderId = sellerInstance.getNextOrderId();
+        sellerInstance.setRecipientId(1);
+        sellerInstance.setSellerId(3);
+        
+        // Create order
+        sellerInstance.createOrder();
+        OrderDTO orderDetails = sellerInstance.getOrderDetails();
+        
+        // Add transaction
+        int currentNextTransactionId = instance.getNextTransactionId();
+        instance.addTransaction(orderId, "Picked up", 2);
+        TransactionDTO transaction = new TransactionDTO(currentNextTransactionId, orderId, "Picked up", sellerInstance.findUser(2), "");
 
-    @Test
-    public void testGetOrderDetails() {
-        System.out.println("getOrderDetails");
-        DriverBean instance = new DriverBean();
-        OrderDTO expResult = null;
-        OrderDTO result = instance.getOrderDetails();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testGetUserDetails() {
-        System.out.println("getUserDetails");
-        DriverBean instance = new DriverBean();
-        UserDTO expResult = null;
-        UserDTO result = instance.getUserDetails();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testGetTransactionDetails() {
-        System.out.println("getTransactionDetails");
-        DriverBean instance = new DriverBean();
-        TransactionDTO expResult = null;
-        TransactionDTO result = instance.getTransactionDetails();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Perform checks actual against expected
+        boolean passed = true;
+        
+        if (
+            transaction.getId() != currentNextTransactionId ||
+            !transaction.getName().equalsIgnoreCase("Picked up") ||
+            transaction.getOrderId() != orderId
+        ) {
+            passed = false;
+        }
+        
+        // Find all transations and progress against this order
+        ArrayList<TransactionDTO> transactions = instance.getTransactionByOrder(orderId);
+        
+        // Find if there are transactions to be displayed (there should be 1)
+        if ( transactions.size() != 1 ) {
+            passed = false;
+        }
+        
+        assertTrue(passed);
     }
 
     @Test
@@ -215,7 +277,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetRecipientId() {
-        System.out.println("RecipientId");
+        System.out.println("__ RecipientId");
         
         DriverBean instance = new DriverBean();
         
@@ -228,7 +290,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetSellerId() {
-        System.out.println("SellerId");
+        System.out.println("__ SellerId");
         
         DriverBean instance = new DriverBean();
         
@@ -241,7 +303,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetParcelDetails() {
-        System.out.println("ParcelDetails");
+        System.out.println("__ ParcelDetails");
         
         DriverBean instance = new DriverBean();
         
@@ -254,7 +316,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetTotalParcels() {
-        System.out.println("TotalParcels");
+        System.out.println("__ TotalParcels");
         
         DriverBean instance = new DriverBean();
         
@@ -267,7 +329,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetTotalTransactions() {
-        System.out.println("TotalTransactions");
+        System.out.println("__ TotalTransactions");
         DriverBean instance = new DriverBean();
         
         int expResult = 5;
@@ -278,7 +340,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetRole() {
-        System.out.println("Role");
+        System.out.println("__ Role");
         
         DriverBean instance = new DriverBean();
         

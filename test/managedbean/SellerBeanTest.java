@@ -243,7 +243,7 @@ public class SellerBeanTest {
     /* Test:T6 */ ////
     @Test
     public void testEditParcelInvalidSellerId() {
-        System.out.println("T6 - eidtParcel (invalid sellerID)");
+        System.out.println("T6 - editParcel (invalid sellerID)");
         
         SellerBean instance = new SellerBean();
         
@@ -271,7 +271,7 @@ public class SellerBeanTest {
         try {
             instance.editParcel(currentNextParcelId);
         } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
-            System.out.print("Caught the NullPointerException!!!");
+            //System.out.print("Caught the NullPointerException!!!");
             
             return; // Its good that this failed, due to bad input
         }

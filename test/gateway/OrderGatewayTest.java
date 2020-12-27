@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gateway;
 
 import dto.MetricDTO;
@@ -13,32 +8,62 @@ import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class OrderGatewayTest {
     
     public OrderGatewayTest() {
     }
 
-    /**
-     * Test of getDate method, of class OrderGateway.
-     */
     @Test
     public void testGetDate() {
-        System.out.println("getDate");
+        System.out.println("__ getDate");
+        
         OrderGateway instance = new OrderGateway();
-        Date expResult = null;
+        
+        java.util.Date now = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+        
+        Date expResult = sqlDate;
         Date result = instance.getDate();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testFind() {
+        System.out.println("find");
+
+        int OrderID = 1;
+
+        OrderGateway instance = new OrderGateway();
+        
+        OrderDTO result = instance.find(OrderID);
+        
+        boolean passed = true;
+        
+        if (
+            !result.getRecipient().getUsername().equalsIgnoreCase("recipient") ||
+            !result.getSeller().getUsername().equalsIgnoreCase("recipient")
+        ) {
+            passed = false;
+        }
+        
+        assertTrue(passed);
+    }
+    
+    @Test
+    public void testFindAllOrders() {
+        System.out.println("findAllOrders");
+        
+        OrderGateway instance = new OrderGateway();
+        
+        ArrayList<OrderDTO> result = instance.findAllOrders();
+        
+        int countOrders = result.size();
+        
+        assertTrue(countOrders > 0); // There is at least 1 valid order
     }
 
-    /**
-     * Test of insertOrder method, of class OrderGateway.
-     */
+    /*
     @Test
     public void testInsertOrder() {
         System.out.println("insertOrder");
@@ -51,9 +76,6 @@ public class OrderGatewayTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of updateOrder method, of class OrderGateway.
-     */
     @Test
     public void testUpdateOrder() {
         System.out.println("updateOrder");
@@ -66,9 +88,6 @@ public class OrderGatewayTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of deleteOrder method, of class OrderGateway.
-     */
     @Test
     public void testDeleteOrder() {
         System.out.println("deleteOrder");
@@ -81,24 +100,6 @@ public class OrderGatewayTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of find method, of class OrderGateway.
-     */
-    @Test
-    public void testFind() {
-        System.out.println("find");
-        int OrderID = 0;
-        OrderGateway instance = new OrderGateway();
-        OrderDTO expResult = null;
-        OrderDTO result = instance.find(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of findRecipientDeliveries method, of class OrderGateway.
-     */
     @Test
     public void testFindRecipientOrders() {
         System.out.println("findRecipientOrders");
@@ -111,9 +112,6 @@ public class OrderGatewayTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of findDriverMetrics method, of class OrderGateway.
-     */
     @Test
     public void testFindDriverMetrics() {
         System.out.println("findDriverMetrics");
@@ -125,23 +123,6 @@ public class OrderGatewayTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of findAllDeliveries method, of class OrderGateway.
-     */
-    @Test
-    public void testFindAllOrders() {
-        System.out.println("findAllOrders");
-        OrderGateway instance = new OrderGateway();
-        ArrayList<OrderDTO> expResult = null;
-        ArrayList<OrderDTO> result = instance.findAllOrders();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of findOrderParcels method, of class OrderGateway.
-     */
     @Test
     public void testFindOrderParcels() {
         System.out.println("findOrderParcels");
@@ -153,5 +134,5 @@ public class OrderGatewayTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+    */
 }
