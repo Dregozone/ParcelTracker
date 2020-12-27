@@ -19,7 +19,6 @@ public class EditParcelCommand implements SellerCommand
     {
         if (parcelMgr.editParcel(parcelDTO))
         {
-            System.out.println("\n\nsellerUI.EditParcelCommand.execute()\n\n");
             
             return parcelMgr
                     .findParcel( parcelDTO.getId() );

@@ -3,16 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/manager/OrderManagerIT.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/Guest_UI/ViewUserRoleCommandTest.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/dto/ParcelDTOTest.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/Guest_UI/GuestCommandTest.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/gateway/OrderGatewayTest.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/managedbean/SellerBeanTest.java</file>
             <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/LoginBean.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/manager/OrderManagerTest.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/Guest_UI/ViewUserByUsernameCommandTest.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/Guest_UI/RegisterCommandTest.java</file>
-            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/Guest_UI/GuestCommandFactoryTest.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/test/managedbean/RegisterBeanTest.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/RegisterBean.java</file>
+            <file>file:/C:/Users/aclea/OneDrive/Documents/NetBeansProjects/ParcelTracker/src/java/managedbean/SellerBean.java</file>
         </group>
     </open-files>
 </project-private>

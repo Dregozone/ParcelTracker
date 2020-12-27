@@ -17,7 +17,7 @@ public class SellerBeanTest {
 
     @Test
     public void testFindRoleByUser() {
-        System.out.println("findRoleByUser");
+        System.out.println("__ findRoleByUser");
         
         int userID = 3;
         
@@ -29,36 +29,50 @@ public class SellerBeanTest {
         assertEquals(expResult, result);
     }
 
-    @Test
+    @Test /* T24 */
     public void testViewAllUsers() {
-        System.out.println("viewAllUsers");
+        System.out.println("T24 - viewAllUsers");
         
         SellerBean instance = new SellerBean();
         
-        ArrayList<UserDTO> expResult = null;
-        ArrayList<UserDTO> result = instance.viewAllUsers();
+        // Find all users
+        instance.viewAllUsers();
         
-        assertEquals(expResult, result);
+        int usersFound = instance.getTotalUsers();
+        
+        assertTrue(usersFound > 0); // At least one valid user was found
     }
 
-    @Test
+    @Test /* T28 */
     public void testDeleteParcel() {
-        System.out.println("deleteParcel");
-        
-        int parcelId = 0;
+        System.out.println("T28 - deleteParcel");
         
         SellerBean instance = new SellerBean();
         
-        String expResult = "";
-        String result = instance.deleteParcel(parcelId);
+        // Load values for create parcel
+        instance.setName("Book");
+        instance.setType("Large");
+        instance.setWeightGrams(50);
+        instance.setSellerId(3);
         
-        assertEquals(expResult, result);
+        // Create parcel
+        int parcelId = instance.getNextParcelId();
+        instance.createParcel();
+        
+        // Delete the newly created parcel
+        instance.deleteParcel(parcelId);
+        
+        // Search DB for parcel by its ID
+        ParcelDTO result = instance.findParcelById(parcelId);
+        
+        // Check it no longer exists
+        assertNull(result);
     }
 
     /* Test:T7 */
     @Test
     public void testCreateEditParcelCreateEditOrderAddParcelToOrderValid() {
-        System.out.println("createParcel (valid), editParcel (valid), createOrder (valid), editOrder (valid), addParcelToOrder");
+        System.out.println("T7 - createParcel (valid), editParcel (valid), createOrder (valid), editOrder (valid), addParcelToOrder");
         
         SellerBean instance = new SellerBean();
         
@@ -127,178 +141,394 @@ public class SellerBeanTest {
     /* Test:T3 */
     @Test
     public void testCreateParcelInvalidWeight() {
-        System.out.println("createParcel (invalid weight)");
+        System.out.println("T3 - createParcel (invalid weight)");
+        
+        SellerBean instance = new SellerBean();
+        
+        instance.setName("Booke");
+        instance.setType("Largee");
+        instance.setWeightGrams(-1);
+        instance.setSellerId(3);
+        
+        int currentNextParcelId = instance.getNextParcelId();
+        
+        // Run
+        try {
+            instance.createParcel();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            //System.out.print("Caught the NullPointerException!!!");
+        }
+        
+        int newNextParcelId = instance.getNextParcelId();
+        
+        assertTrue(newNextParcelId == currentNextParcelId); // No new parcel record was added and nextParcelId pointer remains the same as before the insert request
+    }
+    
+    /* Test:T4 */
+    @Test
+    public void testCreateParcelInvalidSellerId() {
+        System.out.println("T4 - createParcel (invalid sellerID)");
         
         SellerBean instance = new SellerBean();
         
         instance.setName("Book");
         instance.setType("Large");
-        instance.setWeightGrams(0); /* "heavy" */ ////
-        instance.setSellerId(3);
+        instance.setWeightGrams(0);
+        instance.setSellerId(-1);
         
         int currentNextParcelId = instance.getNextParcelId();
-        instance.createParcel();
+        
+        // Run
+        try {
+            instance.createParcel();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            //System.out.print("Caught the NullPointerException!!!");
+        }
+        
         int newNextParcelId = instance.getNextParcelId();
         
         assertTrue(newNextParcelId == currentNextParcelId); // No new parcel record was added and nextParcelId pointer remains the same as before the insert request
     }
-
+    
+    /* Test:T5 */ ////
     @Test
-    public void testViewAllParcels() {
-        System.out.println("viewAllParcels");
+    public void testEditParcelInvalidWeight() {
+        System.out.println("T5 - editParcel (invalid weight)");
         
         SellerBean instance = new SellerBean();
         
-        ArrayList<ParcelDTO> expResult = null;
-        ArrayList<ParcelDTO> result = instance.viewAllParcels();
+        instance.setName("Booke");
+        instance.setType("Largee");
+        instance.setWeightGrams(0);
+        instance.setSellerId(3);
         
-        assertEquals(expResult, result);
+        int currentNextParcelId = instance.getNextParcelId();
+        
+        // Run
+        try {
+            instance.createParcel();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            System.out.print("Caught the NullPointerException!!!");
+        }
+        
+        // Edit parcel with invalid values
+        instance.setName("Book");
+        instance.setType("Large");
+        instance.setWeightGrams(-1); // BAD INPUT
+        instance.setSellerId(3);
+        
+        // Run
+        try {
+            instance.editParcel(currentNextParcelId);
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            System.out.print("Caught the NullPointerException!!!");
+        }
+        
+        
+        // Find parcel details
+        ParcelDTO result = instance.findParcelById(currentNextParcelId);
+        
+        // Perform weight checks
+        boolean passed = true;
+        
+        if (
+            result.getWeightGrams() < 0 /* This is an illegal input */
+        ) {
+            passed = false;
+        }
+        
+        assertTrue(passed);
+    }
+    
+    /* Test:T6 */ ////
+    @Test
+    public void testEditParcelInvalidSellerId() {
+        System.out.println("T6 - eidtParcel (invalid sellerID)");
+        
+        SellerBean instance = new SellerBean();
+        
+        instance.setName("Book");
+        instance.setType("Large");
+        instance.setWeightGrams(0);
+        instance.setSellerId(3);
+        
+        int currentNextParcelId = instance.getNextParcelId();
+        
+        // Run
+        try {
+            instance.createParcel();
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            //System.out.print("Caught the NullPointerException!!!");
+        }
+        
+        // Edit parcel with invalid values
+        instance.setName("Book");
+        instance.setType("Large");
+        instance.setWeightGrams(0);
+        instance.setSellerId(-1); // BAD INPUT
+        
+        // Run
+        try {
+            instance.editParcel(currentNextParcelId);
+        } catch (NullPointerException e) { // Catch when the returned value is NULL, this is expected on invalid input
+            System.out.print("Caught the NullPointerException!!!");
+            
+            return; // Its good that this failed, due to bad input
+        }
+        
+        fail("Failed to catch bad input");
     }
 
-    @Test
-    public void testFindParcelById() {
-        System.out.println("findParcelById");
-        
-        int parcelId = 0;
+    @Test /* T34 */
+    public void testViewAllParcels() {
+        System.out.println("T34 - viewAllParcels");
         
         SellerBean instance = new SellerBean();
         
-        ParcelDTO expResult = null;
+        // Find all parcels
+        instance.viewAllParcels();
+        
+        int parcelsFound = instance.getTotalParcels();
+        
+        assertTrue(parcelsFound > 0); // At least one valid parcel was found
+    }
+
+    @Test /* T35 */
+    public void testFindParcelById() {
+        System.out.println("T35 - findParcelById");
+        
+        int parcelId = 1; // We know the expected values of this parcel already so can test against it
+        
+        SellerBean instance = new SellerBean();
+        
         ParcelDTO result = instance.findParcelById(parcelId);
         
-        assertEquals(expResult, result);
+        boolean passed = true;
+        
+        if ( 
+            !result.getName().equalsIgnoreCase("Item One") ||
+            !result.getType().equalsIgnoreCase("Large Box") 
+        ) {
+            passed = false;
+        }
+        
+        assertTrue(passed);
     }
 
-    @Test
-    public void testFetchParcelDetails() {
-        System.out.println("fetchParcelDetails");
-        
-        int parcelID = 0;
-        
-        SellerBean instance = new SellerBean();
-        
-        String expResult = "";
-        String result = instance.fetchParcelDetails(parcelID);
-        
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testGetTransactionByOrder() {
-        System.out.println("getTransactionByOrder");
-        
-        int OrderID = 0;
-        
-        SellerBean instance = new SellerBean();
-        
-        ArrayList<TransactionDTO> expResult = null;
-        ArrayList<TransactionDTO> result = instance.getTransactionByOrder(OrderID);
-        
-        assertEquals(expResult, result);
-    }
-
-    @Test
+    @Test /* T31 */
     public void testViewDriverMetrics() {
-        System.out.println("viewDriverMetrics");
+        System.out.println("T31 - viewDriverMetrics");
         
         SellerBean instance = new SellerBean();
+        RegisterBean registerInstance = new RegisterBean();
+        LoginBean loginInstance = new LoginBean();
+        DriverBean driverInstance = new DriverBean();
         
-        ArrayList<MetricDTO> expResult = null;
-        ArrayList<MetricDTO> result = instance.viewDriverMetrics();
+        // Create users
+        int bobId = registerInstance.getNextId();
+        // Load values to use with register
+        registerInstance.setFirstName("Test");
+        registerInstance.setLastName("Test");
+        registerInstance.setUsername("Bob");
+        registerInstance.setPassword1("pass");
+        registerInstance.setPassword2("pass");
+        registerInstance.setAddressLineOne("123 Road Name");
+        registerInstance.setTown("Basingstoke");
+        registerInstance.setCounty("Hants");
+        registerInstance.setPostcode("RG112AA");
+        registerInstance.setEmail("a@b.com");
+        registerInstance.setPhone("01234567890");
+        registerInstance.register();
         
-        assertEquals(expResult, result);
+        
+        int daveId = registerInstance.getNextId();
+        // Load values to use with register
+        registerInstance.setFirstName("Test");
+        registerInstance.setLastName("Test");
+        registerInstance.setUsername("Dave");
+        registerInstance.setPassword1("pass");
+        registerInstance.setPassword2("pass");
+        registerInstance.setAddressLineOne("123 Road Name");
+        registerInstance.setTown("Basingstoke");
+        registerInstance.setCounty("Hants");
+        registerInstance.setPostcode("RG112AA");
+        registerInstance.setEmail("a@b.com");
+        registerInstance.setPhone("01234567890");
+        registerInstance.register();
+        
+        int jimmyId = registerInstance.getNextId();
+        // Load values to use with register
+        registerInstance.setFirstName("Test");
+        registerInstance.setLastName("Test");
+        registerInstance.setUsername("Jimmy");
+        registerInstance.setPassword1("pass");
+        registerInstance.setPassword2("pass");
+        registerInstance.setAddressLineOne("123 Road Name");
+        registerInstance.setTown("Basingstoke");
+        registerInstance.setCounty("Hants");
+        registerInstance.setPostcode("RG112AA");
+        registerInstance.setEmail("a@b.com");
+        registerInstance.setPhone("01234567890");
+        registerInstance.register();
+        
+        int sallyId = registerInstance.getNextId();
+        // Load values to use with register
+        registerInstance.setFirstName("Test");
+        registerInstance.setLastName("Test");
+        registerInstance.setUsername("Sally");
+        registerInstance.setPassword1("pass");
+        registerInstance.setPassword2("pass");
+        registerInstance.setAddressLineOne("123 Road Name");
+        registerInstance.setTown("Basingstoke");
+        registerInstance.setCounty("Hants");
+        registerInstance.setPostcode("RG112AA");
+        registerInstance.setEmail("a@b.com");
+        registerInstance.setPhone("01234567890");
+        registerInstance.register();
+        
+        
+        // Load values for create order
+        instance.setRecipientId(jimmyId);
+        instance.setSellerId(sallyId);
+        
+        
+        // Create orders
+        int order1Id = instance.getNextOrderId();
+        instance.createOrder();
+        
+        int order2Id = instance.getNextOrderId();
+        instance.createOrder();
+        
+        int order3Id = instance.getNextOrderId();
+        instance.createOrder();
+        
+        
+        // Add transactions to orders
+        driverInstance.addTransaction(order1Id, "Picked up", bobId);
+        driverInstance.addTransaction(order1Id, "Dropped off", bobId);
+        
+        driverInstance.addTransaction(order2Id, "Picked up", bobId);
+        driverInstance.addTransaction(order2Id, "Dropped off", bobId);
+        
+        driverInstance.addTransaction(order3Id, "Picked up", daveId);
+        driverInstance.addTransaction(order3Id, "Dropped off", daveId);
+        
+        // Find driver metrics
+        ArrayList<MetricDTO> results = instance.viewDriverMetrics();
+        
+        boolean passed = true;
+        
+        // Check values against expected
+        if (
+                !results.get(0).getName().equalsIgnoreCase("Bob") || 
+                results.get(0).getDeliveryCount() != 2 ||
+                results.get(0).getDaysToComplete() != 0 ||
+                
+                !results.get(1).getName().equalsIgnoreCase("Dave") || 
+                results.get(1).getDeliveryCount() != 1 ||
+                results.get(1).getDaysToComplete() != 0 
+        ) {
+            passed = false;
+        }
+        
+        // Clean up, delete these orders and transactionsto avoid cluttering the system
+        instance.deleteOrder(order1Id);
+        instance.deleteOrder(order2Id);
+        instance.deleteOrder(order3Id);
+        
+        // Check if this has returned the correctly calculated values
+        assertTrue(passed);
     }
 
-    /**
-     * Test of getNextOrderParcelsId method, of class SellerBean.
-     */
     @Test
     public void testGetNextOrderParcelsId() {
-        System.out.println("getNextOrderParcelsId");
+        System.out.println("__ getNextOrderParcelsId");
+        
         SellerBean instance = new SellerBean();
-        int expResult = 0;
+        
         int result = instance.getNextOrderParcelsId();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertTrue(result > 0); // A positive next parcel ID is returned
     }
 
-    /**
-     * Test of getDate method, of class SellerBean.
-     */
     @Test
     public void testGetDate() {
-        System.out.println("getDate");
+        System.out.println("__ getDate");
+
         SellerBean instance = new SellerBean();
-        Date expResult = null;
+        
+        java.util.Date now = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+        
+        Date expResult = sqlDate;
         Date result = instance.getDate();
+
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of deleteOrder method, of class SellerBean.
-     */
-    @Test
+    @Test /* T29 */
     public void testDeleteOrder() {
-        System.out.println("deleteOrder");
-        int orderId = 0;
+        System.out.println("T29 - deleteOrder");
+        
         SellerBean instance = new SellerBean();
-        String expResult = "";
-        String result = instance.deleteOrder(orderId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Load values for create order
+        instance.setRecipientId(1);
+        instance.setSellerId(3);
+        
+        // Create order
+        int orderId = instance.getNextOrderId();
+        instance.createOrder();
+        
+        // Delete the newly created order
+        instance.deleteOrder(orderId);
+        
+        // Search DB for order by its ID
+        OrderDTO result = instance.findOrderById(orderId);
+        
+        // Check it no longer exists
+        assertNull(result);
     }
 
-    /**
-     * Test of viewAllOrders method, of class SellerBean.
-     */
-    @Test
+    @Test /* T32 */
     public void testViewAllOrders() {
-        System.out.println("viewAllOrders");
+        System.out.println("T32 - viewAllOrders");
+        
         SellerBean instance = new SellerBean();
-        ArrayList<OrderDTO> expResult = null;
-        ArrayList<OrderDTO> result = instance.viewAllOrders();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Find all orders
+        instance.viewAllOrders();
+        
+        int ordersFound = instance.getTotalOrders();
+        
+        assertTrue(ordersFound > 0); // At least one valid order was found
     }
 
-    /**
-     * Test of fetchOrderDetails method, of class SellerBean.
-     */
-    @Test
-    public void testFetchOrderDetails() {
-        System.out.println("fetchOrderDetails");
-        int orderID = 0;
-        String role = "";
-        SellerBean instance = new SellerBean();
-        String expResult = "";
-        String result = instance.fetchOrderDetails(orderID, role);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
+    @Test /* T33 */
     public void testFindOrderById() {
-        System.out.println("findOrderById");
+        System.out.println("T33 - findOrderById");
         
-        int orderID = 0;
+        int orderId = 1; // We know the expected values of this order already so can test against it
         
         SellerBean instance = new SellerBean();
-        OrderDTO expResult = null;
         
-        OrderDTO result = instance.findOrderById(orderID);
+        OrderDTO result = instance.findOrderById(orderId);
         
-        assertEquals(expResult, result);
+        boolean passed = true;
+        
+        if ( 
+            !result.getRecipient().getUsername().equalsIgnoreCase("recipient") ||
+            !result.getSeller().getUsername().equalsIgnoreCase("recipient") 
+        ) {
+            passed = false;
+        }
+        
+        assertTrue(passed);
     }
 
     @Test
     public void testSetAndGetTotalOrders() {
-        System.out.println("TotalOrders");
+        System.out.println("__ TotalOrders");
         
         SellerBean instance = new SellerBean();
         
@@ -310,21 +540,8 @@ public class SellerBeanTest {
     }
 
     @Test
-    public void testSetAndGetOrderDetails() {
-        System.out.println("OrderDetails");
-        
-        SellerBean instance = new SellerBean();
-        
-        //OrderDTO expResult = new OrderDTO(0, recipient, driver, seller, dateAdded, true, dateCompleted);////
-        //instance.setOrderDetails(expResult);
-        //OrderDTO result = instance.getOrderDetails();
-        
-        //assertEquals(expResult, result);
-    }
-
-    @Test
     public void testSetAndGetId() {
-        System.out.println("Id");
+        System.out.println("__ Id");
         
         SellerBean instance = new SellerBean();
         
@@ -337,7 +554,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetRecipientId() {
-        System.out.println("RecipientId");
+        System.out.println("__ RecipientId");
         
         SellerBean instance = new SellerBean();
         
@@ -350,7 +567,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetRole() {
-        System.out.println("Role");
+        System.out.println("__ Role");
         
         SellerBean instance = new SellerBean();
         
@@ -363,7 +580,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetSellerId() {
-        System.out.println("SellerId");
+        System.out.println("__ SellerId");
         
         SellerBean instance = new SellerBean();
         
@@ -376,7 +593,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetParcelDetails() {
-        System.out.println("ParcelDetails");
+        System.out.println("__ ParcelDetails");
         
         SellerBean instance = new SellerBean();
         
@@ -389,7 +606,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetTotalUsers() {
-        System.out.println("TotalUsers");
+        System.out.println("__ TotalUsers");
         
         SellerBean instance = new SellerBean();
         
@@ -402,7 +619,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetTotalParcels() {
-        System.out.println("TotalParcels");
+        System.out.println("__ TotalParcels");
         
         SellerBean instance = new SellerBean();
         
@@ -415,7 +632,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetTotalTransactions() {
-        System.out.println("TotalTransactions");
+        System.out.println("__ TotalTransactions");
         
         SellerBean instance = new SellerBean();
         
@@ -428,7 +645,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetName() {
-        System.out.println("Name");
+        System.out.println("__ Name");
         
         SellerBean instance = new SellerBean();
         
@@ -441,7 +658,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetType() {
-        System.out.println("Type");
+        System.out.println("__ Type");
         
         SellerBean instance = new SellerBean();
         
@@ -454,7 +671,7 @@ public class SellerBeanTest {
 
     @Test
     public void testGetWeightGrams() {
-        System.out.println("WeightGrams");
+        System.out.println("__ WeightGrams");
         
         SellerBean instance = new SellerBean();
         
@@ -467,7 +684,7 @@ public class SellerBeanTest {
 
     @Test
     public void testSetAndGetQuantity() {
-        System.out.println("Quantity");
+        System.out.println("__ Quantity");
         
         SellerBean instance = new SellerBean();
         
@@ -478,9 +695,9 @@ public class SellerBeanTest {
         assertEquals(expResult, result);
     }
 
-    @Test
+    @Test /* T25 ???? */
     public void testSetAndGetUserDetails() {
-        System.out.println("UserDetails");
+        System.out.println("T25???? - UserDetails");
         
         SellerBean instance = new SellerBean();
         

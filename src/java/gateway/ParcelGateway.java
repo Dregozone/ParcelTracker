@@ -77,8 +77,6 @@ public class ParcelGateway
             
             stmt.executeUpdate();
             
-            System.out.println("\n\n" + parcel.getId() + "\n\n");
-            
             stmt.close();
             conn.close();
         }

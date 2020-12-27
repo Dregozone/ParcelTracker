@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.inject.Inject;
@@ -46,6 +48,28 @@ public class SellerBean implements Serializable
     
     @Inject
     LoginBean loginBean;
+    
+    /** Validate that this user ID exists on the system to avoid a null pointer exception
+     * 
+     * @param context
+     * @param component
+     * @param value 
+     */
+    public void validateUserId (FacesContext context,
+                            UIComponent component,
+                            Object value)
+    {
+        int userId = (int)value;
+        
+        if ( userId < 0 ) { // All userIDs are positive
+            
+            ((UIInput)component).setValid(false);
+            
+            context.addMessage(
+                component.getClientId(),
+                new FacesMessage("Please enter a valid user ID"));
+        }
+    }
     
     private UserDTO findUser(int userID)
     {
@@ -128,7 +152,9 @@ public class SellerBean implements Serializable
     
     public String editParcel(int parcelId) {
         
-        ParcelDTO edittedParcel = new ParcelDTO(
+        if ( weightGrams >= 0 ) { /* This is legal*/
+            
+            ParcelDTO edittedParcel = new ParcelDTO(
                                     parcelId,
                                     name,
                                     type,
@@ -137,15 +163,16 @@ public class SellerBean implements Serializable
                                     "", /* will be now() on insert */
                                     "",
                                     0  /* quantityInOrder placeholder */
-        );
+            );
 
-        ParcelDTO newParcel 
-                = (ParcelDTO) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.EDIT_PARCEL,
-                                edittedParcel)
-                        .execute();
+            ParcelDTO newParcel 
+                    = (ParcelDTO) SellerCommandFactory
+                            .createCommand(SellerCommandFactory.EDIT_PARCEL,
+                                    edittedParcel)
+                            .execute();
 
-        parcelDetails = newParcel;
+            parcelDetails = newParcel;
+        }
         
         return "Seller_UI";
     }
@@ -161,26 +188,31 @@ public class SellerBean implements Serializable
     }
     
     public String createParcel()
-    {
-        ParcelDTO newParcel = new ParcelDTO(
-                                    getNextParcelId(),
-                                    name,
-                                    type,
-                                    weightGrams,
-                                    findUser(sellerId),
-                                    "", /* will be now() on insert */
-                                    "",
-                                    0  /* quantityInOrder placeholder */
-        );
+    {        
+        if ( weightGrams < 0 || sellerId < 0 ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Please check values entered."));
+        } else {
+        
+            ParcelDTO newParcel = new ParcelDTO(
+                                        getNextParcelId(),
+                                        name,
+                                        type,
+                                        weightGrams,
+                                        findUser(sellerId),
+                                        "", /* will be now() on insert */
+                                        "",
+                                        0  /* quantityInOrder placeholder */
+            );
 
-        ParcelDTO insertedParcel 
-                = (ParcelDTO) SellerCommandFactory
-                        .createCommand(SellerCommandFactory.CREATE_PARCEL,
-                                newParcel)
-                        .execute();
+            ParcelDTO insertedParcel 
+                    = (ParcelDTO) SellerCommandFactory
+                            .createCommand(SellerCommandFactory.CREATE_PARCEL,
+                                    newParcel)
+                            .execute();
 
-        parcelDetails = insertedParcel;
-
+            parcelDetails = insertedParcel;
+        }
+            
         return "Seller_UI";
     }
 
@@ -579,7 +611,7 @@ public class SellerBean implements Serializable
         return weightGrams;
     }
 
-    public void setWeightGrams(int weightGrams) {
+    public void setWeightGrams(int weightGrams) {        
         this.weightGrams = weightGrams;
     }
 

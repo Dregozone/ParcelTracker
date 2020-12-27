@@ -132,13 +132,25 @@ public class RecipientBean implements Serializable
     {
         return totalOrders;
     }
+    
+    public void setTotalOrders(int totalOrders) {
+        this.totalOrders = totalOrders;
+    }
 
     public OrderDTO getOrderDetails() {
         return orderDetails;
     }
+    
+    public void setOrderDetails(OrderDTO orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
     public UserDTO getUserDetails() {
         return userDetails;
+    }
+    
+    public void setUserDetails(UserDTO userDetails) {
+        this.userDetails = userDetails;
     }
 
     public int getId() {

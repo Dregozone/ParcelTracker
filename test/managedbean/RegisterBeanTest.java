@@ -11,7 +11,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testGetDate() { // getDate is now()
-        System.out.println("getDate");
+        System.out.println("__ getDate");
         
         RegisterBean instance = new RegisterBean();
         
@@ -26,7 +26,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testGetNextId() { // getNextId returns a positive integer
-        System.out.println("getNextId");
+        System.out.println("__ getNextId");
         
         RegisterBean instance = new RegisterBean();
         int expResult = 0;
@@ -38,9 +38,10 @@ public class RegisterBeanTest {
     /* Test:T1 */
     @Test
     public void testRegisterValid() { // Check that the next user ID increases after calling register()
-        System.out.println("register (valid values)");
+        System.out.println("T1 - register (valid values)");
         
         RegisterBean instance = new RegisterBean();
+        LoginBean loginInstance = new LoginBean();
         
         // Find next user ID value
         int CurrentNextUserID = instance.getNextId();
@@ -68,6 +69,10 @@ public class RegisterBeanTest {
         // Find new next user ID value
         int NewNextUserID = instance.getNextId();
         
+        // Log in as new user
+        loginInstance.setUsername("seller");
+        loginInstance.setPassword("123");
+        
         //assertNotNull(returned);
         assertTrue(NewNextUserID > CurrentNextUserID);
     }
@@ -75,7 +80,7 @@ public class RegisterBeanTest {
     /* Test:T2 */
     @Test
     public void testRegisterInvalid() { // Check that the next user ID increases after calling register()
-        System.out.println("register (invalid values)");
+        System.out.println("T2 - register (invalid values)");
         
         RegisterBean instance = new RegisterBean();
         
@@ -111,7 +116,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetFirstName() { // Can set and get first name within bean
-        System.out.println("FirstName");
+        System.out.println("__ FirstName");
         
         RegisterBean instance = new RegisterBean();
         
@@ -124,7 +129,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetLastName() { // Can set and get last name within bean
-        System.out.println("LastName");
+        System.out.println("__ LastName");
         
         RegisterBean instance = new RegisterBean();
         
@@ -137,7 +142,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetPassword1() {
-        System.out.println("Password1");
+        System.out.println("__ Password1");
         
         RegisterBean instance = new RegisterBean();
         
@@ -150,7 +155,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetPassword2() {
-        System.out.println("Password2");
+        System.out.println("__ Password2");
         
         RegisterBean instance = new RegisterBean();
         
@@ -163,7 +168,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetUsername() {
-        System.out.println("Username");
+        System.out.println("__ Username");
         
         RegisterBean instance = new RegisterBean();
         
@@ -176,7 +181,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetAddressLineOne() {
-        System.out.println("AddressLineOne");
+        System.out.println("__ AddressLineOne");
         
         RegisterBean instance = new RegisterBean();
         
@@ -189,7 +194,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetTown() {
-        System.out.println("Town");
+        System.out.println("__ Town");
         
         RegisterBean instance = new RegisterBean();
         
@@ -202,7 +207,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetCounty() {
-        System.out.println("County");
+        System.out.println("__ County");
         
         RegisterBean instance = new RegisterBean();
         
@@ -215,7 +220,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetPostcode() {
-        System.out.println("Postcode");
+        System.out.println("__ Postcode");
         
         RegisterBean instance = new RegisterBean();
         
@@ -228,7 +233,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetEmail() {
-        System.out.println("Email");
+        System.out.println("__ Email");
         
         RegisterBean instance = new RegisterBean();
         
@@ -241,7 +246,7 @@ public class RegisterBeanTest {
 
     @Test
     public void testSetAndGetPhone() {
-        System.out.println("Phone");
+        System.out.println("__ Phone");
         
         RegisterBean instance = new RegisterBean();
         
