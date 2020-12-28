@@ -1,34 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Seller_UI;
 
+import dto.UserDTO;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class ViewAllUsersCommandTest {
     
     public ViewAllUsersCommandTest() {
     }
 
-    /**
-     * Test of execute method, of class ViewAllUsersCommand.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
+        System.out.println("__ SellerViewAllUsers execute");
+
         ViewAllUsersCommand instance = new ViewAllUsersCommand();
-        Object expResult = null;
+
         Object result = instance.execute();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+        
+        int countUsers = ((ArrayList<UserDTO>)result).size();
+
+        assertTrue( countUsers > 0 ); // There is at least 1 valid user
+    }    
 }

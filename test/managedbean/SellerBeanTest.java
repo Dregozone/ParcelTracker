@@ -297,7 +297,7 @@ public class SellerBeanTest {
     public void testFindParcelById() {
         System.out.println("T35 - findParcelById");
         
-        int parcelId = 1; // We know the expected values of this parcel already so can test against it
+        int parcelId = 2; // We know the expected values of this parcel already so can test against it
         
         SellerBean instance = new SellerBean();
         
@@ -306,8 +306,8 @@ public class SellerBeanTest {
         boolean passed = true;
         
         if ( 
-            !result.getName().equalsIgnoreCase("Item One") ||
-            !result.getType().equalsIgnoreCase("Large Box") 
+            !result.getName().equalsIgnoreCase("Item Two") ||
+            !result.getType().equalsIgnoreCase("Small Letter") 
         ) {
             passed = false;
         }
@@ -508,7 +508,7 @@ public class SellerBeanTest {
     public void testFindOrderById() {
         System.out.println("T33 - findOrderById");
         
-        int orderId = 1; // We know the expected values of this order already so can test against it
+        int orderId = 2; // We know the expected values of this order already so can test against it
         
         SellerBean instance = new SellerBean();
         
@@ -517,7 +517,7 @@ public class SellerBeanTest {
         boolean passed = true;
         
         if ( 
-            !result.getRecipient().getUsername().equalsIgnoreCase("recipient") ||
+            !result.getRecipient().getUsername().equalsIgnoreCase("driver") ||
             !result.getSeller().getUsername().equalsIgnoreCase("recipient") 
         ) {
             passed = false;

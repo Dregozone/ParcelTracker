@@ -10,7 +10,7 @@ public class OrderDTOTest {
 
     @Test
     public void testGetValues() {
-        System.out.println("OrderDTO: Get values");
+        System.out.println("__ OrderDTO: Get values");
         
         UserDTO recipient = new UserDTO(1, "Anders", "Learmonth", "NewUser", "123", "1900-01-01", "1900-01-01", "a", "a", "a", "a", "a@b.com", "", true, "Recipient");
         UserDTO driver = recipient;

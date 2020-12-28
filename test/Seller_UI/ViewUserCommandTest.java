@@ -1,34 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Seller_UI;
 
+import dto.UserDTO;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class ViewUserCommandTest {
     
     public ViewUserCommandTest() {
     }
 
-    /**
-     * Test of execute method, of class ViewUserCommand.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        ViewUserCommand instance = null;
-        Object expResult = null;
+        System.out.println("__ Seller ViewUserCommand execute");
+        
+        int userId = 1;
+        
+        ViewUserCommand instance = new ViewUserCommand(userId);
+        
+        String expResult = "recipient";
         Object result = instance.execute();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+        
+        UserDTO user = (UserDTO)result;
+        
+        assertEquals( expResult, user.getUsername() );
+    }    
 }

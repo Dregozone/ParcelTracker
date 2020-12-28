@@ -1,34 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Seller_UI;
 
+import dto.TransactionDTO;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class ViewOrderTransactionsCommandTest {
     
     public ViewOrderTransactionsCommandTest() {
     }
 
-    /**
-     * Test of execute method, of class ViewOrderTransactionsCommand.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        ViewOrderTransactionsCommand instance = null;
-        Object expResult = null;
-        Object result = instance.execute();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+        System.out.println("__ SellerViewOrderTransactionsCommand execute");
+        
+        int orderId = 1;
+        
+        ViewOrderTransactionsCommand instance = new ViewOrderTransactionsCommand(orderId);
+        
+        Object expResult = "Parcel collected";
+        Object results = instance.execute();
+        
+        ArrayList<TransactionDTO> transactions = (ArrayList<TransactionDTO>)results;
+        
+        TransactionDTO transaction = (TransactionDTO)( transactions.get(0) );
+        
+        assertEquals( expResult, transaction.getName() );
+    }    
 }

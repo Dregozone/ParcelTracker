@@ -115,6 +115,8 @@ insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, d
     values (1, 1, 4, 1, '2020-01-03', false, null);
 insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, dateCompleted)
     values (2, 2, 4, 1, '2020-01-03', false, null);
+insert into Orders(id, recipientID, driverID, sellerID, dateAdded, isComplete, dateCompleted)
+    values (3, 2, 4, 1, '2020-01-03', true, '2020-01-05');
 
 insert into Transactions(id, orderID, name, addedBy, dateAdded)
     values (1, 1, 'Parcel collected', 1, '2020-03-03');
@@ -125,6 +127,8 @@ insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModif
     values (1, 1, 'Item One', 'Large Box', 95, '2020-02-01', '2020-02-01');
 insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModified)
     values (2, 1, 'Item Two', 'Small Letter', 10, '2020-02-01', '2020-02-01');
+insert into Parcels (id, sellerID, name, type, weightGrams, dateAdded, dateModified)
+    values (3, 1, 'Item Three', 'Smaller Letter', 10, '2020-02-01', '2020-02-01');
 
 insert into OrderParcels(id, orderID, parcelID, quantity, dateAdded)
     values(1, 1, 1, 2, '2020-03-10');

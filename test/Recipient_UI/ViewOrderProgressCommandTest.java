@@ -3,19 +3,21 @@ package Recipient_UI;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ViewRecipientDeliveriesCommandTest {
+public class ViewOrderProgressCommandTest {
     
-    public ViewRecipientDeliveriesCommandTest() {
+    public ViewOrderProgressCommandTest() {
     }
 
     @Test
     public void testExecute() {
-        System.out.println("__ RecipientViewRecipientDeliveries execute");
+        System.out.println("__ RecipientViewDeliveryProgress execute");
         
-        ViewRecipientOrdersCommand instance = null;
+        ViewOrderProgressCommand instance = null;
         
         Object expResult = null;
         Object result = instance.execute();
+        
+        System.out.println( result );
         
         assertEquals(expResult, result);
     }

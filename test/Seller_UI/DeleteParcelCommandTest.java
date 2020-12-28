@@ -1,34 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Seller_UI;
 
+import dto.ParcelDTO;
+import dto.UserDTO;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class DeleteParcelCommandTest {
     
     public DeleteParcelCommandTest() {
     }
 
-    /**
-     * Test of execute method, of class DeleteParcelCommand.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        DeleteParcelCommand instance = null;
+        System.out.println("__ SellerDeleteParcelCommand execute");
+        
+        // Prep temp parcel to be created for deletion
+        int parcelId = 300;
+        UserDTO seller = new UserDTO(3, "a", "a", "seller", "a", "1900-01-01", "1900-01-01", "a", "a", "a", "a", "a", "a", true, "Seller");
+        ParcelDTO parcel = new ParcelDTO(parcelId, "name", "type", 15, seller, "1900-01-01", "1900-01-01", 1);
+        CreateParcelCommand createInstance = new CreateParcelCommand(parcel);
+        
+        // Create temp parcel
+        createInstance.execute();
+        
+        // Delete the parcel
+        DeleteParcelCommand instance = new DeleteParcelCommand(parcelId);
+        
         Object expResult = null;
         Object result = instance.execute();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }

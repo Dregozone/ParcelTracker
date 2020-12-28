@@ -1,34 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Seller_UI;
 
+import dto.MetricDTO;
+import java.util.ArrayList;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class ViewDriverMetricsCommandTest {
     
     public ViewDriverMetricsCommandTest() {
     }
 
-    /**
-     * Test of execute method, of class ViewDriverMetricsCommand.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
+        System.out.println("__ SellerViewDriverMetrics execute");
+
         ViewDriverMetricsCommand instance = new ViewDriverMetricsCommand();
-        Object expResult = null;
-        Object result = instance.execute();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        Object results = instance.execute();
+
+        ArrayList<MetricDTO> metrics = (ArrayList<MetricDTO>)results;
+        
+        MetricDTO metric = metrics.get(0);
+        
+        /*
+        System.out.println( metric.getName() );
+        System.out.println( metric.getDaysToComplete() );
+        System.out.println( metric.getDeliveryCount() );
+        */
+        
+        boolean passed = true;
+        
+        if (
+            !metric.getName().equalsIgnoreCase("None") ||
+            metric.getDaysToComplete() != 2 /*||*/
+            /* metric.getDeliveryCount() != 3 */ // Omit this count as it could change over time if wanting to test later
+        ) {
+            passed = false;
+        }
+        
+        assertTrue(passed);
     }
-    
 }

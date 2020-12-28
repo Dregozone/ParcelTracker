@@ -30,11 +30,11 @@ public class ParcelGatewayTest {
     public void testFind() {
         System.out.println("find");
         
-        int ParcelID = 1;
+        int ParcelID = 2;
         
         ParcelGateway instance = new ParcelGateway();
         
-        String expResult = "Item One";
+        String expResult = "Item Two";
         ParcelDTO result = instance.find(ParcelID);
         
         assertEquals( expResult, result.getName() );

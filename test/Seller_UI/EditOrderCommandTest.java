@@ -1,34 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Seller_UI;
 
+import dto.OrderDTO;
+import dto.UserDTO;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class EditOrderCommandTest {
     
     public EditOrderCommandTest() {
     }
 
-    /**
-     * Test of execute method, of class EditOrderCommand.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        EditOrderCommand instance = null;
-        Object expResult = null;
+        System.out.println("__ SellerEditOrderCommand execute");
+
+        UserDTO seller = new UserDTO(4, "a", "a", "user", "a", "2020-01-03", "1900-01-01", "a", "a", "a", "a", "a", "a", true, "Seller");
+        UserDTO recipient = seller;
+        UserDTO driver = seller;
+        OrderDTO order = new OrderDTO(1, recipient, driver, seller, "1900-01-01", true, "1900-01-01");
+        
+        EditOrderCommand instance = new EditOrderCommand(order);
+
+        String expResult = "2020-01-03";
         Object result = instance.execute();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+
+        OrderDTO orderDetails = (OrderDTO)result;
+        
+        assertEquals( expResult, orderDetails.getDateAdded());
+    }   
 }

@@ -32,7 +32,7 @@ public class OrderGatewayTest {
     public void testFind() {
         System.out.println("find");
 
-        int OrderID = 1;
+        int OrderID = 2;
 
         OrderGateway instance = new OrderGateway();
         
@@ -41,7 +41,7 @@ public class OrderGatewayTest {
         boolean passed = true;
         
         if (
-            !result.getRecipient().getUsername().equalsIgnoreCase("recipient") ||
+            !result.getRecipient().getUsername().equalsIgnoreCase("driver") ||
             !result.getSeller().getUsername().equalsIgnoreCase("recipient")
         ) {
             passed = false;

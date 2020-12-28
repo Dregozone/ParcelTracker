@@ -14,11 +14,11 @@ public class ParcelManagerTest {
     public void testFindParcel() {
         System.out.println("findParcel");
         
-        int ParcelID = 1;
+        int ParcelID = 2;
         
         ParcelManager instance = new ParcelManager();
         
-        String expResult = "Item One";
+        String expResult = "Item Two";
         ParcelDTO result = instance.findParcel(ParcelID);
         
         assertEquals( expResult, result.getName() );
