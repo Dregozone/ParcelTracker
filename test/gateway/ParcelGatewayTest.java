@@ -13,7 +13,7 @@ public class ParcelGatewayTest {
 
     @Test
     public void testGetDate() {
-        System.out.println("getDate");
+        System.out.println("__ getDate");
 
         ParcelGateway instance = new ParcelGateway();
         
@@ -28,7 +28,7 @@ public class ParcelGatewayTest {
 
     @Test
     public void testFind() {
-        System.out.println("find");
+        System.out.println("__ findParcel");
         
         int ParcelID = 2;
         
@@ -42,7 +42,7 @@ public class ParcelGatewayTest {
 
     @Test
     public void testFindAllParcels() {
-        System.out.println("findAllParcels");
+        System.out.println("__ findAllParcels");
         
         ParcelGateway instance = new ParcelGateway();
         
@@ -52,54 +52,4 @@ public class ParcelGatewayTest {
         
         assertTrue( countParcels > 0 ); // There is at least 1 valid parcel
     }
-    
-    /*
-    @Test
-    public void testInsertParcel() {
-        System.out.println("insertParcel");
-        ParcelDTO parcel = null;
-        ParcelGateway instance = new ParcelGateway();
-        boolean expResult = false;
-        boolean result = instance.insertParcel(parcel);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testUpdateParcel() {
-        System.out.println("updateParcel");
-        ParcelDTO parcel = null;
-        ParcelGateway instance = new ParcelGateway();
-        boolean expResult = false;
-        boolean result = instance.updateParcel(parcel);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testDeleteParcel() {
-        System.out.println("deleteParcel");
-        int parcelId = 0;
-        ParcelGateway instance = new ParcelGateway();
-        boolean expResult = false;
-        boolean result = instance.deleteParcel(parcelId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testFindOrderParcels() {
-        System.out.println("findOrderParcels");
-        int OrderID = 0;
-        ParcelGateway instance = new ParcelGateway();
-        ArrayList<ParcelDTO> expResult = null;
-        ArrayList<ParcelDTO> result = instance.findOrderParcels(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    */
 }

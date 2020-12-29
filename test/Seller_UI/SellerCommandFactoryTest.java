@@ -12,7 +12,7 @@ public class SellerCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int() {
-        System.out.println("__ createCommand");
+        System.out.println("__ SellerCommandFactoryCreateCommand");
         
         int commandType = 0;
         
@@ -24,7 +24,7 @@ public class SellerCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int_int() {
-        System.out.println("__ createCommand");
+        System.out.println("__ Seller createCommand");
         
         int commandType = 0;
         int id = 0;

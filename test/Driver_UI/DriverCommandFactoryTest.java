@@ -11,7 +11,7 @@ public class DriverCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int() {
-        System.out.println("__ Driver createCommand");
+        System.out.println("__ DriverCommandFactoryCreateCommand");
         
         int commandType = 0;
         

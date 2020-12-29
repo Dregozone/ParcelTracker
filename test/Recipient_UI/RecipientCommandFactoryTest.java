@@ -10,7 +10,7 @@ public class RecipientCommandFactoryTest {
 
     @Test
     public void testCreateCommand() {
-        System.out.println("__ createCommand");
+        System.out.println("__ RecipientCommandFactoryCreateCommand");
         
         int commandType = 0;
         int id = 0;

@@ -28,8 +28,8 @@ public class CreateOrderCommandTest {
 
         OrderDTO orderDetails = (OrderDTO)result;
         
-        System.out.println( orderDetails.getDriver().getId() );
+        String username = orderDetails.getDriver().getUsername();
         
-        assertEquals(expResult, result);
+        assertEquals(expResult, username);
     }    
 }

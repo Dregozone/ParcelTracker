@@ -10,7 +10,7 @@ public class LoginBeanTest {
 
     @Test
     public void testUserPage() {
-        System.out.println("userPage");
+        System.out.println("__ userPage");
         
         LoginBean instance = new LoginBean();
         
@@ -27,7 +27,7 @@ public class LoginBeanTest {
 
     @Test
     public void testLogout() {
-        System.out.println("logout");
+        System.out.println("__ logout");
         
         LoginBean instance = new LoginBean();
         
@@ -50,7 +50,7 @@ public class LoginBeanTest {
 
     @Test
     public void testCheckCredentialsAndFindIfCredentialsAreOKValid() { // Load values, check if valid against DB, then pull bool value from class
-        System.out.println("Credentials (valid)");
+        System.out.println("__ Credentials (valid)");
         
         LoginBean instance = new LoginBean();
         
@@ -73,7 +73,7 @@ public class LoginBeanTest {
 
     @Test
     public void testSetAndGetId() {
-        System.out.println("getId");
+        System.out.println("__ Id");
         
         LoginBean instance = new LoginBean();
         
@@ -86,7 +86,7 @@ public class LoginBeanTest {
 
     @Test
     public void testSetAndGetUsername() {
-        System.out.println("getUsername");
+        System.out.println("__ Username");
         
         LoginBean instance = new LoginBean();
         
@@ -99,7 +99,7 @@ public class LoginBeanTest {
 
     @Test
     public void testSetAndGetPassword() {
-        System.out.println("getPassword");
+        System.out.println("__ Password");
         
         LoginBean instance = new LoginBean();
         

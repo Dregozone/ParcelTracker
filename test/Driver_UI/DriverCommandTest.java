@@ -10,7 +10,7 @@ public class DriverCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ Driver execute");
+        System.out.println("__ DriverCommand execute");
         
         DriverCommand instance = new DriverCommandImpl();
         

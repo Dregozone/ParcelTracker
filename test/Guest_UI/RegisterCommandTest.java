@@ -1,34 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Guest_UI;
 
+import dto.UserDTO;
+import managedbean.RegisterBean;
+import managedbean.SellerBean;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aclea
- */
 public class RegisterCommandTest {
     
     public RegisterCommandTest() {
     }
 
-    /**
-     * Test of execute method, of class RegisterCommand.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        RegisterCommand instance = null;
-        Object expResult = null;
-        Object result = instance.execute();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+        System.out.println("__ RecipientRegisterCommand execute");
+
+        RegisterBean registerInstance = new RegisterBean();
+        
+        int currentNextUserId = registerInstance.getNextId();
+        
+        UserDTO userDetails = new UserDTO(currentNextUserId, "a", "a", "TestUser", "123", "a", "a", "a", "a", "a", "a", "a", "a", true, "Recipient");        
+        
+        // Perform registration
+        RegisterCommand instance = new RegisterCommand(userDetails);
+        instance.execute();
+
+        // Find new next user Id
+        int newNextUserId = registerInstance.getNextId();
+        
+        assertTrue( newNextUserId > currentNextUserId ); // Confirms that a new user was registered
+    }    
 }

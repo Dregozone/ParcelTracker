@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-DBBSKG7" name="Seller_UI.ViewAllUsersCommandTest" skipped="0" tests="1" time="0.163" timestamp="2020-12-28T01:10:49">
+<testsuite errors="0" failures="0" hostname="DESKTOP-DBBSKG7" name="Seller_UI.ViewAllUsersCommandTest" skipped="0" tests="1" time="0.159" timestamp="2020-12-29T01:28:30">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="GB" />
@@ -63,7 +63,7 @@
     <property name="libs.spring-webmvc5.0.javadoc" value="" />
     <property name="libs.spring-framework500.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-aop-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-aspects-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-beans-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-indexer-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-support-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-core-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-expression-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-instrument-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jcl-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jdbc-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jms-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-messaging-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-orm-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-oxm-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-test-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-tx-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-web-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-webflux-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-webmvc-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-websocket-5.2.2.RELEASE.jar" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Seller_UI.ViewAllUsersCommandTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\aclea\OneDrive\Documents\NetBeansProjects\ParcelTracker\build\test\results\TEST-Seller_UI.ViewAllUsersCommandTest.xml crashfile=C:\Users\aclea\OneDrive\Documents\NetBeansProjects\ParcelTracker\build\junitvmwatcher2965315479738224792.properties propsfile=C:\Users\aclea\OneDrive\Documents\NetBeansProjects\ParcelTracker\build\junit5912022088796371462.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Seller_UI.ViewAllUsersCommandTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\aclea\OneDrive\Documents\NetBeansProjects\ParcelTracker\build\test\results\TEST-Seller_UI.ViewAllUsersCommandTest.xml crashfile=C:\Users\aclea\OneDrive\Documents\NetBeansProjects\ParcelTracker\build\junitvmwatcher5034448982258706921.properties propsfile=C:\Users\aclea\OneDrive\Documents\NetBeansProjects\ParcelTracker\build\junit4641199923889568036.properties" />
     <property name="build.classes.dir" value="build/web/WEB-INF/classes" />
     <property name="ap.supported.internal" value="true" />
     <property name="libs.javaee-api-8.0.maven-pom" value="" />
@@ -236,7 +236,6 @@
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
     <property name="do.display.browser.debug" value="true" />
     <property name="netbeans.user" value="C:\Users\aclea\AppData\Roaming\NetBeans\12.0" />
-    <property name="tests.failed" value="true" />
     <property name="javadoc.additionalparam" value="" />
     <property name="java.io.tmpdir" value="C:\Users\aclea\AppData\Local\Temp\" />
     <property name="java.vendor.url" value="http://java.oracle.com/" />
@@ -301,7 +300,7 @@
     <property name="libs.eclipselinkmodelgen.javadoc" value="" />
     <property name="libs.metro.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-api-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-extra-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-extra-api-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-rt-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-tools-javadoc.jar" />
     <property name="libs.struts.maven-pom" value="" />
-    <property name="jnidispatch.path" value="C:\Users\aclea\AppData\Local\Temp\jna-92637862\jna7204207809517696411.dll" />
+    <property name="jnidispatch.path" value="C:\Users\aclea\AppData\Local\Temp\jna-92637862\jna6216420641988975506.dll" />
     <property name="netbeans.home+have.tests" value="true" />
     <property name="libs.testng.maven-pom" value="" />
     <property name="libs.jaxb.src" value="" />
@@ -422,7 +421,7 @@
     <property name="war.ear.name" value="ParcelTracker.war" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="Seller_UI.ViewAllUsersCommandTest" name="testExecute" time="0.12" />
+  <testcase classname="Seller_UI.ViewAllUsersCommandTest" name="testExecute" time="0.109" />
   <system-out><![CDATA[__ SellerViewAllUsers execute
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -1,7 +1,6 @@
 package manager;
 
 import dto.UserDTO;
-import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -51,29 +50,4 @@ public class UserManagerTest {
         
         assertEquals(expResult, result);
     }
-    
-    /*
-    @Test
-    public void testViewAllUsers() {
-        System.out.println("viewAllUsers");
-        UserManager instance = new UserManager();
-        ArrayList<UserDTO> expResult = null;
-        ArrayList<UserDTO> result = instance.viewAllUsers();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testCreateUser() {
-        System.out.println("createUser");
-        UserDTO user = null;
-        UserManager instance = new UserManager();
-        boolean expResult = false;
-        boolean result = instance.createUser(user);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    */
 }
