@@ -353,7 +353,7 @@ public class OrderGateway
                     "                JOIN USERS U ON O.DRIVERID = U.ID " +
                     "            GROUP BY U.USERNAME " +
                     "        ) OrderCounts ON U.USERNAME = OrderCounts.username " +
-                    "    WHERE O.DATECOMPLETED IS NOT NULL " +
+                    "    WHERE O.DATECOMPLETED IS NOT NULL AND U.Username <> 'None' " +
                     ") AS A1 " +
                     "GROUP BY A1.username " + 
             "");

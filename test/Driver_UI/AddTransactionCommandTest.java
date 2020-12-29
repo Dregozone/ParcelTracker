@@ -13,7 +13,7 @@ public class AddTransactionCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ DriverAddTransactionCommand execute");
+        System.out.println("___ DriverAddTransactionCommand execute");
         
         DriverBean driverInstance = new DriverBean();
         int nextTransactionId = driverInstance.getNextTransactionId();

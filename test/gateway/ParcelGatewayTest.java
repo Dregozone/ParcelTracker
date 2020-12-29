@@ -13,7 +13,7 @@ public class ParcelGatewayTest {
 
     @Test
     public void testGetDate() {
-        System.out.println("__ getDate");
+        System.out.println("___ getDate");
 
         ParcelGateway instance = new ParcelGateway();
         
@@ -28,7 +28,7 @@ public class ParcelGatewayTest {
 
     @Test
     public void testFind() {
-        System.out.println("__ findParcel");
+        System.out.println("___ findParcel");
         
         int ParcelID = 2;
         
@@ -42,7 +42,7 @@ public class ParcelGatewayTest {
 
     @Test
     public void testFindAllParcels() {
-        System.out.println("__ findAllParcels");
+        System.out.println("___ findAllParcels");
         
         ParcelGateway instance = new ParcelGateway();
         

@@ -12,7 +12,7 @@ public class EditOrderCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerEditOrderCommand execute");
+        System.out.println("___ SellerEditOrderCommand execute");
 
         UserDTO seller = new UserDTO(4, "a", "a", "user", "a", "2020-01-03", "1900-01-01", "a", "a", "a", "a", "a", "a", true, "Seller");
         UserDTO recipient = seller;

@@ -11,7 +11,7 @@ public class ViewParcelCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerViewParcelCommand execute");
+        System.out.println("___ SellerViewParcelCommand execute");
         
         int parcelId = 2;
         

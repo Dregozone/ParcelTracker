@@ -11,7 +11,7 @@ public class ViewUserCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ Seller ViewUserCommand execute");
+        System.out.println("___ Seller ViewUserCommand execute");
         
         int userId = 1;
         

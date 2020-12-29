@@ -10,7 +10,7 @@ public class MetricDTOTest {
 
     @Test
     public void testGetValues() {
-        System.out.println("__ MetricDTO: Get values");
+        System.out.println("___ MetricDTO: Get values");
         
         MetricDTO instance = new MetricDTO("Anders", 2, 3);
         

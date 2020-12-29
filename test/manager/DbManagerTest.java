@@ -11,7 +11,7 @@ public class DbManagerTest {
 
     @Test
     public void testGetConnection() throws Exception {
-        System.out.println("__ getConnection");
+        System.out.println("___ getConnection");
         
         String expResult = "org.apache.derby.client.net.NetConnection";
         Connection result = DbManager.getConnection();

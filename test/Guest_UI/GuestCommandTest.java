@@ -10,7 +10,7 @@ public class GuestCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ GuestCommand execute");
+        System.out.println("___ GuestCommand execute");
         
         GuestCommand instance = new GuestCommandImpl();
         

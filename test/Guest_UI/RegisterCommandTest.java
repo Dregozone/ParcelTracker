@@ -13,7 +13,7 @@ public class RegisterCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ RecipientRegisterCommand execute");
+        System.out.println("___ RecipientRegisterCommand execute");
 
         RegisterBean registerInstance = new RegisterBean();
         

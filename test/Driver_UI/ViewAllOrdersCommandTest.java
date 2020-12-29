@@ -12,7 +12,7 @@ public class ViewAllOrdersCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ DriverViewAllOrdersCommand execute");
+        System.out.println("___ DriverViewAllOrdersCommand execute");
         
         ViewAllOrdersCommand instance = new ViewAllOrdersCommand();
         

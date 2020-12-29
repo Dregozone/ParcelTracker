@@ -12,7 +12,7 @@ public class DeleteParcelCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerDeleteParcelCommand execute");
+        System.out.println("___ SellerDeleteParcelCommand execute");
         
         // Prep temp parcel to be created for deletion
         int parcelId = 300;

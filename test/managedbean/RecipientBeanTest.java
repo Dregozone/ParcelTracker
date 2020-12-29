@@ -16,7 +16,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testFindRoleByUser() {
-        System.out.println("__ findRoleByUser");
+        System.out.println("___ findRoleByUser");
         
         int userID = 1;
         
@@ -30,7 +30,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testViewOrderTransactions() {
-        System.out.println("__ viewOrderTransactions");
+        System.out.println("___ viewOrderTransactions");
         
         RecipientBean instance = new RecipientBean();
         SellerBean sellerInstance = new SellerBean();
@@ -76,7 +76,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testGetDate() {
-        System.out.println("__ getDate");
+        System.out.println("___ getDate");
 
         RecipientBean instance = new RecipientBean();
         
@@ -91,7 +91,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testViewOrderParcels() {
-        System.out.println("__ viewOrderParcels");
+        System.out.println("___ viewOrderParcels");
         
         RecipientBean instance = new RecipientBean();
         SellerBean sellerInstance = new SellerBean();
@@ -143,6 +143,37 @@ public class RecipientBeanTest {
         assertTrue(passed);
     }
 
+    @Test /* T19 */
+    public void testViewRecipientOrdersNoOrders() {
+        System.out.println("T19 - viewRecipientOrdersNoOrders");
+        
+        RecipientBean instance = new RecipientBean();
+        RegisterBean registerInstance = new RegisterBean();
+        SellerBean sellerInstance = new SellerBean();
+        
+        // Create new recipient
+        int newRecipientId = registerInstance.getNextId();
+        // Load values to use with register
+        registerInstance.setFirstName("Test");
+        registerInstance.setLastName("Test");
+        registerInstance.setUsername("RecipientWithNoOrders");
+        registerInstance.setPassword1("pass");
+        registerInstance.setPassword2("pass");
+        registerInstance.setAddressLineOne("123 Road Name");
+        registerInstance.setTown("Basingstoke");
+        registerInstance.setCounty("Hants");
+        registerInstance.setPostcode("RG112AA");
+        registerInstance.setEmail("a@b.com");
+        registerInstance.setPhone("01234567890");
+        registerInstance.register();
+        
+        // View recipientOrders to find list of all valid orders (expecting 0)
+        ArrayList<OrderDTO> result = instance.viewRecipientOrders(newRecipientId);
+        int countOrders = result.size();
+        
+        assertTrue( countOrders == 0 );
+    }
+    
     @Test /* T20 */
     public void testViewRecipientOrders() {
         System.out.println("T20 - viewRecipientOrders");
@@ -180,11 +211,14 @@ public class RecipientBeanTest {
         
         // View recipientOrders to find list of all valid orders
         ArrayList<OrderDTO> result = instance.viewRecipientOrders(newRecipientId);
+        int countOrders = result.size();
         
         // Perform checks to see exp matches actual results
         boolean passed = true;
         
         if ( 
+            countOrders < 1 || /* Recipient has an order total greater than 1 */
+                
             !result.get(0).getRecipient().getUsername().equalsIgnoreCase("newRecipient") ||
             !result.get(0).getSeller().getUsername().equalsIgnoreCase("seller") ||
 
@@ -203,7 +237,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetTotalOrders() {
-        System.out.println("__ TotalOrders");
+        System.out.println("___ TotalOrders");
         
         RecipientBean instance = new RecipientBean();
         
@@ -216,7 +250,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetOrderDetails() {
-        System.out.println("__ OrderDetails");
+        System.out.println("___ OrderDetails");
         
         RecipientBean instance = new RecipientBean();
         
@@ -229,7 +263,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetUserDetails() {
-        System.out.println("__ UserDetails");
+        System.out.println("___ UserDetails");
         
         RecipientBean instance = new RecipientBean();
         
@@ -242,7 +276,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetId() {
-        System.out.println("__ Id");
+        System.out.println("___ Id");
         
         RecipientBean instance = new RecipientBean();
         
@@ -255,7 +289,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetRecipientId() {
-        System.out.println("__ RecipientId");
+        System.out.println("___ RecipientId");
         
         RecipientBean instance = new RecipientBean();
         
@@ -268,7 +302,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetSellerId() {
-        System.out.println("__ SellerId");
+        System.out.println("___ SellerId");
         
         RecipientBean instance = new RecipientBean();
         
@@ -281,7 +315,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetParcelDetails() {
-        System.out.println("__ ParcelDetails");
+        System.out.println("___ ParcelDetails");
         
         RecipientBean instance = new RecipientBean();
         
@@ -294,7 +328,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetTotalParcels() {
-        System.out.println("__ TotalParcels");
+        System.out.println("___ TotalParcels");
         
         RecipientBean instance = new RecipientBean();
         
@@ -307,7 +341,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetTotalTransactions() {
-        System.out.println("__ TotalTransactions");
+        System.out.println("___ TotalTransactions");
         
         RecipientBean instance = new RecipientBean();
         
@@ -320,7 +354,7 @@ public class RecipientBeanTest {
 
     @Test
     public void testSetAndGetRole() {
-        System.out.println("__ Role");
+        System.out.println("___ Role");
         
         RecipientBean instance = new RecipientBean();
         

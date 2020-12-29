@@ -12,7 +12,7 @@ public class SellerCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int() {
-        System.out.println("__ SellerCommandFactoryCreateCommand");
+        System.out.println("___ SellerCommandFactoryCreateCommand");
         
         int commandType = 0;
         
@@ -24,7 +24,7 @@ public class SellerCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int_int() {
-        System.out.println("__ Seller createCommand");
+        System.out.println("___ Seller createCommandInt");
         
         int commandType = 0;
         int id = 0;
@@ -37,7 +37,7 @@ public class SellerCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int_OrderDTO() {
-        System.out.println("__ createCommand");
+        System.out.println("___ createCommandOrder");
         
         int commandType = 0;
         
@@ -51,7 +51,7 @@ public class SellerCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int_ParcelDTO() {
-        System.out.println("__ createCommand");
+        System.out.println("___ createCommandParcel");
         
         int commandType = 0;
         

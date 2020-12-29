@@ -11,7 +11,7 @@ public class ViewUserByUsernameCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ GuestViewUserByUsernameCommand execute");
+        System.out.println("___ GuestViewUserByUsernameCommand execute");
 
         ViewUserByUsernameCommand instance = new ViewUserByUsernameCommand("driver");
 

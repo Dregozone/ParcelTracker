@@ -11,7 +11,7 @@ public class DriverCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int() {
-        System.out.println("__ DriverCommandFactoryCreateCommand");
+        System.out.println("___ DriverCommandFactoryCreateCommand");
         
         int commandType = 0;
         
@@ -23,7 +23,7 @@ public class DriverCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int_TransactionDTO() {
-        System.out.println("__ Driver createCommand");
+        System.out.println("___ Driver createCommand");
         
         int commandType = 0;
         

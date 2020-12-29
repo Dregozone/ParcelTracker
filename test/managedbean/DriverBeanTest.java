@@ -16,7 +16,7 @@ public class DriverBeanTest {
 
     @Test
     public void testFindUser() {
-        System.out.println("__ findUser");
+        System.out.println("___ findUser");
         
         int userID = 2;
         
@@ -30,7 +30,7 @@ public class DriverBeanTest {
 
     @Test
     public void testFindRoleByUser() {
-        System.out.println("__ findRoleByUser");
+        System.out.println("___ findRoleByUser");
         
         int userID = 2;
         
@@ -105,7 +105,7 @@ public class DriverBeanTest {
 
     @Test
     public void testGetNextTransactionId() {
-        System.out.println("__ getNextTransactionId");
+        System.out.println("___ getNextTransactionId");
         
         DriverBean instance = new DriverBean();
         
@@ -116,7 +116,7 @@ public class DriverBeanTest {
 
     @Test
     public void testGetNextOrderParcelsId() {
-        System.out.println("__ getNextOrderParcelsId");
+        System.out.println("___ getNextOrderParcelsId");
         
         DriverBean instance = new DriverBean();
         
@@ -127,7 +127,7 @@ public class DriverBeanTest {
 
     @Test
     public void testGetNextId() {
-        System.out.println("__ getNextId");
+        System.out.println("___ getNextId");
         
         DriverBean instance = new DriverBean();
         
@@ -138,7 +138,7 @@ public class DriverBeanTest {
 
     @Test
     public void testGetDate() {
-        System.out.println("__ getDate");
+        System.out.println("___ getDate");
 
         DriverBean instance = new DriverBean();
         
@@ -153,7 +153,7 @@ public class DriverBeanTest {
 
     @Test
     public void testGetOrderParcelByOrder() {
-        System.out.println("__ getOrderParcelByOrder");
+        System.out.println("___ getOrderParcelByOrder");
         
         DriverBean instance = new DriverBean();
         SellerBean sellerInstance = new SellerBean();
@@ -203,7 +203,7 @@ public class DriverBeanTest {
 
     @Test
     public void testGetOrderSummaries() {
-        System.out.println("__ getOrderSummaries");
+        System.out.println("___ getOrderSummaries");
         
         DriverBean instance = new DriverBean();
         
@@ -217,7 +217,7 @@ public class DriverBeanTest {
     
     @Test 
     public void testViewOrderProgress() {
-        System.out.println("__ viewOrderProgress");
+        System.out.println("___ viewOrderProgress");
         
         DriverBean instance = new DriverBean();
         SellerBean sellerInstance = new SellerBean();
@@ -264,7 +264,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetId() {
-        System.out.println("__ Id");
+        System.out.println("___ Id");
         
         DriverBean instance = new DriverBean();
         
@@ -277,7 +277,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetRecipientId() {
-        System.out.println("__ RecipientId");
+        System.out.println("___ RecipientId");
         
         DriverBean instance = new DriverBean();
         
@@ -290,7 +290,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetSellerId() {
-        System.out.println("__ SellerId");
+        System.out.println("___ SellerId");
         
         DriverBean instance = new DriverBean();
         
@@ -303,7 +303,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetParcelDetails() {
-        System.out.println("__ ParcelDetails");
+        System.out.println("___ ParcelDetails");
         
         DriverBean instance = new DriverBean();
         
@@ -316,7 +316,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetTotalParcels() {
-        System.out.println("__ TotalParcels");
+        System.out.println("___ TotalParcels");
         
         DriverBean instance = new DriverBean();
         
@@ -329,7 +329,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetTotalTransactions() {
-        System.out.println("__ TotalTransactions");
+        System.out.println("___ TotalTransactions");
         DriverBean instance = new DriverBean();
         
         int expResult = 5;
@@ -340,7 +340,7 @@ public class DriverBeanTest {
 
     @Test
     public void testSetAndGetRole() {
-        System.out.println("__ Role");
+        System.out.println("___ Role");
         
         DriverBean instance = new DriverBean();
         

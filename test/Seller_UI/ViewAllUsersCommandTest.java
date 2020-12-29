@@ -12,7 +12,7 @@ public class ViewAllUsersCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerViewAllUsers execute");
+        System.out.println("___ SellerViewAllUsers execute");
 
         ViewAllUsersCommand instance = new ViewAllUsersCommand();
 

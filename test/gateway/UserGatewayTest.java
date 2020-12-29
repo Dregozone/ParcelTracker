@@ -11,7 +11,7 @@ public class UserGatewayTest {
 
     @Test
     public void testFindUserReturnsCorrectUserWhenIdIsValid() {
-        System.out.println("__ findUser (valid)");
+        System.out.println("___ findUser (valid)");
         
         UserGateway instance = new UserGateway();
         
@@ -40,7 +40,7 @@ public class UserGatewayTest {
     
     @Test
     public void testFindUserReturnsNullWhenIdIsInvalid() {
-        System.out.println("__ findUser (invalid)");
+        System.out.println("___ findUser (invalid)");
         
         UserGateway instance = new UserGateway();
         UserDTO actualResult = instance.find(-1);

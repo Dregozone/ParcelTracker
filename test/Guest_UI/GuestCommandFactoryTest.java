@@ -11,7 +11,7 @@ public class GuestCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int_String() {
-        System.out.println("__ GuestCommandFactorycreateCommand");
+        System.out.println("___ GuestCommandFactorycreateCommand");
         
         int commandType = 0;
         
@@ -25,7 +25,7 @@ public class GuestCommandFactoryTest {
 
     @Test
     public void testCreateCommand_int_UserDTO() {
-        System.out.println("__ Guest createCommand");
+        System.out.println("___ Guest createCommand");
         
         int commandType = 0;
         

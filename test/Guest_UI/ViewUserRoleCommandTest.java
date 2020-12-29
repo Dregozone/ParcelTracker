@@ -10,7 +10,7 @@ public class ViewUserRoleCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ GuestViewUserRoleCommand execute");
+        System.out.println("___ GuestViewUserRoleCommand execute");
         
         ViewUserRoleCommand instance = new ViewUserRoleCommand("driver");
         

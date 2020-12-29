@@ -11,7 +11,7 @@ public class UserManagerTest {
 
     @Test
     public void testFindUser() {
-        System.out.println("__ findUser");
+        System.out.println("___ findUser");
         
         int UserID = 3;
         
@@ -25,7 +25,7 @@ public class UserManagerTest {
 
     @Test
     public void testFindUserByUsername() {
-        System.out.println("__ findUserByUsername");
+        System.out.println("___ findUserByUsername");
         
         String username = "seller";
         
@@ -39,7 +39,7 @@ public class UserManagerTest {
 
     @Test
     public void testFindUserRole() {
-        System.out.println("__ findUserRole");
+        System.out.println("___ findUserRole");
         
         String username = "seller";
         

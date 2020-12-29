@@ -12,7 +12,7 @@ public class ViewOrderProgressCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ RecipientViewDeliveryProgress execute");
+        System.out.println("___ RecipientViewDeliveryProgress execute");
         
         ViewOrderProgressCommand instance = new ViewOrderProgressCommand(2);
         

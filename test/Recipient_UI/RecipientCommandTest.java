@@ -10,7 +10,7 @@ public class RecipientCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ RecipientCommandTest execute");
+        System.out.println("___ RecipientCommandTest execute");
         
         RecipientCommand instance = new RecipientCommandImpl();
         

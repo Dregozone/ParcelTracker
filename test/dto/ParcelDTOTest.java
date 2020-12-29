@@ -10,7 +10,7 @@ public class ParcelDTOTest {
     
     @Test
     public void testGetValues() {
-        System.out.println("__ ParcelDTO: Get values");
+        System.out.println("___ ParcelDTO: Get values");
         
         UserDTO seller = new UserDTO(3, "Anders", "Learmonth", "seller", "123", "1900-01-01", "1900-01-01", "a", "a", "a", "a", "a@b.com", "", true, "Recipient");
                 

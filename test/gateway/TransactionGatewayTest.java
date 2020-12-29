@@ -13,7 +13,7 @@ public class TransactionGatewayTest {
 
     @Test
     public void testFind() {
-        System.out.println("__ findTransaction");
+        System.out.println("___ findTransaction");
         
         int TransactionID = 1;
         
@@ -27,7 +27,7 @@ public class TransactionGatewayTest {
 
     @Test
     public void testFindOrderTransactions() {
-        System.out.println("__ findOrderTransactions");
+        System.out.println("___ findOrderTransactions");
         
         int OrderID = 1;
         

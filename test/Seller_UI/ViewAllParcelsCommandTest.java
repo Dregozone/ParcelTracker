@@ -12,7 +12,7 @@ public class ViewAllParcelsCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerViewAllParcels execute");
+        System.out.println("___ SellerViewAllParcels execute");
 
         ViewAllParcelsCommand instance = new ViewAllParcelsCommand();
 

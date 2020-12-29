@@ -12,7 +12,7 @@ public class EditParcelCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerEditParcelCommand execute");
+        System.out.println("___ SellerEditParcelCommand execute");
         
         UserDTO seller = new UserDTO(1, "first", "last", "recipient", "123", "1900-01-01", "1900-01-01", "a", "a", "a", "a", "a", "a", true, "Recipient");
         ParcelDTO parcel = new ParcelDTO(1, "name", "type", 10, seller, "1900-01-01", "1900-01-01", 0);

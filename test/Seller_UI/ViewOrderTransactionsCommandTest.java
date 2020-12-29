@@ -12,7 +12,7 @@ public class ViewOrderTransactionsCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerViewOrderTransactionsCommand execute");
+        System.out.println("___ SellerViewOrderTransactionsCommand execute");
         
         int orderId = 1;
         

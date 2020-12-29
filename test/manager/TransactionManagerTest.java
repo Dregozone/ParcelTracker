@@ -11,7 +11,7 @@ public class TransactionManagerTest {
 
     @Test
     public void testFindTransaction() {
-        System.out.println("__ findTransaction");
+        System.out.println("___ findTransaction");
         
         int TransactionID = 1;
         

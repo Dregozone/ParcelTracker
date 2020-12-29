@@ -12,7 +12,7 @@ public class ViewOrderParcelsCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerViewOrderParcelsCommand execute");
+        System.out.println("___ SellerViewOrderParcelsCommand execute");
 
         int orderId = 2;
         

@@ -15,7 +15,7 @@ public class OrderGatewayTest {
 
     @Test
     public void testGetDate() {
-        System.out.println("__ getDate");
+        System.out.println("___ getDate");
         
         OrderGateway instance = new OrderGateway();
         
@@ -30,7 +30,7 @@ public class OrderGatewayTest {
     
     @Test
     public void testFind() {
-        System.out.println("__ findOrder");
+        System.out.println("___ findOrder");
 
         int OrderID = 2;
 
@@ -52,7 +52,7 @@ public class OrderGatewayTest {
     
     @Test
     public void testFindAllOrders() {
-        System.out.println("__ findAllOrders");
+        System.out.println("___ findAllOrders");
         
         OrderGateway instance = new OrderGateway();
         

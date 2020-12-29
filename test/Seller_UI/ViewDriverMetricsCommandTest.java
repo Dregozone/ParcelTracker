@@ -12,7 +12,7 @@ public class ViewDriverMetricsCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerViewDriverMetrics execute");
+        System.out.println("___ SellerViewDriverMetrics execute");
 
         ViewDriverMetricsCommand instance = new ViewDriverMetricsCommand();
 

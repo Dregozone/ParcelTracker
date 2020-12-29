@@ -15,7 +15,7 @@ public class DeleteOrderCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerDeleteOrderCommand execute");
+        System.out.println("___ SellerDeleteOrderCommand execute");
         
         // Prep create order details
         SellerBean sellerInstance = new SellerBean();

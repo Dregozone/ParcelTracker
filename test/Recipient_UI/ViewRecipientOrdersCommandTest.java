@@ -12,7 +12,7 @@ public class ViewRecipientOrdersCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ RecipientViewRecipientDeliveries execute");
+        System.out.println("___ RecipientViewRecipientDeliveries execute");
         
         ViewRecipientOrdersCommand instance = new ViewRecipientOrdersCommand(2);
         

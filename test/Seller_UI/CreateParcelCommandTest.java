@@ -13,7 +13,7 @@ public class CreateParcelCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerCreateParcelCommand execute");
+        System.out.println("___ SellerCreateParcelCommand execute");
 
         SellerBean sellerInstance = new SellerBean();
         UserDTO seller = new UserDTO(3, "a", "a", "seller", "123", "1900-01-01", "1900-01-01", "a", "a", "a", "a", "a", "a", true, "Seller");

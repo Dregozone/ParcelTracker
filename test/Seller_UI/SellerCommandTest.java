@@ -10,7 +10,7 @@ public class SellerCommandTest {
 
     @Test
     public void testExecute() {
-        System.out.println("__ SellerCommand execute");
+        System.out.println("___ SellerCommand execute");
         
         SellerCommand instance = new SellerCommandImpl();
         

@@ -426,6 +426,15 @@ public class SellerBean implements Serializable
     
     public String addParcelToOrder(int orderId, int parcelId, int quantity) {
         
+        if ( 
+            orderId < 0 ||
+            parcelId < 0 ||
+            quantity < 0
+        ) {
+            
+            throw new NullPointerException(); // This is illegal values, dont perform DB action, instead throw error back to application
+        }
+        
         try {
             Connection conn = DbManager.getConnection();
 
@@ -448,6 +457,8 @@ public class SellerBean implements Serializable
             conn.close();
         } catch(SQLException sqle) {
             sqle.printStackTrace();
+            
+            return null;
         }
         
         return "Seller_UI";
